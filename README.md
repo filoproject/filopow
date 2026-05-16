@@ -6,131 +6,188 @@ Visit our website:
 
 [Neoxa.net](https://neoxa.net)
 
-## Navigation 🧭
+## Navigation
 
-> [Introduction](#introduction-🚩)
+> [Introduction](#introduction)
 >
-> [Installation](#installation-⚙️)
+> [Network at a glance](#network-at-a-glance)
 >
->[License](#license-🔏)
+> [Installation](#installation)
 >
->[Development](#development-👨‍💻)
+> [Running a Smartnode](#running-a-smartnode)
+>
+> [License](#license)
+>
+> [Development](#development)
 
 ---
 
-## Introduction 🚩
+## Introduction
 
 Welcome to the Neoxa Project! Below you can find general information about the project including installation instructions and development insight. Thank you for supporting Neoxa!
 
 ### What is Neoxa?
 
-Neoxa is a blockchain platform that combines gaming and cryptocurrency by allowing users to earn cryptocurrency while playing games. It operates on a Proof of Work mining system. The concept of "Play to Earn" enables gamers to engage with blockchain technology by playing games and receiving rewards. Neoxa aims to bridge the gap between the minable cryptocurrency and gaming communities, providing an opportunity for both to benefit from the blockchain. For more detailed information, please refer to the [Neoxa Whitepaper](https://www.neoxa.net/whitepaper).
+Neoxa is a community-secured Layer 1 blockchain that combines KawPoW GPU mining, a Smartnode service tier, native digital asset issuance, and a Play to Earn gaming layer. New blocks arrive roughly every 60 seconds, and each block reward is split 45% to miners, 45% to Smartnodes, 5% to gaming, and 5% to development, so every party that helps run the network shares in its growth. On top of the base chain, anyone can mint their own native asset without writing a smart contract, and gamers can earn NEOX in real time across supported game servers via Neoxa Gaming. For the full technical picture, please refer to the [Neoxa Whitepaper](https://neoxa.net/whitepaper).
 
 ### About Neoxa
 
-Neoxa is dedicated to providing gamers with the opportunity to earn Neoxa cryptocurrency while indulging in their favorite games. Our team consists of experienced developers who have a deep passion for gaming, and we are excited to introduce innovative features within our gaming servers. Leveraging the flexibility of PC Gaming and even console platforms, we can utilize modding to incorporate the necessary monitoring functionalities to bring our vision to life.
+Neoxa is dedicated to giving gamers, miners, and operators a real working blockchain to build on. Our team is made up of experienced developers with a deep passion for gaming, and we use the flexibility of modern PC gaming, modding hooks, and dedicated game servers to wire blockchain rewards directly into gameplay people actually play.
 
-In contrast to numerous blockchain projects that lack realistic goals or fail to follow through with their plans, Neoxa stands apart by delivering a Proof of Concept right from its launch. We believe in demonstrating the feasibility of our ideas and ensuring tangible progress, earning the trust and confidence of our community.
+In contrast to projects that announce features they never ship, Neoxa stands apart by delivering working products from day one and continuing to ship: a live KawPoW mining network, thousands of active Smartnodes, a native asset protocol, the [Neoxa Exchange](https://neoxa.exchange), wNEOX bridges to Ethereum and Solana, a community block explorer, and a [Play to Earn gaming platform](https://neoxagaming.com) that pays out in NEOX. We believe in demonstrating feasibility through code that runs in production, not slideware.
 
 ### NEOX | Neoxa Coin
 
-Neoxa (NEOX) serves as a versatile currency catering to investors, gamers, and gaming developers alike. To enhance the gaming experience and provide earning opportunities, Neoxa has implemented innovative Play to Earn mechanisms within popular games such as Minecraft, Rust, and Grand Theft Auto. By participating in these games, our dedicated gamers can effortlessly earn Neoxa without requiring any financial investment. For more information visit the [Neoxa Website](https://neoxa.net).
+Neoxa (NEOX) is the native currency of the chain and serves investors, gamers, and developers alike. It pays miners and Smartnodes for securing the network, settles on-chain fees, funds native asset issuance, and is distributed as live in-game rewards through Play to Earn integrations on [Neoxa Gaming](https://neoxagaming.com). NEOX can be traded on [Neoxa Exchange](https://neoxa.exchange) and bridged to Ethereum and Solana as wNEOX via [neoxa.exchange/swap](https://neoxa.exchange/swap), letting the same supply plug into the broader DeFi ecosystem. The base block reward starts at 5,000 NEOX and halves every 2,100,000 blocks, asymptotically capping the total supply at 21 billion NEOX. For more information visit the [Neoxa Website](https://neoxa.net).
 
 ---
 
-## Installation ⚙️
+## Network at a glance
+
+| Parameter | Value |
+| --- | --- |
+| Consensus | KawPoW (Proof of Work) |
+| Target block time | 60 seconds |
+| Base block reward | 5,000 NEOX |
+| Reward split | 45% miner, 45% Smartnode, 5% gaming, 5% development |
+| Halving interval | Every 2,100,000 blocks |
+| Maximum supply | 21,000,000,000 NEOX (asymptotic) |
+| Smartnode collateral | 1,000,000 NEOX |
+| Native asset protocol | Yes (issue, transfer, burn, restricted) |
+| InstantSend | Active |
+| ChainLocks | Active |
+| P2P port | 8788 |
+| Default RPC port | 15419 |
+| P2PKH address prefix | N |
+
+For the full protocol description see the [Neoxa Whitepaper](https://neoxa.net/whitepaper) and the [Learn](https://neoxa.net/learn) section of the website.
+
+---
+
+## Installation
 
 ### Neoxa Core Wallet
 
-Below you will find instructions for installing the Neoxa Core and Neoxa QT GUI-based wallet application.
+Below you will find instructions for installing the Neoxa Core daemon and the Neoxa-QT GUI wallet.
 
 #### Install the latest precompiled executables
 
-[Neoxa Releases](https://github.com/NeoxaChain/Neoxa/releases)
+Releases are published at [Neoxa Releases](https://github.com/NeoxaChain/Neoxa/releases).
 
 ##### Windows 10/11
 
-- Download `neoxad.x.x.x.x-win64.zip`.
-
-- Extract the contents
-
-For GUI Wallet:
-
-- Download `neoxaqt.x.x.x.x-win64.zip`.
-
-- Extract the contents and drag the `neoxa-qt` file into the `neoxad.x.x.x.x-win64/` folder.
-
+- Download `neoxad.x.x.x.x-win64.zip` for the daemon, or `neoxaqt.x.x.x.x-win64.zip` for the GUI wallet.
+- Extract the contents.
+- For the GUI wallet, drag the `neoxa-qt` file into the `neoxad.x.x.x.x-win64/` folder.
 - Run the `neoxa-qt` application.
 
 ##### macOS
 
-- Download `neoxad.x.x.x.x-osx.zip`.
-
-- Extract the contents
-
-For GUI Wallet:
-
-- Download `neoxaqt.x.x.x.x-osx.zip`.
-
-- Extract the contents and drag the `neoxa-qt` file into the `neoxad.x.x.x.x-osx/` folder.
-
-- Open a terminal in the `neoxad.x.x.x.x-osx/` folder.
-
+- Download `neoxad.x.x.x.x-osx.zip` for the daemon, or `neoxaqt.x.x.x.x-osx.zip` for the GUI wallet.
+- Extract the contents.
+- For the GUI wallet, drag the `neoxa-qt` file into the `neoxad.x.x.x.x-osx/` folder.
+- Open a terminal in that folder.
 - Make the files executable:
-    `chmod +x *`
-
+  ```
+  chmod +x *
+  ```
 - Run the application:
-    `./neoxa-qt`.
+  ```
+  ./neoxa-qt
+  ```
 
 ##### GNU/Linux
 
-- Download `neoxad.x.x.x.x-linux64.zip`.
+- Download `neoxad.x.x.x.x-linux64.zip` for the daemon, or `neoxaqt.x.x.x.x-linux64.zip` for the GUI wallet.
 
-- Open a terminal in the `Downloads/` folder.
+- Open a terminal in your `Downloads/` folder.
 
-- Create a folder to store the application: binaries
+- Create a folder for the binaries:
+  ```
+  mkdir Neoxa-Wallet
+  ```
 
-     ~/Downloads $`mkdir Neoxa-Wallet`
+- Install `unzip` if you do not already have it.
 
-Install `unzip` if needed:
+  Ubuntu / Debian:
+  ```
+  sudo apt-get -y update && sudo apt install -y unzip
+  ```
+  Fedora:
+  ```
+  sudo dnf -y install unzip
+  ```
+  Arch / Manjaro:
+  ```
+  sudo pacman -S unzip
+  ```
 
-Ubuntu:
-    `sudo apt-get -y update && sudo apt install -y unzip`
+- Extract the daemon:
+  ```
+  unzip neoxad.x.x.x.x-linux64.zip -d ./Neoxa-Wallet
+  ```
 
-Fedora:
-    `sudo dnf -y install unzip`
+- For the GUI wallet, also extract:
+  ```
+  unzip neoxaqt.x.x.x.x-linux64.zip -d ./Neoxa-Wallet
+  ```
 
-Arch/Manjaro:
-    `sudo pacman -S unzip`
+- Move into the folder and make the files executable:
+  ```
+  cd Neoxa-Wallet
+  chmod +x *
+  ```
 
-- Extract the contents into the `Neoxa-Wallet/` folder:
-    ~/Downloads $`unzip neoxad.x.x.x.x-linux64.zip -d ./Neoxa-Wallet`
+- Run the GUI wallet:
+  ```
+  ./neoxa-qt
+  ```
 
-For GUI Wallet:
+### Minimal neoxa.conf
 
-- Download `neoxaqt.x.x.x.x-linux64.zip`.
+If you are running the daemon for the first time, create `~/.neoxacore/neoxa.conf` (Linux/macOS) or `%APPDATA%\NeoxaCore\neoxa.conf` (Windows) with at minimum:
 
-- Extract the `neoxa-qt` file into the `Neoxa-Wallet/` folder:
-    ~/Downloads $`unzip neoxaqt.x.x.x.x-linux64.zip -d ./Neoxa-Wallet`
+```
+server=1
+listen=1
+rpcuser=changeMe
+rpcpassword=longRandomStringYouChooseHere
+rpcallowip=127.0.0.1
+```
 
-- Make the files executable:
-    `chmod +x *`
+Enable additional indexes only if you need them. They increase disk usage and the time required for the initial sync:
 
-- Run the application:
-    `./neoxa-qt`.
+```
+txindex=1         # required for getrawtransaction and explorer-style lookups
+addressindex=1    # required for getaddress* calls (balance / history by address)
+assetindex=1      # required for getassetdata and full asset RPC support
+spentindex=1      # required for tracing spent outputs (used by block explorers)
+```
 
 ---
 
-## License 🔏
+## Running a Smartnode
+
+A Smartnode is a node that locks 1,000,000 NEOX as collateral and provides services to the network in exchange for 45% of every block reward. Smartnodes power InstantSend, ChainLocks, and chain governance.
+
+Full step-by-step setup instructions are maintained on the developer site:
+
+**[dev.neoxa.net/smartnode](https://dev.neoxa.net/smartnode)**
+
+A live count of active Smartnodes plus a reward calculator are available on the [Neoxa website](https://neoxa.net/smartnodes).
+
+---
+
+## License
 
 Neoxa Core is released under the terms of the MIT license. See [COPYING](COPYING) for more
 information or see https://opensource.org/licenses/MIT.
 
 ---
 
-## Development 👨‍💻
+## Development
 
-### Development Process
+### Development process
 
 The `master` branch is regularly built and tested, but is not guaranteed to be
 completely stable. [Tags](https://github.com/NeoxaChain/Neoxa/tags) are created
@@ -138,9 +195,21 @@ regularly to indicate new official, stable release versions of Neoxa Core.
 
 The contribution workflow is described in [CONTRIBUTING.md](CONTRIBUTING.md).
 
-### Testing 🧪
+### Building from source
 
-Neoxa Core is dedicated to ensure all new updates that are released will be thoroughly tested before entering the mainnet, this is why we have a testnet running alongside our main chain. While the testnet is running we will regularly run unit_testing that is built into Neoxa Core and ensure all reports come back as PASSED.
+Build instructions for each supported platform live in the [`doc/`](doc/) directory:
+
+- [`doc/build-unix.md`](doc/build-unix.md)
+- [`doc/build-osx.md`](doc/build-osx.md)
+- [`doc/build-windows.md`](doc/build-windows.md)
+
+### Lineage
+
+Neoxa Core is a Dash-derived chain (DIP-3 ProTx, LLMQ, InstantSend, ChainLocks, governance), with KawPoW consensus and the native asset protocol both ported from Ravencoin Core. Familiarity with the Dash and Ravencoin codebases is helpful when working on consensus-level changes.
+
+### Testing
+
+Neoxa Core is committed to making sure every release is thoroughly tested before reaching mainnet. A public testnet runs alongside the main chain, and the unit and functional test suites bundled with the codebase are run on each pull request and tag.
 
 #### Manual Quality Assurance (QA) Testing
 
@@ -151,7 +220,8 @@ not straightforward.
 
 ---
 
-### Appreciation 🙏
+### Appreciation
 
 Thank you to the Bitcoin developers.
+Thank you to the Dash developers.
 Thank you to the Ravencoin developers.
