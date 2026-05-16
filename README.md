@@ -58,7 +58,7 @@ Neoxa (NEOX) is the native currency of the chain and serves investors, gamers, a
 | ChainLocks | Active |
 | P2P port | 8788 |
 | Default RPC port | 15419 |
-| P2PKH address prefix | N |
+| P2PKH address prefix | G |
 
 For the full protocol description see the [Neoxa Whitepaper](https://neoxa.net/whitepaper) and the [Learn](https://neoxa.net/learn) section of the website.
 
