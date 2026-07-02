@@ -123,3 +123,6 @@ contrib/devtools/split-debug.sh
 cmake-build-debug
 
 CMakeLists.txt
+
+# Local session files (not part of the public repo)
+CLAUDE.md
