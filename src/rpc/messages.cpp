@@ -59,7 +59,7 @@ UniValue viewallmessages(const JSONRPCRequest& request) {
 
     if (!fMessaging) {
         UniValue ret(UniValue::VSTR);
-        ret.push_back("Messaging is disabled. To enable messaging, run the wallet without -disablemessaging or remove disablemessaging from your neoxa.conf");
+        ret.push_back("Messaging is disabled. To enable messaging, run the wallet without -disablemessaging or remove disablemessaging from your filopow.conf");
         return ret;
     }
 
@@ -133,7 +133,7 @@ UniValue viewallmessagechannels(const JSONRPCRequest& request) {
 
     if (!fMessaging) {
         UniValue ret(UniValue::VSTR);
-        ret.push_back("Messaging is disabled. To enable messaging, run the wallet without -disablemessaging or remove disablemessaging from your neoxa.conf");
+        ret.push_back("Messaging is disabled. To enable messaging, run the wallet without -disablemessaging or remove disablemessaging from your filopow.conf");
         return ret;
     }
 
@@ -183,7 +183,7 @@ UniValue subscribetochannel(const JSONRPCRequest& request) {
         );
 
     if (!fMessaging) {
-        throw JSONRPCError(RPC_DATABASE_ERROR, "Messaging is disabled. To enable messaging, run the wallet without -disablemessaging or remove disablemessaging from your neoxa.conf");
+        throw JSONRPCError(RPC_DATABASE_ERROR, "Messaging is disabled. To enable messaging, run the wallet without -disablemessaging or remove disablemessaging from your filopow.conf");
     }
 
     if (!pMessageSubscribedChannelsCache || !pmessagechanneldb) {
@@ -233,7 +233,7 @@ UniValue unsubscribefromchannel(const JSONRPCRequest& request) {
         );
 
     if (!fMessaging) {
-        throw JSONRPCError(RPC_DATABASE_ERROR, "Messaging is disabled. To enable messaging, run the wallet without -disablemessaging or remove disablemessaging from your neoxa.conf");
+        throw JSONRPCError(RPC_DATABASE_ERROR, "Messaging is disabled. To enable messaging, run the wallet without -disablemessaging or remove disablemessaging from your filopow.conf");
     }
 
     if (!pMessageSubscribedChannelsCache || !pmessagechanneldb) {
@@ -280,7 +280,7 @@ UniValue clearmessages(const JSONRPCRequest& request) {
         );
 
     if (!fMessaging) {
-        throw JSONRPCError(RPC_DATABASE_ERROR, "Messaging is disabled. To enable messaging, run the wallet without -disablemessaging or remove disablemessaging from your neoxa.conf");
+        throw JSONRPCError(RPC_DATABASE_ERROR, "Messaging is disabled. To enable messaging, run the wallet without -disablemessaging or remove disablemessaging from your filopow.conf");
     }
 
     if (!pMessagesCache || !pmessagedb) {

@@ -1,21 +1,21 @@
 
 Debian
 ====================
-This directory contains files used to package neoxad/neoxa-qt
-for Debian-based Linux systems. If you compile neoxad/neoxa-qt yourself, there are some useful files here.
+This directory contains files used to package filopowd/filopow-qt
+for Debian-based Linux systems. If you compile filopowd/filopow-qt yourself, there are some useful files here.
 
-## neoxa: URI support ##
+## filopow: URI support ##
 
 
-neoxa-qt.desktop  (Gnome / Open Desktop)
+filopow-qt.desktop  (Gnome / Open Desktop)
 To install:
 
-	sudo desktop-file-install neoxa-qt.desktop
+	sudo desktop-file-install filopow-qt.desktop
 	sudo update-desktop-database
 
 If you build yourself, you will either need to modify the paths in
-the .desktop file or copy or symlink your neoxa-qt binary to `/usr/bin`
-and the `../../share/pixmaps/neoxa128.png` to `/usr/share/pixmaps`
+the .desktop file or copy or symlink your filopow-qt binary to `/usr/bin`
+and the `../../share/pixmaps/filopow128.png` to `/usr/share/pixmaps`
 
-neoxa-qt.protocol (KDE)
+filopow-qt.protocol (KDE)
 

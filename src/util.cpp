@@ -6,7 +6,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include "config/neoxa-config.h"
+#include "config/filopow-config.h"
 #endif
 
 #include "util.h"
@@ -96,7 +96,7 @@
 // Application startup time (used for uptime calculation)
 const int64_t nStartupTime = GetTime();
 
-//Neoxa only features
+//Filopow only features
 bool fSmartnodeMode = false;
 bool fLiteMode = false;
 /**
@@ -108,8 +108,8 @@ bool fLiteMode = false;
 */
 int nWalletBackups = 10;
 
-const char * const BITCOIN_CONF_FILENAME = "neoxa.conf";
-const char * const BITCOIN_PID_FILENAME = "neoxad.pid";
+const char * const BITCOIN_CONF_FILENAME = "filopow.conf";
+const char * const BITCOIN_PID_FILENAME = "filopowd.pid";
 
 ArgsManager gArgs;
 bool fPrintToConsole = false;
@@ -267,7 +267,7 @@ const CLogCategoryDesc LogCategories[] =
     {BCLog::ALL, "1"},
     {BCLog::ALL, "all"},
 
-    //Start Neoxa
+    //Start Filopow
     {BCLog::CHAINLOCKS, "chainlocks"},
     {BCLog::GOBJECT, "gobject"},
     {BCLog::INSTANTSEND, "instantsend"},
@@ -279,7 +279,7 @@ const CLogCategoryDesc LogCategories[] =
     {BCLog::MNSYNC, "mnsync"},
     {BCLog::PRIVATESEND, "privatesend"},
     {BCLog::SPORK, "spork"},
-    //End Neoxa
+    //End Filopow
 
 };
 
@@ -290,7 +290,7 @@ bool GetLogCategory(uint64_t *f, const std::string *str)
             *f = BCLog::ALL;
             return true;
         }
-        if (*str == "neoxa") {
+        if (*str == "filopow") {
             *f = BCLog::CHAINLOCKS
                 | BCLog::GOBJECT
                 | BCLog::INSTANTSEND
@@ -619,13 +619,13 @@ void PrintExceptionContinue(const std::exception_ptr pex, const char* pszThread)
 
 fs::path GetDefaultDataDir()
 {
-    // Windows < Vista: C:\Documents and Settings\Username\Application Data\NeoxaCore
-    // Windows >= Vista: C:\Users\Username\AppData\Roaming\NeoxaCore
-    // Mac: ~/Library/Application Support/NeoxaCore
-    // Unix: ~/.neoxacore
+    // Windows < Vista: C:\Documents and Settings\Username\Application Data\FilopowCore
+    // Windows >= Vista: C:\Users\Username\AppData\Roaming\FilopowCore
+    // Mac: ~/Library/Application Support/FilopowCore
+    // Unix: ~/.filopowcore
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "NeoxaCore";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "FilopowCore";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
@@ -635,10 +635,10 @@ fs::path GetDefaultDataDir()
         pathRet = fs::path(pszHome);
 #ifdef MAC_OSX
     // Mac
-    return pathRet / "Library/Application Support/NeoxaCore";
+    return pathRet / "Library/Application Support/FilopowCore";
 #else
     // Unix
-    return pathRet / ".neoxacore";
+    return pathRet / ".filopowcore";
 #endif
 #endif
 }
@@ -705,7 +705,7 @@ void ArgsManager::ReadConfigFile(const std::string& confPath)
 {
     fs::ifstream streamConfig(GetConfigFile(confPath));
     if (!streamConfig.good()){
-        // Create empty neoxa.conf if it does not excist
+        // Create empty filopow.conf if it does not excist
         FILE* configFile = fopen(GetConfigFile(confPath).string().c_str(), "a");
         if (configFile != nullptr)
             fclose(configFile);
@@ -719,7 +719,7 @@ void ArgsManager::ReadConfigFile(const std::string& confPath)
 
         for (boost::program_options::detail::config_file_iterator it(streamConfig, setOptions), end; it != end; ++it)
         {
-            // Don't overwrite existing settings so command line settings override neoxa.conf
+            // Don't overwrite existing settings so command line settings override filopow.conf
             std::string strKey = std::string("-") + it->string_key;
             std::string strValue = it->value[0];
             InterpretNegativeSetting(strKey, strValue);

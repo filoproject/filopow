@@ -9,7 +9,7 @@ rm -f doc/man/Makefile
 rm -f doc/man/Makefile.in
 
 rm -f src/config/stamp-h1
-rm -f src/config/neoxa-config.h
+rm -f src/config/filopow-config.h
 rm -f src/obj/build.h
 rm -f src/leveldb/build_config.mk
 
@@ -17,7 +17,7 @@ rm -f src/test/buildenv.py
 rm -f src/test/data/*.json.h
 rm -f src/test/data/*.raw.h
 
-rm -rf test_bitcoin.coverage/ neoxa-gtest.coverage/ total.coverage/
+rm -rf test_bitcoin.coverage/ filopow-gtest.coverage/ total.coverage/
 
 rm -rf cache
 rm -rf target
@@ -69,19 +69,19 @@ clean_dirs .libs
 clean_dirs __pycache__
 
 clean_exe src/bench/bench_bitcoin
-clean_exe src/neoxa-cli
-clean_exe src/neoxad
-clean_exe src/neoxa-gtest
-clean_exe src/neoxa-tx
-clean_exe src/test/test_neoxa
-clean_exe src/test/test_neoxa_fuzzy
+clean_exe src/filopow-cli
+clean_exe src/filopowd
+clean_exe src/filopow-gtest
+clean_exe src/filopow-tx
+clean_exe src/test/test_filopow
+clean_exe src/test/test_filopow_fuzzy
 
 clean_exe src/leveldb/db_bench
 clean_exe src/leveldb/leveldbutil
 rm -f src/leveldb/*_test src/leveldb/*_test.exe
 rm -f src/leveldb/*.so src/leveldb/*.so.*
 
-clean_dep . src/config/neoxa-config.h.in
+clean_dep . src/config/filopow-config.h.in
 
 clean_dep src/secp256k1 src/libsecp256k1-config.h.in
 rm -f src/secp256k1/src/ecmult_static_context.h

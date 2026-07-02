@@ -121,11 +121,11 @@ AssetsDialog::AssetsDialog(const PlatformStyle *_platformStyle, QWidget *parent)
     ui->checkBoxMinimumFee->setChecked(settings.value("fPayOnlyMinFee").toBool());
     minimizeFeeSection(settings.value("fFeeSectionMinimized").toBool());
 
-    /** NEOX START */
+    /** FPOW START */
     setupAssetControlFrame(platformStyle);
     setupScrollView(platformStyle);
     setupFeeControl(platformStyle);
-    /** NEOX END */
+    /** FPOW END */
 }
 
 void AssetsDialog::setClientModel(ClientModel *_clientModel)
@@ -804,7 +804,7 @@ void AssetsDialog::assetControlChangeEdited(const QString& text)
         }
         else if (!IsValidDestination(dest)) // Invalid address
         {
-            ui->labelAssetControlChangeLabel->setText(tr("Warning: Invalid Neoxa address"));
+            ui->labelAssetControlChangeLabel->setText(tr("Warning: Invalid Filopow address"));
         }
         else // Valid address
         {
@@ -883,7 +883,7 @@ void AssetsDialog::assetControlUpdateLabels()
     }
 }
 
-/** NEOX START */
+/** FPOW START */
 void AssetsDialog::assetControlUpdateSendCoinsDialog()
 {
     for(int i = 0; i < ui->entries->count(); ++i)
@@ -948,4 +948,4 @@ void AssetsDialog::handleFirstSelection()
         entry->refreshAssetList();
     }
 }
-/** NEOX END */
+/** FPOW END */

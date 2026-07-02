@@ -8,7 +8,7 @@
 #include "script/script.h"
 #include "script/script_error.h"
 #include "script/standard.h"
-#include "test/test_neoxa.h"
+#include "test/test_filopow.h"
 
 #include <boost/test/unit_test.hpp>
 
@@ -93,7 +93,7 @@ BOOST_AUTO_TEST_CASE(script_standard_Solver_success)
 
     // TX_RESTRICTED_ASSET_DATA
         s.clear();
-        s << OP_NEOX_ASSET <<
+        s << OP_FPOW_ASSET <<
           std::vector<unsigned char>({0}) <<
           std::vector<unsigned char>({75}) <<
           std::vector<unsigned char>({255});

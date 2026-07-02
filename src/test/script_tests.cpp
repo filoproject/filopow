@@ -12,11 +12,11 @@
 #include "script/sign.h"
 #include "util.h"
 #include "utilstrencodings.h"
-#include "test/test_neoxa.h"
+#include "test/test_filopow.h"
 #include "rpc/server.h"
 
 #if defined(HAVE_CONSENSUS_LIB)
-#include "script/neoxaconsensus.h"
+#include "script/filopowconsensus.h"
 #endif
 
 #include <fstream>
@@ -171,13 +171,13 @@ BOOST_FIXTURE_TEST_SUITE(script_tests, BasicTestingSetup)
 #if defined(HAVE_CONSENSUS_LIB)
         CDataStream stream(SER_NETWORK, PROTOCOL_VERSION);
         stream << tx2;
-        int libconsensus_flags = flags & neoxaconsensus_SCRIPT_FLAGS_VERIFY_ALL;
+        int libconsensus_flags = flags & filopowconsensus_SCRIPT_FLAGS_VERIFY_ALL;
         if (libconsensus_flags == flags) {
-            if (flags & neoxaconsensus_SCRIPT_FLAGS_VERIFY_WITNESS) {
-                BOOST_CHECK_MESSAGE(neoxaconsensus_verify_script_with_amount(scriptPubKey.data(), scriptPubKey.size(), txCredit.vout[0].nValue, (const unsigned char*)&stream[0], stream.size(), 0, libconsensus_flags, nullptr) == expect, message);
+            if (flags & filopowconsensus_SCRIPT_FLAGS_VERIFY_WITNESS) {
+                BOOST_CHECK_MESSAGE(filopowconsensus_verify_script_with_amount(scriptPubKey.data(), scriptPubKey.size(), txCredit.vout[0].nValue, (const unsigned char*)&stream[0], stream.size(), 0, libconsensus_flags, nullptr) == expect, message);
             } else {
-                BOOST_CHECK_MESSAGE(neoxaconsensus_verify_script_with_amount(scriptPubKey.data(), scriptPubKey.size(), 0, (const unsigned char*)&stream[0], stream.size(), 0, libconsensus_flags, nullptr) == expect, message);
-                BOOST_CHECK_MESSAGE(neoxaconsensus_verify_script(scriptPubKey.data(), scriptPubKey.size(), (const unsigned char*)&stream[0], stream.size(), 0, libconsensus_flags, nullptr) == expect,message);
+                BOOST_CHECK_MESSAGE(filopowconsensus_verify_script_with_amount(scriptPubKey.data(), scriptPubKey.size(), 0, (const unsigned char*)&stream[0], stream.size(), 0, libconsensus_flags, nullptr) == expect, message);
+                BOOST_CHECK_MESSAGE(filopowconsensus_verify_script(scriptPubKey.data(), scriptPubKey.size(), (const unsigned char*)&stream[0], stream.size(), 0, libconsensus_flags, nullptr) == expect,message);
             }
         }
 #endif

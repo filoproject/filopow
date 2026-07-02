@@ -9,15 +9,15 @@ import struct
 
 from codecs import encode
 
-from test_framework.mininode import neoxahash
+from test_framework.mininode import filopowhash
 from test_framework.test_framework import BitcoinTestFramework, SkipTest
 from test_framework.util import (assert_equal,
                                  bytes_to_hex_str,
                                  hash256,
                                 )
 
-def neoxahash_helper(b):
-    return encode(neoxahash(b)[::-1], 'hex_codec').decode('ascii')
+def filopowhash_helper(b):
+    return encode(filopowhash(b)[::-1], 'hex_codec').decode('ascii')
 
 class ZMQTest (BitcoinTestFramework):
     def set_test_params(self):
@@ -30,14 +30,14 @@ class ZMQTest (BitcoinTestFramework):
         except ImportError:
             raise SkipTest("python3-zmq module not available.")
 
-        # Check that neoxa has been built with ZMQ enabled
+        # Check that filopow has been built with ZMQ enabled
         config = configparser.ConfigParser()
         if not self.options.configfile:
             self.options.configfile = os.path.dirname(__file__) + "/../config.ini"
         config.read_file(open(self.options.configfile))
 
         if not config["components"].getboolean("ENABLE_ZMQ"):
-            raise SkipTest("neoxad has not been built with zmq enabled.")
+            raise SkipTest("filopowd has not been built with zmq enabled.")
 
         self.zmqContext = zmq.Context()
         self.zmqSubSocket = self.zmqContext.socket(zmq.SUB)
@@ -103,7 +103,7 @@ class ZMQTest (BitcoinTestFramework):
         assert_equal(msgSequence, 0) #must be sequence 0 on rawblock
 
         # Check the hash of the rawblock's header matches generate
-        assert_equal(genhashes[0], neoxahash_helper(body[:80]))
+        assert_equal(genhashes[0], filopowhash_helper(body[:80]))
 
         self.log.info("Generate 10 blocks (and 10 coinbase txes)")
         n = 10
@@ -123,7 +123,7 @@ class ZMQTest (BitcoinTestFramework):
                 assert_equal(msgSequence, blockcount + 1)
                 blockcount += 1
             if topic == b"rawblock":
-                zmqRawHashed.append(neoxahash_helper(body[:80]))
+                zmqRawHashed.append(filopowhash_helper(body[:80]))
                 msgSequence = struct.unpack('<I', msg[-1])[-1]
                 assert_equal(msgSequence, blockcount)
 

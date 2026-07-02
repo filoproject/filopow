@@ -5,7 +5,7 @@
 
 #include <assets/assets.h>
 
-#include <test/test_neoxa.h>
+#include <test/test_filopow.h>
 
 #include <boost/test/unit_test.hpp>
 
@@ -25,7 +25,7 @@ BOOST_FIXTURE_TEST_SUITE(asset_tx_tests, BasicTestingSetup)
         SelectParams(CBaseChainParams::MAIN);
 
         // Create the asset scriptPubKey
-        CAssetTransfer asset("NEOXATEST", 1000);
+        CAssetTransfer asset("FILOPOWTEST", 1000);
         CScript scriptPubKey = GetScriptForDestination(DecodeDestination(Params().GlobalBurnAddress()));
         asset.ConstructTransaction(scriptPubKey);
 
@@ -73,7 +73,7 @@ BOOST_FIXTURE_TEST_SUITE(asset_tx_tests, BasicTestingSetup)
         SelectParams(CBaseChainParams::MAIN);
 
         // Create the asset scriptPubKey
-        CAssetTransfer asset("NEOXATEST", 1000);
+        CAssetTransfer asset("FILOPOWTEST", 1000);
         CScript scriptPubKey = GetScriptForDestination(DecodeDestination(Params().GlobalBurnAddress()));
         asset.ConstructTransaction(scriptPubKey);
 
@@ -100,8 +100,8 @@ BOOST_FIXTURE_TEST_SUITE(asset_tx_tests, BasicTestingSetup)
         in.prevout = outpoint;
 
         // Create CTxOut that will only send 100 of the asset
-        // This should fail because 900 NEOXA doesn't have a destination
-        CAssetTransfer assetTransfer("NEOXATEST", 100);
+        // This should fail because 900 FILOPOW doesn't have a destination
+        CAssetTransfer assetTransfer("FILOPOWTEST", 100);
         CScript scriptLess = GetScriptForDestination(DecodeDestination(Params().GlobalBurnAddress()));
         assetTransfer.ConstructTransaction(scriptLess);
 
@@ -130,7 +130,7 @@ BOOST_FIXTURE_TEST_SUITE(asset_tx_tests, BasicTestingSetup)
         SelectParams(CBaseChainParams::MAIN);
 
         // Create the asset scriptPubKey
-        CAssetTransfer asset("NEOXATEST", 1000);
+        CAssetTransfer asset("FILOPOWTEST", 1000);
         CScript scriptPubKey = GetScriptForDestination(DecodeDestination(Params().GlobalBurnAddress()));
         asset.ConstructTransaction(scriptPubKey);
 
@@ -159,7 +159,7 @@ BOOST_FIXTURE_TEST_SUITE(asset_tx_tests, BasicTestingSetup)
         // Create CTxOut that will only send 100 of the asset 10 times total = 1000
         for (int i = 0; i < 10; i++)
         {
-            CAssetTransfer asset2("NEOXATEST", 100);
+            CAssetTransfer asset2("FILOPOWTEST", 100);
             CScript scriptPubKey2 = GetScriptForDestination(DecodeDestination(Params().GlobalBurnAddress()));
             asset2.ConstructTransaction(scriptPubKey2);
 
@@ -191,7 +191,7 @@ BOOST_FIXTURE_TEST_SUITE(asset_tx_tests, BasicTestingSetup)
         SelectParams(CBaseChainParams::MAIN);
 
         // Create the asset scriptPubKey
-        CAssetTransfer asset("NEOXATEST", 1000);
+        CAssetTransfer asset("FILOPOWTEST", 1000);
         CScript scriptPubKey = GetScriptForDestination(DecodeDestination(Params().GlobalBurnAddress()));
         asset.ConstructTransaction(scriptPubKey);
 
@@ -220,7 +220,7 @@ BOOST_FIXTURE_TEST_SUITE(asset_tx_tests, BasicTestingSetup)
         // Create CTxOut that will only send 100 of the asset 12 times, total = 1200
         for (int i = 0; i < 12; i++)
         {
-            CAssetTransfer asset2("NEOXATEST", 100);
+            CAssetTransfer asset2("FILOPOWTEST", 100);
             CScript scriptPubKey2 = GetScriptForDestination(DecodeDestination(Params().GlobalBurnAddress()));
             asset2.ConstructTransaction(scriptPubKey2);
 
@@ -252,15 +252,15 @@ BOOST_FIXTURE_TEST_SUITE(asset_tx_tests, BasicTestingSetup)
         SelectParams(CBaseChainParams::MAIN);
 
         // Create the asset scriptPubKeys
-        CAssetTransfer asset("NEOXATEST", 1000);
+        CAssetTransfer asset("FILOPOWTEST", 1000);
         CScript scriptPubKey = GetScriptForDestination(DecodeDestination(Params().GlobalBurnAddress()));
         asset.ConstructTransaction(scriptPubKey);
 
-        CAssetTransfer asset2("NEOXATESTTEST", 1000);
+        CAssetTransfer asset2("FILOPOWTESTTEST", 1000);
         CScript scriptPubKey2 = GetScriptForDestination(DecodeDestination(Params().GlobalBurnAddress()));
         asset2.ConstructTransaction(scriptPubKey2);
 
-        CAssetTransfer asset3("NEOXATESTTESTTEST", 1000);
+        CAssetTransfer asset3("FILOPOWTESTTESTTEST", 1000);
         CScript scriptPubKey3 = GetScriptForDestination(DecodeDestination(Params().GlobalBurnAddress()));
         asset3.ConstructTransaction(scriptPubKey3);
 
@@ -317,7 +317,7 @@ BOOST_FIXTURE_TEST_SUITE(asset_tx_tests, BasicTestingSetup)
         for (int i = 0; i < 10; i++)
         {
             // Add the first asset
-            CAssetTransfer outAsset("NEOXATEST", 100);
+            CAssetTransfer outAsset("FILOPOWTEST", 100);
             CScript outScript = GetScriptForDestination(DecodeDestination(Params().GlobalBurnAddress()));
             outAsset.ConstructTransaction(outScript);
 
@@ -328,7 +328,7 @@ BOOST_FIXTURE_TEST_SUITE(asset_tx_tests, BasicTestingSetup)
             mutTx.vout.emplace_back(txOutNew);
 
             // Add the second asset
-            CAssetTransfer outAsset2("NEOXATESTTEST", 100);
+            CAssetTransfer outAsset2("FILOPOWTESTTEST", 100);
             CScript outScript2 = GetScriptForDestination(DecodeDestination(Params().GlobalBurnAddress()));
             outAsset2.ConstructTransaction(outScript2);
 
@@ -339,7 +339,7 @@ BOOST_FIXTURE_TEST_SUITE(asset_tx_tests, BasicTestingSetup)
             mutTx.vout.emplace_back(txOutNew2);
 
             // Add the third asset
-            CAssetTransfer outAsset3("NEOXATESTTESTTEST", 100);
+            CAssetTransfer outAsset3("FILOPOWTESTTESTTEST", 100);
             CScript outScript3 = GetScriptForDestination(DecodeDestination(Params().GlobalBurnAddress()));
             outAsset3.ConstructTransaction(outScript3);
 
@@ -358,8 +358,8 @@ BOOST_FIXTURE_TEST_SUITE(asset_tx_tests, BasicTestingSetup)
         CTransaction tx(mutTx);
         CValidationState state;
 
-        // The inputs are spending 3000 Assets (1000 of each NEOXA, NEOXATEST, NEOXATESTTEST)
-        // The outputs are spending 100 Assets to 10 destinations (10 * 100 = 1000) (of each NEOXA, NEOXATEST, NEOXATESTTEST)
+        // The inputs are spending 3000 Assets (1000 of each FILOPOW, FILOPOWTEST, FILOPOWTESTTEST)
+        // The outputs are spending 100 Assets to 10 destinations (10 * 100 = 1000) (of each FILOPOW, FILOPOWTEST, FILOPOWTESTTEST)
         // This test should pass because for each asset that is spent. It is assigned a destination
         std::vector<std::pair<std::string, uint256>> vReissueAssets;
         BOOST_CHECK_MESSAGE(Consensus::CheckTxAssets(tx, state, coins, nullptr, false, vReissueAssets, true), state.GetDebugMessage());
@@ -372,7 +372,7 @@ BOOST_FIXTURE_TEST_SUITE(asset_tx_tests, BasicTestingSetup)
         for (int i = 0; i < 9; i++)
         {
             // Add the first asset
-            CAssetTransfer outAsset("NEOXATEST", 100);
+            CAssetTransfer outAsset("FILOPOWTEST", 100);
             CScript outScript = GetScriptForDestination(DecodeDestination(Params().GlobalBurnAddress()));
             outAsset.ConstructTransaction(outScript);
 
@@ -383,7 +383,7 @@ BOOST_FIXTURE_TEST_SUITE(asset_tx_tests, BasicTestingSetup)
             mutTx2.vout.emplace_back(txOutNew);
 
             // Add the second asset
-            CAssetTransfer outAsset2("NEOXATESTTEST", 100);
+            CAssetTransfer outAsset2("FILOPOWTESTTEST", 100);
             CScript outScript2 = GetScriptForDestination(DecodeDestination(Params().GlobalBurnAddress()));
             outAsset2.ConstructTransaction(outScript2);
 
@@ -394,7 +394,7 @@ BOOST_FIXTURE_TEST_SUITE(asset_tx_tests, BasicTestingSetup)
             mutTx2.vout.emplace_back(txOutNew2);
 
             // Add the third asset
-            CAssetTransfer outAsset3("NEOXATESTTESTTEST", 100);
+            CAssetTransfer outAsset3("FILOPOWTESTTESTTEST", 100);
             CScript outScript3 = GetScriptForDestination(DecodeDestination(Params().GlobalBurnAddress()));
             outAsset3.ConstructTransaction(outScript3);
 

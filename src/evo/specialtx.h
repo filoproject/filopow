@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef NEOXA_SPECIALTX_H
-#define NEOXA_SPECIALTX_H
+#ifndef FILOPOW_SPECIALTX_H
+#define FILOPOW_SPECIALTX_H
 
 #include "primitives/transaction.h"
 #include "streams.h"
@@ -50,4 +50,4 @@ void SetTxPayload(CMutableTransaction& tx, const T& payload)
 
 uint256 CalcTxInputsHash(const CTransaction& tx);
 
-#endif //NEOXA_SPECIALTX_H
+#endif //FILOPOW_SPECIALTX_H

@@ -5,7 +5,7 @@
 #include "random.h"
 #include "scheduler.h"
 
-#include "test/test_neoxa.h"
+#include "test/test_filopow.h"
 
 #include <boost/bind.hpp>
 #include <boost/thread.hpp>

@@ -326,8 +326,8 @@ void CPrivateSend::InitStandardDenominations()
         is convertible to another.
 
         For example:
-        100NEOX+1000 == (10NEOX+100)*10
-        10RM+10000 == (1NEOX+1000)*10
+        100FPOW+1000 == (10FPOW+100)*10
+        10RM+10000 == (1FPOW+1000)*10
     */
     /* Disabled
     vecStandardDenominations.push_back( (100      * COIN)+100000 );
@@ -477,10 +477,10 @@ int CPrivateSend::GetDenominations(const std::vector<CTxOut>& vecTxOut, bool fSi
 bool CPrivateSend::GetDenominationsBits(int nDenom, std::vector<int>& vecBitsRet)
 {
     // ( bit on if present, 4 denominations example )
-    // bit 0 - 100NEOXA+1
-    // bit 1 - 10NEOXA+1
-    // bit 2 - 1NEOXA+1
-    // bit 3 - .1NEOXA+1
+    // bit 0 - 100FILOPOW+1
+    // bit 1 - 10FILOPOW+1
+    // bit 2 - 1FILOPOW+1
+    // bit 3 - .1FILOPOW+1
 
     int nMaxDenoms = vecStandardDenominations.size();
 

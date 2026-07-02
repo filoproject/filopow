@@ -506,7 +506,7 @@ void CTxMemPool::addAddressIndex(const CTxMemPoolEntry &entry, const CCoinsViewC
             mapAddress.insert(std::make_pair(key, delta));
             inserted.push_back(key);
         }else {
-            /** NEOXA START */
+            /** FILOPOW START */
             if (AreAssetsDeployed()) {
                 uint160 hashBytes;
                 std::string assetName;
@@ -518,7 +518,7 @@ void CTxMemPool::addAddressIndex(const CTxMemPoolEntry &entry, const CCoinsViewC
                     inserted.push_back(key);
                 }
             }
-            /** NEOXA END */
+            /** FILOPOW END */
         }
     }
 
@@ -542,7 +542,7 @@ void CTxMemPool::addAddressIndex(const CTxMemPoolEntry &entry, const CCoinsViewC
             mapAddress.insert(std::make_pair(key, CMempoolAddressDelta(entry.GetTime(), out.nValue)));
             inserted.push_back(key);
         }else {
-            /** NEOXA START */
+            /** FILOPOW START */
             if (AreAssetsDeployed()) {
                 uint160 hashBytes;
                 std::string assetName;
@@ -554,7 +554,7 @@ void CTxMemPool::addAddressIndex(const CTxMemPoolEntry &entry, const CCoinsViewC
                     inserted.push_back(key);
                 }
             }
-            /** NEOXA END */
+            /** FILOPOW END */
         }
     }
 
@@ -731,7 +731,7 @@ void CTxMemPool::removeUnchecked(txiter it, MemPoolRemovalReason reason)
     removeAddressIndex(hash);
     removeSpentIndex(hash);
 
-    /** NEOXA START */
+    /** FILOPOW START */
     // If the transaction being removed from the mempool is locking other reissues. Free them
     if (mapReissuedTx.count(hash)) {
         if (mapReissuedAssets.count(mapReissuedTx.at(hash))) {
@@ -812,7 +812,7 @@ void CTxMemPool::removeUnchecked(txiter it, MemPoolRemovalReason reason)
             }
         }
     }
-    /** NEOXA END */
+    /** FILOPOW END */
 }
 
 // Calculates descendants of entry that are not already in setDescendants, and adds to
@@ -1095,7 +1095,7 @@ void CTxMemPool::removeForBlock(const std::vector<CTransactionRef>& vtx, unsigne
             entries.push_back(&*i);
     }
 
-    /** NEOX START */
+    /** FPOW START */
     // Get the newly added assets, and make sure they are in the entries
     std::vector<CTransaction> trans;
     for (auto it : connectedBlockData.newAssetsToAdd) {
@@ -1206,7 +1206,7 @@ void CTxMemPool::removeForBlock(const std::vector<CTransactionRef>& vtx, unsigne
             }
         }
     }
-    /** NEOXA END */
+    /** FILOPOW END */
 
     // Before the txs in the new block have been removed from the mempool, update policy estimates
     if (minerPolicyEstimator) {minerPolicyEstimator->processBlock(nBlockHeight, entries);}
@@ -1276,14 +1276,14 @@ static void CheckInputsAndUpdateCoins(const CTransaction& tx, CCoinsViewCache& m
     CAmount txfee = 0;
     CAmount specialTxFee = 0;
     bool fCheckResult = tx.IsCoinBase() || Consensus::CheckTxInputs(tx, state, mempoolDuplicate, spendheight, txfee, specialTxFee, true);
-   /** NEOX START */
+   /** FPOW START */
     if (AreAssetsDeployed()) {
         std::vector<std::pair<std::string, uint256>> vReissueAssets;
         bool fCheckAssets = Consensus::CheckTxAssets(tx, state, mempoolDuplicate, passets, false, vReissueAssets, true);
         assert(fCheckResult && fCheckAssets);
     } else
         assert(fCheckResult);
-    /** NEOX END */
+    /** FPOW END */
     CTxUndo txundo;
     UpdateCoins(tx, mempoolDuplicate, txundo, 1000000);
 }

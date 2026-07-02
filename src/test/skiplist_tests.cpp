@@ -4,7 +4,7 @@
 
 #include "chain.h"
 #include "util.h"
-#include "test/test_neoxa.h"
+#include "test/test_filopow.h"
 
 #include <vector>
 

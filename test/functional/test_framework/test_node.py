@@ -2,7 +2,7 @@
 # Copyright (c) 2017 The Bitcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
-"""Class for neoxad node under test"""
+"""Class for filopowd node under test"""
 
 import contextlib
 import decimal
@@ -40,7 +40,7 @@ class FailedToStartError(Exception):
 
 
 class TestNode():
-    """A class for representing a neoxad node under test.
+    """A class for representing a filopowd node under test.
 
     This class contains:
 
@@ -102,7 +102,7 @@ class TestNode():
         raise AssertionError(self._node_msg(msg))
 
     def __del__(self):
-        # Ensure that we don't leave any neoxad processes lying around after
+        # Ensure that we don't leave any filopowd processes lying around after
         # the test ends
         if self.process and self.cleanup_on_exit:
             # Should only happen on test failure
@@ -129,21 +129,21 @@ class TestNode():
         if self.mocktime != 0:
             all_args = all_args + ["-mocktime=%d" % self.mocktime]
         # Delete any existing cookie file -- if such a file exists (eg due to
-        # unclean shutdown), it will get overwritten anyway by neoxad, and
+        # unclean shutdown), it will get overwritten anyway by filopowd, and
         # potentially interfere with our attempt to authenticate
         delete_cookie_file(self.datadir, self.chain)
         self.process = subprocess.Popen(all_args, stderr=stderr, *args, **kwargs)
         self.running = True
-        self.log.debug("neoxad started, waiting for RPC to come up")
+        self.log.debug("filopowd started, waiting for RPC to come up")
 
     def wait_for_rpc_connection(self):
-        """Sets up an RPC connection to the neoxad process. Returns False if unable to connect."""
+        """Sets up an RPC connection to the filopowd process. Returns False if unable to connect."""
         # Poll at a rate of four times per second
         poll_per_s = 4
         for _ in range(poll_per_s * self.rpc_timeout):
             if self.process.poll() is not None:
                 raise FailedToStartError(self._node_msg(
-                    'neoxad exited with status {} during initialization'.format(self.process.returncode)))
+                    'filopowd exited with status {} during initialization'.format(self.process.returncode)))
             try:
                 self.rpc = get_rpc_proxy(rpc_url(self.datadir, self.index, self.chain, self.rpchost), self.index, timeout=self.rpc_timeout, coveragedir=self.coverage_dir)
                 self.rpc.getblockcount()
@@ -160,11 +160,11 @@ class TestNode():
                 # -342 Service unavailable, RPC server started but is shutting down due to error
                 if e.error['code'] != -28 and e.error['code'] != -342:
                     raise  # unknown JSON RPC exception
-            except ValueError as e:  # cookie file not found and no rpcuser or rpcassword. neoxad still starting
+            except ValueError as e:  # cookie file not found and no rpcuser or rpcassword. filopowd still starting
                 if "No RPC credentials" not in str(e):
                     raise
             time.sleep(1.0 / poll_per_s)
-        self._raise_assertion_error("Unable to connect to neoxad")
+        self._raise_assertion_error("Unable to connect to filopowd")
 
     def get_wallet_rpc(self, wallet_name):
         if self.use_cli:
@@ -230,11 +230,11 @@ class TestNode():
     def assert_start_raises_init_error(self, extra_args=None, expected_msg=None, partial_match=False, *args, **kwargs):
         """Attempt to start the node and expect it to raise an error.
 
-        extra_args: extra arguments to pass through to neoxad
-        expected_msg: regex that stderr should match when neoxad fails
+        extra_args: extra arguments to pass through to filopowd
+        expected_msg: regex that stderr should match when filopowd fails
 
-        Will throw if neoxad starts without an error.
-        Will throw if an expected_msg is provided and it does not match neoxad's stdout."""
+        Will throw if filopowd starts without an error.
+        Will throw if an expected_msg is provided and it does not match filopowd's stdout."""
         with tempfile.SpooledTemporaryFile(max_size=2**16) as log_stderr:
             try:
                 self.start(extra_args, stderr=log_stderr, *args, **kwargs)
@@ -242,7 +242,7 @@ class TestNode():
                 self.stop_node()
                 self.wait_until_stopped()
             except FailedToStartError as e:
-                self.log.debug('neoxad failed to start: %s', e)
+                self.log.debug('filopowd failed to start: %s', e)
                 self.running = False
                 self.process = None
                 # Check stderr for expected message
@@ -259,9 +259,9 @@ class TestNode():
                                 'Expected message "{}" does not fully match stderr:\n"{}"'.format(expected_msg, stderr))
             else:
                 if expected_msg is None:
-                    assert_msg = "neoxad should have exited with an error"
+                    assert_msg = "filopowd should have exited with an error"
                 else:
-                    assert_msg = "neoxad should have exited with expected error " + expected_msg
+                    assert_msg = "filopowd should have exited with expected error " + expected_msg
                 self._raise_assertion_error(assert_msg)
 
     def add_p2p_connection(self, p2p_conn, *args, **kwargs):
@@ -316,7 +316,7 @@ class TestNodeCLIAttr:
         return lambda: self(*args, **kwargs)
 
 class TestNodeCLI():
-    """Interface to neoxa-cli for an individual node"""
+    """Interface to filopow-cli for an individual node"""
 
     def __init__(self, binary, datadir):
         self.options = []
@@ -326,7 +326,7 @@ class TestNodeCLI():
         self.log = logging.getLogger('TestFramework.dashcli')
 
     def __call__(self, *options, input=None):
-        # TestNodeCLI is callable with neoxa-cli command-line options
+        # TestNodeCLI is callable with filopow-cli command-line options
         cli = TestNodeCLI(self.binary, self.datadir)
         cli.options = [str(o) for o in options]
         cli.input = input
@@ -345,18 +345,18 @@ class TestNodeCLI():
         return results
 
     def send_cli(self, command=None, *args, **kwargs):
-        """Run neoxa-cli command. Deserializes returned string as python object."""
+        """Run filopow-cli command. Deserializes returned string as python object."""
 
         pos_args = [str(arg) for arg in args]
         named_args = [str(key) + "=" + str(value) for (key, value) in kwargs.items()]
-        assert not (pos_args and named_args), "Cannot use positional arguments and named arguments in the same neoxa-cli call"
+        assert not (pos_args and named_args), "Cannot use positional arguments and named arguments in the same filopow-cli call"
         p_args = [self.binary, "-datadir=" + self.datadir] + self.options
         if named_args:
             p_args += ["-named"]
         if command is not None:
             p_args += [command]
         p_args += pos_args + named_args
-        self.log.debug("Running neoxa-cli command: %s" % command)
+        self.log.debug("Running filopow-cli command: %s" % command)
         process = subprocess.Popen(p_args, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
         cli_stdout, cli_stderr = process.communicate(input=self.input)
         returncode = process.poll()

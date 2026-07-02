@@ -10,8 +10,8 @@
 #include <vector>
 
 /**
- * CBaseChainParams defines the base parameters (shared between neoxa-cli and neoxad)
- * of a given instance of the Neoxa system.
+ * CBaseChainParams defines the base parameters (shared between filopow-cli and filopowd)
+ * of a given instance of the Filopow system.
  */
 class CBaseChainParams
 {

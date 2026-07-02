@@ -31,7 +31,7 @@ QT_BEGIN_NAMESPACE
 class QUrl;
 QT_END_NAMESPACE
 
-/** Dialog for sending neoxa */
+/** Dialog for sending filopow */
 class RestrictedAssetsDialog : public QDialog
 {
     Q_OBJECT

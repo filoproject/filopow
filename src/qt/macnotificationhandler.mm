@@ -13,7 +13,7 @@
 - (NSString *)__bundleIdentifier
 {
     if (self == [NSBundle mainBundle]) {
-        return @"org.neoxa.Neoxa-Qt";
+        return @"org.filopow.Filopow-Qt";
     } else {
         return [self __bundleIdentifier];
     }

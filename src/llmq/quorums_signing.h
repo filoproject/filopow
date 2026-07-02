@@ -3,8 +3,8 @@
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef NEOXA_QUORUMS_SIGNING_H
-#define NEOXA_QUORUMS_SIGNING_H
+#ifndef FILOPOW_QUORUMS_SIGNING_H
+#define FILOPOW_QUORUMS_SIGNING_H
 
 #include "llmq/quorums.h"
 
@@ -192,4 +192,4 @@ extern CSigningManager* quorumSigningManager;
 
 } // namespace llmq
 
-#endif //NEOXA_QUORUMS_SIGNING_H
+#endif //FILOPOW_QUORUMS_SIGNING_H

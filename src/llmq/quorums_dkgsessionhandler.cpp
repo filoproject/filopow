@@ -96,7 +96,7 @@ CDKGSessionHandler::CDKGSessionHandler(const Consensus::LLMQParams& _params, ctp
     pendingPrematureCommitments(800)
 {
     phaseHandlerThread = std::thread([this] {
-        RenameThread(strprintf("neoxa-q-phase-%d", (uint8_t)params.type).c_str());
+        RenameThread(strprintf("filopow-q-phase-%d", (uint8_t)params.type).c_str());
         PhaseHandlerThread();
     });
 }

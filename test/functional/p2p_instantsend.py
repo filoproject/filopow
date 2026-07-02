@@ -15,9 +15,9 @@ p2p_instantsend.py
 Tests InstantSend functionality (prevent doublespend for unconfirmed transactions)
 '''
 
-class InstantSendTest(NeoxaTestFramework):
+class InstantSendTest(FilopowTestFramework):
     def set_test_params(self):
-        self.set_neoxa_test_params(9, 5, fast_dip3_enforcement=True)
+        self.set_filopow_test_params(9, 5, fast_dip3_enforcement=True)
         # set sender,  receiver,  isolated nodes
         self.isolated_idx = 1
         self.receiver_idx = 2

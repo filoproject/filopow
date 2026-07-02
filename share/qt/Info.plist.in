@@ -26,16 +26,16 @@
   <string>????</string>
 
   <key>CFBundleExecutable</key>
-  <string>Neoxa-Qt</string>
+  <string>Filopow-Qt</string>
 
   <key>CFBundleName</key>
-  <string>Neoxa-Qt</string>
+  <string>Filopow-Qt</string>
 
   <key>LSHasLocalizedDisplayName</key>
   <true/>
 
   <key>CFBundleIdentifier</key>
-  <string>org.neoxa.Neoxa-Qt</string>
+  <string>org.filopow.Filopow-Qt</string>
 
   <key>CFBundleURLTypes</key>
   <array>
@@ -43,10 +43,10 @@
       <key>CFBundleTypeRole</key>
       <string>Editor</string>
       <key>CFBundleURLName</key>
-      <string>org.neoxa.NeoxaPayment</string>
+      <string>org.filopow.FilopowPayment</string>
       <key>CFBundleURLSchemes</key>
       <array>
-        <string>neoxa</string>
+        <string>filopow</string>
       </array>
     </dict>
   </array>
@@ -55,9 +55,9 @@
   <array>
     <dict>
       <key>UTTypeIdentifier</key>
-      <string>org.neoxa.paymentrequest</string>
+      <string>org.filopow.paymentrequest</string>
       <key>UTTypeDescription</key>
-      <string>Neoxa payment request</string>
+      <string>Filopow payment request</string>
       <key>UTTypeConformsTo</key>
       <array>
         <string>public.data</string>
@@ -65,10 +65,10 @@
       <key>UTTypeTagSpecification</key>
       <dict>
         <key>public.mime-type</key>
-        <string>application/x-neoxa-payment-request</string>
+        <string>application/x-filopow-payment-request</string>
         <key>public.filename-extension</key>
         <array>
-          <string>neoxamentrequest</string>
+          <string>filopowmentrequest</string>
         </array>
       </dict>
     </dict>
@@ -81,7 +81,7 @@
       <string>Editor</string>
       <key>LSItemContentTypes</key>
       <array>
-        <string>org.neoxa.paymentrequest</string>
+        <string>org.filopow.paymentrequest</string>
       </array>
       <key>LSHandlerRank</key>
       <string>Owner</string>

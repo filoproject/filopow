@@ -402,7 +402,7 @@ void ReissueAssetDialog::CheckFormState()
     const CTxDestination dest = DecodeDestination(ui->addressText->text().toStdString());
     if (!ui->addressText->text().isEmpty()) {
         if (!IsValidDestination(dest)) {
-            showMessage(tr("Invalid Neoxa Destination Address"));
+            showMessage(tr("Invalid Filopow Destination Address"));
             return;
         }
     }
@@ -437,7 +437,7 @@ void ReissueAssetDialog::CheckFormState()
 
             if (fHasQuantity && !IsValidDestination(dest)) {
                 //ui->addressText->setStyleSheet(STYLE_INVALID);
-                showMessage(tr("Warning: Invalid Neoxa address"));
+                showMessage(tr("Warning: Invalid Filopow address"));
                 return;
             }
 
@@ -1101,7 +1101,7 @@ void ReissueAssetDialog::coinControlChangeEdited(const QString& text)
         }
         else if (!IsValidDestination(dest)) // Invalid address
         {
-            ui->labelCoinControlChangeLabel->setText(tr("Warning: Invalid Neoxa address"));
+            ui->labelCoinControlChangeLabel->setText(tr("Warning: Invalid Filopow address"));
         }
         else // Valid address
         {

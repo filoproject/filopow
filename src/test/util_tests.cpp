@@ -9,7 +9,7 @@
 #include "sync.h"
 #include "utilstrencodings.h"
 #include "utilmoneystr.h"
-#include "test/test_neoxa.h"
+#include "test/test_filopow.h"
 
 #include <stdint.h>
 #include <vector>

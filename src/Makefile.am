@@ -50,36 +50,36 @@ BITCOIN_INCLUDES += $(UNIVALUE_CFLAGS)
 
 BLS_LIBS=-lchiabls -lgmp
 
-LIBBITCOIN_SERVER=libneoxa_server.a
-LIBBITCOIN_COMMON=libneoxa_common.a
-LIBBITCOIN_CONSENSUS=libneoxa_consensus.a
-LIBBITCOIN_CLI=libneoxa_cli.a
-LIBBITCOIN_UTIL=libneoxa_util.a
-LIBBITCOIN_CRYPTO_BASE=crypto/libneoxa_crypto_base.a
-LIBBITCOINQT=qt/libneoxaqt.a
+LIBBITCOIN_SERVER=libfilopow_server.a
+LIBBITCOIN_COMMON=libfilopow_common.a
+LIBBITCOIN_CONSENSUS=libfilopow_consensus.a
+LIBBITCOIN_CLI=libfilopow_cli.a
+LIBBITCOIN_UTIL=libfilopow_util.a
+LIBBITCOIN_CRYPTO_BASE=crypto/libfilopow_crypto_base.a
+LIBBITCOINQT=qt/libfilopowqt.a
 LIBSECP256K1=secp256k1/libsecp256k1.la
 
 if ENABLE_ZMQ
-LIBBITCOIN_ZMQ=libneoxa_zmq.a
+LIBBITCOIN_ZMQ=libfilopow_zmq.a
 endif
 if BUILD_BITCOIN_LIBS
-LIBBITCOINCONSENSUS=libneoxaconsensus.la
+LIBBITCOINCONSENSUS=libfilopowconsensus.la
 endif
 if ENABLE_WALLET
-LIBBITCOIN_WALLET=libneoxa_wallet.a
+LIBBITCOIN_WALLET=libfilopow_wallet.a
 endif
 
 LIBBITCOIN_CRYPTO= $(LIBBITCOIN_CRYPTO_BASE)
 if ENABLE_SSE41
-LIBBITCOIN_CRYPTO_SSE41 = crypto/libneoxa_crypto_sse41.a
+LIBBITCOIN_CRYPTO_SSE41 = crypto/libfilopow_crypto_sse41.a
 LIBBITCOIN_CRYPTO += $(LIBBITCOIN_CRYPTO_SSE41)
 endif
 if ENABLE_AVX2
-LIBBITCOIN_CRYPTO_AVX2 = crypto/libneoxa_crypto_avx2.a
+LIBBITCOIN_CRYPTO_AVX2 = crypto/libfilopow_crypto_avx2.a
 LIBBITCOIN_CRYPTO += $(LIBBITCOIN_CRYPTO_AVX2)
 endif
 if ENABLE_SHANI
-LIBBITCOIN_CRYPTO_SHANI = crypto/libneoxa_crypto_shani.a
+LIBBITCOIN_CRYPTO_SHANI = crypto/libfilopow_crypto_shani.a
 LIBBITCOIN_CRYPTO += $(LIBBITCOIN_CRYPTO_SHANI)
 endif
 
@@ -106,15 +106,15 @@ TESTS =
 BENCHMARKS =
 
 if BUILD_BITCOIND
-  bin_PROGRAMS += neoxad
+  bin_PROGRAMS += filopowd
 endif
 
 if BUILD_BITCOIN_UTILS
-  bin_PROGRAMS += neoxa-cli #neoxa-tx
+  bin_PROGRAMS += filopow-cli #filopow-tx
 endif
 
 .PHONY: FORCE check-symbols check-security
-# neoxa core #
+# filopow core #
 BITCOIN_CORE_H = \
   addrdb.h \
   addressindex.h \
@@ -281,12 +281,12 @@ obj/build.h: FORCE
 	@$(MKDIR_P) $(builddir)/obj
 	@$(top_srcdir)/share/genbuild.sh "$(abs_top_builddir)/src/obj/build.h" \
 	  "$(abs_top_srcdir)"
-libneoxa_util_a-clientversion.$(OBJEXT): obj/build.h
+libfilopow_util_a-clientversion.$(OBJEXT): obj/build.h
 
-# server: shared between neoxad and neoxa-qt
-libneoxa_server_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
-libneoxa_server_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libneoxa_server_a_SOURCES = \
+# server: shared between filopowd and filopow-qt
+libfilopow_server_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
+libfilopow_server_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libfilopow_server_a_SOURCES = \
   addrdb.cpp \
   addrman.cpp \
   assets/assets.cpp \
@@ -382,20 +382,20 @@ libneoxa_server_a_SOURCES = \
   $(BITCOIN_CORE_H)
 
 if ENABLE_ZMQ
-libneoxa_zmq_a_CPPFLAGS = $(BITCOIN_INCLUDES) $(ZMQ_CFLAGS)
-libneoxa_zmq_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libneoxa_zmq_a_SOURCES = \
+libfilopow_zmq_a_CPPFLAGS = $(BITCOIN_INCLUDES) $(ZMQ_CFLAGS)
+libfilopow_zmq_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libfilopow_zmq_a_SOURCES = \
   zmq/zmqabstractnotifier.cpp \
   zmq/zmqnotificationinterface.cpp \
   zmq/zmqpublishnotifier.cpp
 endif
 
 
-# wallet: shared between neoxad and neoxa-qt, but only linked
+# wallet: shared between filopowd and filopow-qt, but only linked
 # when wallet enabled
-libneoxa_wallet_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-libneoxa_wallet_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libneoxa_wallet_a_SOURCES = \
+libfilopow_wallet_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+libfilopow_wallet_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libfilopow_wallet_a_SOURCES = \
   keepass.cpp \
   privatesend/privatesend-client.cpp \
   privatesend/privatesend-util.cpp \
@@ -408,9 +408,9 @@ libneoxa_wallet_a_SOURCES = \
   $(BITCOIN_CORE_H)
 
 # crypto primitives library
-crypto_libneoxa_crypto_base_a_CPPFLAGS = $(AM_CPPFLAGS) $(PIC_FLAGS)
-crypto_libneoxa_crypto_base_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS) $(PIC_FLAGS)
-crypto_libneoxa_crypto_base_a_SOURCES = \
+crypto_libfilopow_crypto_base_a_CPPFLAGS = $(AM_CPPFLAGS) $(PIC_FLAGS)
+crypto_libfilopow_crypto_base_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS) $(PIC_FLAGS)
+crypto_libfilopow_crypto_base_a_SOURCES = \
   crypto/aes.cpp \
   crypto/aes.h \
   crypto/chacha_poly_aead.h \
@@ -495,28 +495,28 @@ crypto_libneoxa_crypto_base_a_SOURCES = \
   crypto/ethash/progpow_test_vectors.hpp
 
 if USE_ASM
-crypto_libneoxa_crypto_base_a_SOURCES += crypto/sha256_sse4.cpp
+crypto_libfilopow_crypto_base_a_SOURCES += crypto/sha256_sse4.cpp
 endif
 
-crypto_libneoxa_crypto_sse41_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-crypto_libneoxa_crypto_sse41_a_CPPFLAGS = $(AM_CPPFLAGS)
-crypto_libneoxa_crypto_sse41_a_CXXFLAGS += $(SSE41_CXXFLAGS)
-crypto_libneoxa_crypto_sse41_a_CPPFLAGS += -DENABLE_SSE41
-crypto_libneoxa_crypto_sse41_a_SOURCES = crypto/sha256_sse41.cpp
+crypto_libfilopow_crypto_sse41_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+crypto_libfilopow_crypto_sse41_a_CPPFLAGS = $(AM_CPPFLAGS)
+crypto_libfilopow_crypto_sse41_a_CXXFLAGS += $(SSE41_CXXFLAGS)
+crypto_libfilopow_crypto_sse41_a_CPPFLAGS += -DENABLE_SSE41
+crypto_libfilopow_crypto_sse41_a_SOURCES = crypto/sha256_sse41.cpp
 
-crypto_libneoxa_crypto_avx2_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-crypto_libneoxa_crypto_avx2_a_CPPFLAGS = $(AM_CPPFLAGS)
-crypto_libneoxa_crypto_avx2_a_CXXFLAGS += $(AVX2_CXXFLAGS)
-crypto_libneoxa_crypto_avx2_a_CPPFLAGS += -DENABLE_AVX2
-crypto_libneoxa_crypto_avx2_a_SOURCES = crypto/sha256_avx2.cpp
+crypto_libfilopow_crypto_avx2_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+crypto_libfilopow_crypto_avx2_a_CPPFLAGS = $(AM_CPPFLAGS)
+crypto_libfilopow_crypto_avx2_a_CXXFLAGS += $(AVX2_CXXFLAGS)
+crypto_libfilopow_crypto_avx2_a_CPPFLAGS += -DENABLE_AVX2
+crypto_libfilopow_crypto_avx2_a_SOURCES = crypto/sha256_avx2.cpp
 
-crypto_libneoxa_crypto_shani_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-crypto_libneoxa_crypto_shani_a_CPPFLAGS = $(AM_CPPFLAGS)
-crypto_libneoxa_crypto_shani_a_CXXFLAGS += $(SHANI_CXXFLAGS)
-crypto_libneoxa_crypto_shani_a_CPPFLAGS += -DENABLE_SHANI
-crypto_libneoxa_crypto_shani_a_SOURCES = crypto/sha256_shani.cpp
+crypto_libfilopow_crypto_shani_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+crypto_libfilopow_crypto_shani_a_CPPFLAGS = $(AM_CPPFLAGS)
+crypto_libfilopow_crypto_shani_a_CXXFLAGS += $(SHANI_CXXFLAGS)
+crypto_libfilopow_crypto_shani_a_CPPFLAGS += -DENABLE_SHANI
+crypto_libfilopow_crypto_shani_a_SOURCES = crypto/sha256_shani.cpp
 
-crypto_libneoxa_crypto_base_a_SOURCES += \
+crypto_libfilopow_crypto_base_a_SOURCES += \
   cryptonote/aesb.c \
   cryptonote/c_blake256.c \
   cryptonote/c_groestl.c \
@@ -545,9 +545,9 @@ crypto_libneoxa_crypto_base_a_SOURCES += \
   cryptonote/warnings.h
 
 # consensus: shared between all executables that validate any consensus rules.
-libneoxa_consensus_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-libneoxa_consensus_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libneoxa_consensus_a_SOURCES = \
+libfilopow_consensus_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+libfilopow_consensus_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libfilopow_consensus_a_SOURCES = \
   amount.h \
   founder_payment.h \
   arith_uint256.cpp \
@@ -569,7 +569,7 @@ libneoxa_consensus_a_SOURCES = \
   primitives/transaction.h \
   pubkey.cpp \
   pubkey.h \
-  script/neoxaconsensus.cpp \
+  script/filopowconsensus.cpp \
   script/interpreter.cpp \
   script/interpreter.h \
   script/script.cpp \
@@ -587,10 +587,10 @@ libneoxa_consensus_a_SOURCES = \
   LibBoolEE.cpp \
   LibBoolEE.h
 
-# common: shared between neoxad, and neoxa-qt and non-server tools
-libneoxa_common_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-libneoxa_common_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libneoxa_common_a_SOURCES = \
+# common: shared between filopowd, and filopow-qt and non-server tools
+libfilopow_common_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+libfilopow_common_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libfilopow_common_a_SOURCES = \
   base58.cpp \
   founder_payment.cpp \
   bip39.cpp \
@@ -617,9 +617,9 @@ libneoxa_common_a_SOURCES = \
 # util: shared between all executables.
 # This library *must* be included to make sure that the glibc
 # backward-compatibility objects and their sanity checks are linked.
-libneoxa_util_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-libneoxa_util_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libneoxa_util_a_SOURCES = \
+libfilopow_util_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+libfilopow_util_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libfilopow_util_a_SOURCES = \
   bls/bls_batchverifier.h \
   bls/bls_ies.cpp \
   bls/bls_ies.h \
@@ -645,31 +645,31 @@ libneoxa_util_a_SOURCES = \
   $(BITCOIN_CORE_H)
 
 if GLIBC_BACK_COMPAT
-libneoxa_util_a_SOURCES += compat/glibc_compat.cpp
+libfilopow_util_a_SOURCES += compat/glibc_compat.cpp
 AM_LDFLAGS += -Wl,--wrap=log2f -Wl,--wrap=__divmoddi4
 endif
 
-# cli: shared between neoxa-cli and neoxa-qt
-libneoxa_cli_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-libneoxa_cli_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libneoxa_cli_a_SOURCES = \
+# cli: shared between filopow-cli and filopow-qt
+libfilopow_cli_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+libfilopow_cli_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libfilopow_cli_a_SOURCES = \
   rpc/client.cpp \
   $(BITCOIN_CORE_H)
 
-nodist_libneoxa_util_a_SOURCES = $(srcdir)/obj/build.h
+nodist_libfilopow_util_a_SOURCES = $(srcdir)/obj/build.h
 #
 
-# neoxad binary #
-neoxad_SOURCES = neoxad.cpp
-neoxad_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-neoxad_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-neoxad_LDFLAGS = $(LDFLAGS_WRAP_EXCEPTIONS) $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) $(PTHREAD_FLAGS)
+# filopowd binary #
+filopowd_SOURCES = filopowd.cpp
+filopowd_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+filopowd_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+filopowd_LDFLAGS = $(LDFLAGS_WRAP_EXCEPTIONS) $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) $(PTHREAD_FLAGS)
 
 if TARGET_WINDOWS
-neoxad_SOURCES += neoxad-res.rc
+filopowd_SOURCES += filopowd-res.rc
 endif
 
-neoxad_LDADD = \
+filopowd_LDADD = \
   $(LIBBITCOIN_SERVER) \
   $(LIBBITCOIN_WALLET) \
   $(LIBBITCOIN_COMMON) \
@@ -683,37 +683,37 @@ neoxad_LDADD = \
   $(LIBMEMENV) \
   $(LIBSECP256K1)
 
-neoxad_LDADD += $(BACKTRACE_LIB) $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS) $(BLS_LIBS)
+filopowd_LDADD += $(BACKTRACE_LIB) $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS) $(BLS_LIBS)
 
-# neoxa-cli binary #
-neoxa_cli_SOURCES = neoxa-cli.cpp
-neoxa_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
-neoxa_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-neoxa_cli_LDFLAGS = $(LDFLAGS_WRAP_EXCEPTIONS) $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) $(PTHREAD_FLAGS)
+# filopow-cli binary #
+filopow_cli_SOURCES = filopow-cli.cpp
+filopow_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
+filopow_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+filopow_cli_LDFLAGS = $(LDFLAGS_WRAP_EXCEPTIONS) $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) $(PTHREAD_FLAGS)
 
 if TARGET_WINDOWS
-neoxa_cli_SOURCES += neoxa-cli-res.rc
+filopow_cli_SOURCES += filopow-cli-res.rc
 endif
 
-neoxa_cli_LDADD = \
+filopow_cli_LDADD = \
   $(LIBBITCOIN_CLI) \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_UTIL) \
   $(LIBBITCOIN_CRYPTO)
-neoxa_cli_LDADD += $(BACKTRACE_LIB) $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS) $(BLS_LIBS)
+filopow_cli_LDADD += $(BACKTRACE_LIB) $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS) $(BLS_LIBS)
 #
 
-# neoxa-tx binary #
-neoxa_tx_SOURCES = neoxa-tx.cpp
-neoxa_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-neoxa_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-neoxa_tx_LDFLAGS = $(LDFLAGS_WRAP_EXCEPTIONS) $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) $(PTHREAD_FLAGS)
+# filopow-tx binary #
+filopow_tx_SOURCES = filopow-tx.cpp
+filopow_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+filopow_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+filopow_tx_LDFLAGS = $(LDFLAGS_WRAP_EXCEPTIONS) $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) $(PTHREAD_FLAGS)
 
 if TARGET_WINDOWS
-neoxa_tx_SOURCES += neoxa-tx-res.rc
+filopow_tx_SOURCES += filopow-tx-res.rc
 endif
 
-neoxa_tx_LDADD = \
+filopow_tx_LDADD = \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_COMMON) \
   $(LIBBITCOIN_UTIL) \
@@ -721,22 +721,22 @@ neoxa_tx_LDADD = \
   $(LIBBITCOIN_CRYPTO) \
   $(LIBSECP256K1)
 
-neoxa_tx_LDADD += $(BACKTRACE_LIB) $(BOOST_LIBS) $(CRYPTO_LIBS) $(BLS_LIBS)
+filopow_tx_LDADD += $(BACKTRACE_LIB) $(BOOST_LIBS) $(CRYPTO_LIBS) $(BLS_LIBS)
 #
 
-# neoxaconsensus library #
+# filopowconsensus library #
 if BUILD_BITCOIN_LIBS
-include_HEADERS = script/neoxaconsensus.h
-libneoxaconsensus_la_SOURCES = support/cleanse.cpp $(crypto_libneoxa_crypto_base_a_SOURCES) $(libneoxa_consensus_a_SOURCES)
+include_HEADERS = script/filopowconsensus.h
+libfilopowconsensus_la_SOURCES = support/cleanse.cpp $(crypto_libfilopow_crypto_base_a_SOURCES) $(libfilopow_consensus_a_SOURCES)
 
 if GLIBC_BACK_COMPAT
-  libneoxaconsensus_la_SOURCES += compat/glibc_compat.cpp
+  libfilopowconsensus_la_SOURCES += compat/glibc_compat.cpp
 endif
 
-libneoxaconsensus_la_LDFLAGS = $(AM_LDFLAGS) -no-undefined $(RELDFLAGS) $(LIBTOOL_APP_LDFLAGS)
-libneoxaconsensus_la_LIBADD = $(LIBSECP256K1) $(BLS_LIBS)
-libneoxaconsensus_la_CPPFLAGS = $(AM_CPPFLAGS) -I$(builddir)/obj -I$(srcdir)/secp256k1/include -DBUILD_BITCOIN_INTERNAL
-libneoxaconsensus_la_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libfilopowconsensus_la_LDFLAGS = $(AM_LDFLAGS) -no-undefined $(RELDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+libfilopowconsensus_la_LIBADD = $(LIBSECP256K1) $(BLS_LIBS)
+libfilopowconsensus_la_CPPFLAGS = $(AM_CPPFLAGS) -I$(builddir)/obj -I$(srcdir)/secp256k1/include -DBUILD_BITCOIN_INTERNAL
+libfilopowconsensus_la_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 
 endif
 #
@@ -769,12 +769,12 @@ EXTRA_DIST = $(CTAES_DIST)
 EXTRA_DIST += $(IMMER_DIST)
 
 
-config/neoxa-config.h: config/stamp-h1
+config/filopow-config.h: config/stamp-h1
 	@$(MAKE) -C $(top_builddir) $(subdir)/$(@)
-config/stamp-h1: $(top_srcdir)/$(subdir)/config/neoxa-config.h.in $(top_builddir)/config.status
+config/stamp-h1: $(top_srcdir)/$(subdir)/config/filopow-config.h.in $(top_builddir)/config.status
 	$(AM_V_at)$(MAKE) -C $(top_builddir) $(subdir)/$(@)
-$(top_srcdir)/$(subdir)/config/neoxa-config.h.in:  $(am__configure_deps)
-	$(AM_V_at)$(MAKE) -C $(top_srcdir) $(subdir)/config/neoxa-config.h.in
+$(top_srcdir)/$(subdir)/config/filopow-config.h.in:  $(am__configure_deps)
+	$(AM_V_at)$(MAKE) -C $(top_srcdir) $(subdir)/config/filopow-config.h.in
 
 
 clean-local:

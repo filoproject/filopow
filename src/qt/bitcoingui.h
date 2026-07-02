@@ -6,7 +6,7 @@
 #define BITCOIN_QT_BITCOINGUI_H
 
 #if defined(HAVE_CONFIG_H)
-#include "config/neoxa-config.h"
+#include "config/filopow-config.h"
 #endif
 
 #include "amount.h"
@@ -280,7 +280,7 @@ private Q_SLOTS:
     void showPeers();
     void showRepair();
 
-    /** Open external (default) editor with neoxa.conf */
+    /** Open external (default) editor with filopow.conf */
     void showConfEditor();
     /** Show folder with wallet backups in default file browser */
     void showBackups();

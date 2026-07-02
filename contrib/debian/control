@@ -1,8 +1,8 @@
-Source: neoxa
+Source: filopow
 Section: utils
 Priority: optional
-Maintainer: Holger Schinzel <holger@neoxa.org>
-Uploaders: Holger Schinzel <holger@neoxa.org>
+Maintainer: Holger Schinzel <holger@filopow.org>
+Uploaders: Holger Schinzel <holger@filopow.org>
 Build-Depends: debhelper,
  devscripts,
  automake,
@@ -26,45 +26,45 @@ Build-Depends: debhelper,
  python,
  libzmq3-dev
 Standards-Version: 3.9.2
-Homepage: https://www.neoxa.org/
-Vcs-Git: git://github.com/The-Neoxa-Endeavor/neoxa.git
-Vcs-Browser: https://github.com/The-Neoxa-Endeavor/neoxa
+Homepage: https://www.filopow.org/
+Vcs-Git: git://github.com/The-Filopow-Endeavor/filopow.git
+Vcs-Browser: https://github.com/The-Filopow-Endeavor/filopow
 
-Package: neoxad
+Package: filopowd
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: peer-to-peer network based digital currency - daemon
- Neoxa is an experimental new digital currency that enables instant, private
- payments to anyone, anywhere in the world. Neoxa uses peer-to-peer
+ Filopow is an experimental new digital currency that enables instant, private
+ payments to anyone, anywhere in the world. Filopow uses peer-to-peer
  technology to operate with no central authority: managing transactions
- and issuing money are carried out collectively by the network. Neoxa Core
+ and issuing money are carried out collectively by the network. FILOPOW Core
  is the name of the open source software which enables the use of this currency.
  .
- This package provides the daemon, neoxad, and the CLI tool
- neoxa-cli to interact with the daemon.
+ This package provides the daemon, filopowd, and the CLI tool
+ filopow-cli to interact with the daemon.
 
-Package: neoxa-qt
+Package: filopow-qt
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: peer-to-peer network based digital currency - Qt GUI
- Neoxa is an experimental new digital currency that enables instant, private
- payments to anyone, anywhere in the world. Neoxa uses peer-to-peer
+ Filopow is an experimental new digital currency that enables instant, private
+ payments to anyone, anywhere in the world. Filopow uses peer-to-peer
  technology to operate with no central authority: managing transactions
- and issuing money are carried out collectively by the network. Neoxa Core
+ and issuing money are carried out collectively by the network. FILOPOW Core
  is the name of the open source software which enables the use of this currency.
  .
- This package provides Neoxa-Qt, a GUI for Neoxa based on Qt.
+ This package provides Filopow-Qt, a GUI for Filopow based on Qt.
 
-Package: neoxa-tx
+Package: filopow-tx
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: peer-to-peer digital currency - standalone transaction tool
- Neoxa is an experimental new digital currency that enables instant, private
- payments to anyone, anywhere in the world. Neoxa uses peer-to-peer
+ Filopow is an experimental new digital currency that enables instant, private
+ payments to anyone, anywhere in the world. Filopow uses peer-to-peer
  technology to operate with no central authority: managing transactions
- and issuing money are carried out collectively by the network. Neoxa Core
+ and issuing money are carried out collectively by the network. FILOPOW Core
  is the name of the open source software which enables the use of this currency.
  .
- This package provides neoxa-tx, a command-line transaction creation
- tool which can be used without a neoxa daemon.  Some means of
+ This package provides filopow-tx, a command-line transaction creation
+ tool which can be used without a filopow daemon.  Some means of
  exchanging minimal transaction data with peers is still required.

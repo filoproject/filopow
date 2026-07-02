@@ -1,0 +1,25 @@
+<!DOCTYPE RCC><RCC version="1.0">
+    <qresource prefix="/translations">
+        <file alias="ar">locale/filopow_ar.qm</file>
+        <file alias="bg">locale/filopow_bg.qm</file>
+        <file alias="de">locale/filopow_de.qm</file>
+        <file alias="en">locale/filopow_en.qm</file>
+        <file alias="es">locale/filopow_es.qm</file>
+        <file alias="fi">locale/filopow_fi.qm</file>
+        <file alias="fr">locale/filopow_fr.qm</file>
+        <file alias="it">locale/filopow_it.qm</file>
+        <file alias="ja">locale/filopow_ja.qm</file>
+        <file alias="ko">locale/filopow_ko.qm</file>
+        <file alias="nl">locale/filopow_nl.qm</file>
+        <file alias="pl">locale/filopow_pl.qm</file>
+        <file alias="pt">locale/filopow_pt.qm</file>
+        <file alias="ro">locale/filopow_ro.qm</file>
+        <file alias="ru">locale/filopow_ru.qm</file>
+        <file alias="sk">locale/filopow_sk.qm</file>
+        <file alias="th">locale/filopow_th.qm</file>
+        <file alias="tr">locale/filopow_tr.qm</file>
+        <file alias="vi">locale/filopow_vi.qm</file>
+        <file alias="zh_CN">locale/filopow_zh_CN.qm</file>
+        <file alias="zh_TW">locale/filopow_zh_TW.qm</file>
+    </qresource>
+</RCC>

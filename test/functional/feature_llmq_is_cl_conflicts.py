@@ -46,9 +46,9 @@ class TestP2PConn(P2PInterface):
                 self.send_message(self.islocks[inv.hash])
 
 
-class LLMQ_IS_CL_Conflicts(NeoxaTestFramework):
+class LLMQ_IS_CL_Conflicts(FilopowTestFramework):
     def set_test_params(self):
-        self.set_neoxa_test_params(6, 5, fast_dip3_enforcement=True)
+        self.set_filopow_test_params(6, 5, fast_dip3_enforcement=True)
         #disable_mocktime()
 
     def run_test(self):

@@ -1,8 +1,8 @@
 // Copyright (c) 2014-2019 The Dash Core developers
 // Copyright (c) 2020 The Neoxa developers
 // Distributed under the MIT software license, see the accompanying
-#ifndef NEOXA_HDCHAIN_H
-#define NEOXA_HDCHAIN_H
+#ifndef FILOPOW_HDCHAIN_H
+#define FILOPOW_HDCHAIN_H
 
 #include "key.h"
 #include "sync.h"
@@ -148,4 +148,4 @@ public:
     std::string GetKeyPath() const;
 };
 
-#endif // NEOXA_HDCHAIN_H
+#endif // FILOPOW_HDCHAIN_H

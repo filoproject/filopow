@@ -284,7 +284,7 @@ WalletModel::SendCoinsReturn WalletModel::prepareTransaction(WalletModelTransact
             total += subtotal;
         }
         else
-        {   // User-entered neoxa address / amount:
+        {   // User-entered filopow address / amount:
             if(!validateAddress(rcp.address))
             {
                 return InvalidAddress;
@@ -383,7 +383,7 @@ WalletModel::SendCoinsReturn WalletModel::sendCoins(WalletModelTransaction &tran
                 rcp.paymentRequest.SerializeToString(&value);
                 newTx->vOrderForm.push_back(make_pair(key, value));
             }
-            else if (!rcp.message.isEmpty()) // Message from normal neoxa:URI (neoxa:XyZ...?message=example)
+            else if (!rcp.message.isEmpty()) // Message from normal filopow:URI (filopow:XyZ...?message=example)
             {
                 newTx->vOrderForm.push_back(make_pair("Message", rcp.message.toStdString()));
             }

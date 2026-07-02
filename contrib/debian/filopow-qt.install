@@ -1,0 +1,6 @@
+usr/local/bin/filopow-qt usr/bin
+share/pixmaps/filopow32.xpm usr/share/pixmaps
+share/pixmaps/filopow16.xpm usr/share/pixmaps
+share/pixmaps/filopow128.png usr/share/pixmaps
+debian/filopow-qt.desktop usr/share/applications
+debian/filopow-qt.protocol usr/share/kde4/services/

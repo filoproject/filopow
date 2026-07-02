@@ -9,7 +9,7 @@
 #include "core_io.h"
 #include "netbase.h"
 
-#include "test/test_neoxa.h"
+#include "test/test_filopow.h"
 
 #include <boost/algorithm/string.hpp>
 #include <boost/test/unit_test.hpp>

@@ -3,8 +3,8 @@
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef NEOXA_QUORUMS_H
-#define NEOXA_QUORUMS_H
+#ifndef FILOPOW_QUORUMS_H
+#define FILOPOW_QUORUMS_H
 
 #include "evo/evodb.h"
 #include "evo/deterministicmns.h"
@@ -118,4 +118,4 @@ extern CQuorumManager* quorumManager;
 
 } // namespace llmq
 
-#endif //NEOXA_QUORUMS_H
+#endif //FILOPOW_QUORUMS_H

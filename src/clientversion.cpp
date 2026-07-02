@@ -10,10 +10,10 @@
 
 /**
  * Name of client reported in the 'version' message. Report the same name
- * for both neoxad and neoxa-qt, to make it harder for attackers to
+ * for both filopowd and filopow-qt, to make it harder for attackers to
  * target servers or GUI users specifically.
  */
-const std::string CLIENT_NAME("Neoxa Core");
+const std::string CLIENT_NAME("FILOPOW Core");
 
 /**
  * Client version number

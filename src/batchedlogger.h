@@ -3,8 +3,8 @@
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef NEOXA_BATCHEDLOGGER_H
-#define NEOXA_BATCHEDLOGGER_H
+#ifndef FILOPOW_BATCHEDLOGGER_H
+#define FILOPOW_BATCHEDLOGGER_H
 
 #include "tinyformat.h"
 
@@ -30,4 +30,4 @@ public:
     void Flush();
 };
 
-#endif//NEOXA_BATCHEDLOGGER_H
+#endif//FILOPOW_BATCHEDLOGGER_H

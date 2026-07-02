@@ -1,0 +1,13 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=FILOPOW Core
+Comment=Filopow P2P Cryptocurrency
+Comment[de]=Verbinde mit dem Filopow peer-to-peer Netzwerk
+Comment[fr]=Filopow, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=Filopow, eşten eşe kriptografik sanal para birimi
+Exec=filopow-qt %u
+Terminal=false
+Type=Application
+Icon=filopow128
+MimeType=x-scheme-handler/filopow;
+Categories=Office;Finance;

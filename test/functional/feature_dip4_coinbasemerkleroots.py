@@ -35,9 +35,9 @@ class TestP2PConn(P2PInterface):
         return self.last_mnlistdiff
 
 
-class LLMQCoinbaseCommitmentsTest(NeoxaTestFramework):
+class LLMQCoinbaseCommitmentsTest(FilopowTestFramework):
     def set_test_params(self):
-        self.set_neoxa_test_params(4, 3, fast_dip3_enforcement=True)
+        self.set_filopow_test_params(4, 3, fast_dip3_enforcement=True)
 
     def run_test(self):
         self.test_node = self.nodes[0].add_p2p_connection(TestP2PConn())
@@ -53,7 +53,7 @@ class LLMQCoinbaseCommitmentsTest(NeoxaTestFramework):
         mnList = self.test_getmnlistdiff(null_hash, self.nodes[0].getbestblockhash(), {}, [], expectedUpdated)
         expectedUpdated2 = expectedUpdated + []
 
-        # Register one more MN, but don't start it (that would fail as NeoxaTestFramework doesn't support this atm)
+        # Register one more MN, but don't start it (that would fail as FilopowTestFramework doesn't support this atm)
         baseBlockHash = self.nodes[0].getbestblockhash()
         self.prepare_smartnode(self.mn_count)
         new_mn = self.mninfo[self.mn_count]

@@ -1,0 +1,67 @@
+#!/usr/bin/env bash
+#
+#  filopowd The FILOPOW Core server.
+#
+#
+# chkconfig: 345 80 20
+# description: filopowd
+# processname: filopowd
+#
+
+# Source function library.
+. /etc/init.d/functions
+
+# you can override defaults in /etc/sysconfig/filopowd, see below
+if [ -f /etc/sysconfig/filopowd ]; then
+        . /etc/sysconfig/filopowd
+fi
+
+RETVAL=0
+
+prog=filopowd
+# you can override the lockfile via BITCOIND_LOCKFILE in /etc/sysconfig/filopowd
+lockfile=${BITCOIND_LOCKFILE-/var/lock/subsys/filopowd}
+
+# filopowd defaults to /usr/bin/filopowd, override with BITCOIND_BIN
+filopowd=${BITCOIND_BIN-/usr/bin/filopowd}
+
+# filopowd opts default to -disablewallet, override with BITCOIND_OPTS
+filopowd_opts=${BITCOIND_OPTS--disablewallet}
+
+start() {
+    echo -n $"Starting $prog: "
+    daemon $DAEMONOPTS $filopowd $filopowd_opts
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && touch $lockfile
+    return $RETVAL
+}
+
+stop() {
+    echo -n $"Stopping $prog: "
+    killproc $prog
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && rm -f $lockfile
+    return $RETVAL
+}
+
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    status)
+        status $prog
+        ;;
+    restart)
+        stop
+        start
+        ;;
+    *)
+        echo "Usage: service $prog {start|stop|status|restart}"
+        exit 1
+        ;;
+esac

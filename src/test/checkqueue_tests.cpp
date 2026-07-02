@@ -6,7 +6,7 @@
 #include "utiltime.h"
 #include "validation.h"
 
-#include "test/test_neoxa.h"
+#include "test/test_filopow.h"
 #include "checkqueue.h"
 #include <boost/test/unit_test.hpp>
 #include <boost/thread.hpp>

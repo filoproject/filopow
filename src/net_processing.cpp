@@ -56,7 +56,7 @@
 #include "llmq/quorums_signing_shares.h"
 
 #if defined(NDEBUG)
-# error "Neoxa Core cannot be compiled without assertions."
+# error "FILOPOW Core cannot be compiled without assertions."
 #endif
 
 std::atomic<int64_t> nTimeBestReceived(0); // Used only to inform the wallet of when we last received a block
@@ -1047,7 +1047,7 @@ bool static AlreadyHave(const CInv& inv) EXCLUSIVE_LOCKS_REQUIRED(cs_main)
         return mapBlockIndex.count(inv.hash);
 
     /*
-        Neoxa Related Inventory Messages
+        Filopow Related Inventory Messages
 
         --
 

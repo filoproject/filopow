@@ -4,7 +4,7 @@
 # Copyright (c) 2010-2016 The Bitcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
-"""Neoxa P2P network half-a-node.
+"""Filopow P2P network half-a-node.
 
 This python code was modified from ArtForz' public domain half-a-node, as
 found in the mini-node branch of http://github.com/jgarzik/pynode.
@@ -71,10 +71,10 @@ MESSAGEMAP = {
 }
 
 MAGIC_BYTES = {
-    "mainnet": b"\xbf\x0c\x6b\xbd",   # mainnet
-    "testnet3": b"\xce\xe2\xca\xff",  # testnet3
-    "regtest": b"\xfc\xc1\xb7\xdc",   # regtest
-    "devnet": b"\xe2\xca\xff\xce",    # devnet
+    "mainnet": b"\x46\x50\x4f\x57",   # FPOW
+    "testnet3": b"\x66\x70\x6f\x77",  # fpow
+    "regtest": b"\xfc\xc1\xb7\xdc",   # regtest (Dash-lineage, matches chainparams)
+    "devnet": b"\xe2\xca\xff\xce",    # devnet (Dash-lineage, matches chainparams)
 }
 
 class P2PConnection(asyncore.dispatcher):

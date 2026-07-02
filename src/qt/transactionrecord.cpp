@@ -51,10 +51,10 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet *
             const CTxOut& txout = wtx.tx->vout[i];
             isminetype mine = wallet->IsMine(txout);
 
-            /** NEOX START */
+            /** FPOW START */
             if (txout.scriptPubKey.IsAssetScript() || txout.scriptPubKey.IsNullAssetTxDataScript() || txout.scriptPubKey.IsNullGlobalRestrictionAssetTxDataScript())
                 continue;
-            /** NEOX END */
+            /** FPOW END */
 
             if(mine)
             {
@@ -65,7 +65,7 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet *
                 sub.involvesWatchAddress = mine & ISMINE_WATCH_ONLY;
                 if (ExtractDestination(txout.scriptPubKey, address) && IsMine(*wallet, address))
                 {
-                    // Received by Neoxa Address
+                    // Received by Filopow Address
                     sub.type = TransactionRecord::RecvWithAddress;
                     sub.strAddress = CBitcoinAddress(address).ToString();
                 }
@@ -109,10 +109,10 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet *
         int nToMe = 0;
         for (const CTxOut& txout : wtx.tx->vout) {
 
-            /** NEOX START */
+            /** FPOW START */
             if (txout.scriptPubKey.IsAssetScript() || txout.scriptPubKey.IsNullAssetTxDataScript() || txout.scriptPubKey.IsNullGlobalRestrictionAssetTxDataScript())
                 continue;
-            /** NEOX END */
+            /** FPOW END */
             
             if(wallet->IsMine(txout)) {
                 fAllToMeDenom = fAllToMeDenom && CPrivateSend::IsDenominatedAmount(txout.nValue);
@@ -144,7 +144,7 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet *
                 CTxDestination address;
                 if (ExtractDestination(wtx.tx->vout[0].scriptPubKey, address))
                 {
-                    // Sent to Neoxa Address
+                    // Sent to Filopow Address
                     sub.strAddress = CBitcoinAddress(address).ToString();
                 }
                 else
@@ -209,10 +209,10 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet *
             {
                 const CTxOut& txout = wtx.tx->vout[nOut];
 
-                /** NEOX START */
+                /** FPOW START */
                 if (txout.scriptPubKey.IsAssetScript())
                     continue;
-                /** NEOX END */
+                /** FPOW END */
 
                 TransactionRecord sub(hash, nTime);
                 sub.idx = nOut;
@@ -228,7 +228,7 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet *
                 CTxDestination address;
                 if (ExtractDestination(txout.scriptPubKey, address))
                 {
-                    // Sent to Neoxa Address
+                    // Sent to Filopow Address
                     sub.type = TransactionRecord::SendToAddress;
                     sub.strAddress = CBitcoinAddress(address).ToString();
                 }
@@ -265,7 +265,7 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet *
             // Mixed debit transaction, can't break down payees
             //
             
-            /** NEOXA START */
+            /** FILOPOW START */
             // We will only show mixed debit transactions that are nNet < 0 or if they are nNet == 0 and
             // they do not contain assets. This is so the list of transaction doesn't add 0 amount transactions to the
             // list.
@@ -285,11 +285,11 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet *
                 parts.append(TransactionRecord(hash, nTime, TransactionRecord::Other, "", nNet, 0));
                 parts.last().involvesWatchAddress = involvesWatchAddress;
             }
-            /** NEOXA START */
+            /** FILOPOW START */
         }
     }
 
-     /** NEOX START */
+     /** FPOW START */
     if (AreAssetsDeployed()) {
         CAmount nFee;
         std::string strSentAccount;
@@ -390,7 +390,7 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet *
             }
         }
     }
-    /** NEOX END */
+    /** FPOW END */
 
     return parts;
 }

@@ -7,17 +7,17 @@ define(_CLIENT_VERSION_BUILD, 4)
 define(_CLIENT_VERSION_IS_RELEASE, true)
 define(_COPYRIGHT_YEAR, 2023)
 define(_COPYRIGHT_HOLDERS,[The %s developers])
-define(_COPYRIGHT_HOLDERS_SUBSTITUTION,[[Neoxa Core]])
-AC_INIT([Neoxa Core],[_CLIENT_VERSION_MAJOR._CLIENT_VERSION_MINOR._CLIENT_VERSION_REVISION],[https://github.com/The-Neoxa-Endeavor/neoxa/issues],[neoxacore],[https://neoxa.net/])
+define(_COPYRIGHT_HOLDERS_SUBSTITUTION,[[FILOPOW Core]])
+AC_INIT([FILOPOW Core],[_CLIENT_VERSION_MAJOR._CLIENT_VERSION_MINOR._CLIENT_VERSION_REVISION],[https://github.com/The-Filopow-Endeavor/filopow/issues],[filopowcore],[https://github.com/filoproject/filopow/])
 AC_CONFIG_SRCDIR([src/validation.cpp])
-AC_CONFIG_HEADERS([src/config/neoxa-config.h])
+AC_CONFIG_HEADERS([src/config/filopow-config.h])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([build-aux/m4])
 
-BITCOIN_DAEMON_NAME=neoxad
-BITCOIN_GUI_NAME=neoxa-qt
-BITCOIN_CLI_NAME=neoxa-cli
-BITCOIN_TX_NAME=neoxa-tx
+BITCOIN_DAEMON_NAME=filopowd
+BITCOIN_GUI_NAME=filopow-qt
+BITCOIN_CLI_NAME=filopow-cli
+BITCOIN_TX_NAME=filopow-tx
 
 dnl Unless the user specified ARFLAGS, force it to be cr
 AC_ARG_VAR(ARFLAGS, [Flags for the archiver, defaults to <cr> if not set])
@@ -27,9 +27,9 @@ fi
 
 AC_CANONICAL_HOST
 
-AH_TOP([#ifndef NEOXA_CONFIG_H])
-AH_TOP([#define NEOXA_CONFIG_H])
-AH_BOTTOM([#endif //NEOXA_CONFIG_H])
+AH_TOP([#ifndef FILOPOW_CONFIG_H])
+AH_TOP([#define FILOPOW_CONFIG_H])
+AH_BOTTOM([#endif //FILOPOW_CONFIG_H])
 
 dnl faketime breaks configure and is only needed for make. Disable it here.
 unset FAKETIME
@@ -454,7 +454,7 @@ CPPFLAGS="$CPPFLAGS -DHAVE_BUILD_INFO -D__STDC_FORMAT_MACROS"
 
 AC_ARG_WITH([utils],
   [AS_HELP_STRING([--with-utils],
-  [build neoxa-cli neoxa-tx (default=yes)])],
+  [build filopow-cli filopow-tx (default=yes)])],
   [build_bitcoin_utils=$withval],
   [build_bitcoin_utils=yes])
 
@@ -466,7 +466,7 @@ AC_ARG_WITH([libs],
 
 AC_ARG_WITH([daemon],
   [AS_HELP_STRING([--with-daemon],
-  [build neoxad daemon (default=yes)])],
+  [build filopowd daemon (default=yes)])],
   [build_bitcoind=$withval],
   [build_bitcoind=yes])
 
@@ -677,7 +677,7 @@ AC_C_BIGENDIAN
 dnl Check for pthread compile/link requirements
 AX_PTHREAD
 
-# The following macro will add the necessary defines to neoxa-config.h, but
+# The following macro will add the necessary defines to filopow-config.h, but
 # they also need to be passed down to any subprojects. Pull the results out of
 # the cache and add them to CPPFLAGS.
 AC_SYS_LARGEFILE
@@ -1247,11 +1247,11 @@ AC_SUBST(UNIVALUE_LIBS)
 
 BITCOIN_QT_PATH_PROGS([PROTOC], [protoc],$protoc_bin_path)
 
-AC_MSG_CHECKING([whether to build neoxad])
+AC_MSG_CHECKING([whether to build filopowd])
 AM_CONDITIONAL([BUILD_BITCOIND], [test x$build_bitcoind = xyes])
 AC_MSG_RESULT($build_bitcoind)
 
-AC_MSG_CHECKING([whether to build utils (neoxa-cli neoxa-tx)])
+AC_MSG_CHECKING([whether to build utils (filopow-cli filopow-tx)])
 AM_CONDITIONAL([BUILD_BITCOIN_UTILS], [test x$build_bitcoin_utils = xyes])
 AC_MSG_RESULT($build_bitcoin_utils)
 
@@ -1259,7 +1259,7 @@ AC_MSG_CHECKING([whether to build libraries])
 AM_CONDITIONAL([BUILD_BITCOIN_LIBS], [test x$build_bitcoin_libs = xyes])
 if test x$build_bitcoin_libs = xyes; then
   AC_DEFINE(HAVE_CONSENSUS_LIB, 1, [Define this symbol if the consensus lib has been built])
-  AC_CONFIG_FILES([libneoxaconsensus.pc:libneoxaconsensus.pc.in])
+  AC_CONFIG_FILES([libfilopowconsensus.pc:libfilopowconsensus.pc.in])
 fi
 AC_MSG_RESULT($build_bitcoin_libs)
 
@@ -1352,7 +1352,7 @@ if test x$bitcoin_enable_qt != xno; then
     AC_MSG_WARN("xgettext is required to update qt translations")
   fi
 
-  AC_MSG_CHECKING([whether to build test_neoxa-qt])
+  AC_MSG_CHECKING([whether to build test_filopow-qt])
   if test x$use_gui_tests$bitcoin_enable_qt_test = xyesyes; then
     AC_MSG_RESULT([yes])
     BUILD_TEST_QT="yes"
@@ -1363,7 +1363,7 @@ fi
 
 AM_CONDITIONAL([ENABLE_ZMQ], [test "x$use_zmq" = "xyes"])
 
-AC_MSG_CHECKING([whether to build test_neoxa])
+AC_MSG_CHECKING([whether to build test_filopow])
 if test x$use_tests = xyes; then
   AC_MSG_RESULT([yes])
   BUILD_TEST="yes"

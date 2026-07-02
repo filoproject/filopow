@@ -21,8 +21,8 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef NEOXA_BIP39_H
-#define NEOXA_BIP39_H
+#ifndef FILOPOW_BIP39_H
+#define FILOPOW_BIP39_H
 
 #include "support/allocators/secure.h"
 

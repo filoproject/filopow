@@ -1,30 +1,30 @@
-Neoxa Core
+FILOPOW Core
 ==========
 
-This is the official reference wallet for Neoxa digital currency and comprises the backbone of the Neoxa peer-to-peer network. You can [download Neoxa Core](https://www.neoxa.org/downloads/) or [build it yourself](#building) using the guides below.
+This is the official reference wallet for Filopow digital currency and comprises the backbone of the Filopow peer-to-peer network. You can [download FILOPOW Core](https://www.filopow.org/downloads/) or [build it yourself](#building) using the guides below.
 
 Running
 ---------------------
-The following are some helpful notes on how to run Neoxa on your native platform.
+The following are some helpful notes on how to run Filopow on your native platform.
 
 ### Unix
 
 Unpack the files into a directory and run:
 
-- `bin/neoxa-qt` (GUI) or
-- `bin/neoxad` (headless)
+- `bin/filopow-qt` (GUI) or
+- `bin/filopowd` (headless)
 
 ### Windows
 
-Unpack the files into a directory, and then run neoxa-qt.exe.
+Unpack the files into a directory, and then run filopow-qt.exe.
 
 ### OS X
 
-Drag Neoxa-Qt to your applications folder, and then run Neoxa-Qt.
+Drag Filopow-Qt to your applications folder, and then run Filopow-Qt.
 
 Building
 ---------------------
-The following are developer notes on how to build Neoxa Core on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
+The following are developer notes on how to build FILOPOW Core on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
 
 - [OS X Build Notes](build-osx.md)
 - [Unix Build Notes](build-unix.md)
@@ -34,7 +34,7 @@ The following are developer notes on how to build Neoxa Core on your native plat
 
 Development
 ---------------------
-The Neoxa Core repo's [root README](/README.md) contains relevant information on the development process and automated testing.
+The FILOPOW Core repo's [root README](/README.md) contains relevant information on the development process and automated testing.
 
 - [Developer Notes](developer-notes.md)
 - [Release Notes](release-notes.md)

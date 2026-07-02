@@ -80,7 +80,7 @@ public:
         StatusRole,
         /** Unprocessed icon */
         RawDecorationRole,
-        /** NEOX or name of an asset */
+        /** FPOW or name of an asset */
         AssetNameRole,
     };
 

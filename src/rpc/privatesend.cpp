@@ -152,10 +152,10 @@ UniValue getprivatesendinfo(const JSONRPCRequest& request)
 static const CRPCCommand commands[] =
     { //  category              name                      actor (function)         okSafe argNames
         //  --------------------- ------------------------  -----------------------  ------ ----------
-        { "neoxa",               "getpoolinfo",            &getpoolinfo,            true,  {} },
-        { "neoxa",               "getprivatesendinfo",     &getprivatesendinfo,     true,  {} },
+        { "filopow",               "getpoolinfo",            &getpoolinfo,            true,  {} },
+        { "filopow",               "getprivatesendinfo",     &getprivatesendinfo,     true,  {} },
 #ifdef ENABLE_WALLET
-        { "neoxa",               "privatesend",            &privatesend,            false, {} },
+        { "filopow",               "privatesend",            &privatesend,            false, {} },
 #endif // ENABLE_WALLET
 };
 

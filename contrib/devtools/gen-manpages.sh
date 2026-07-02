@@ -7,10 +7,10 @@ BUILDDIR=${BUILDDIR:-$TOPDIR}
 BINDIR=${BINDIR:-$BUILDDIR/src}
 MANDIR=${MANDIR:-$TOPDIR/doc/man}
 
-BITCOIND=${BITCOIND:-$SRCDIR/neoxad}
-BITCOINCLI=${BITCOINCLI:-$SRCDIR/neoxa-cli}
-BITCOINTX=${BITCOINTX:-$SRCDIR/neoxa-tx}
-BITCOINQT=${BITCOINQT:-$SRCDIR/qt/neoxa-qt}
+BITCOIND=${BITCOIND:-$SRCDIR/filopowd}
+BITCOINCLI=${BITCOINCLI:-$SRCDIR/filopow-cli}
+BITCOINTX=${BITCOINTX:-$SRCDIR/filopow-tx}
+BITCOINQT=${BITCOINQT:-$SRCDIR/qt/filopow-qt}
 
 [ ! -x $BITCOIND ] && echo "$BITCOIND not found or not executable." && exit 1
 
@@ -18,8 +18,8 @@ BITCOINQT=${BITCOINQT:-$SRCDIR/qt/neoxa-qt}
 BTCVER=($($BITCOINCLI --version | head -n1 | awk -F'[ -]' '{ print $6, $7 }'))
 
 # Create a footer file with copyright content.
-# This gets autodetected fine for neoxad if --version-string is not set,
-# but has different outcomes for neoxa-qt and neoxa-cli.
+# This gets autodetected fine for filopowd if --version-string is not set,
+# but has different outcomes for filopow-qt and filopow-cli.
 echo "[COPYRIGHT]" > footer.h2m
 $BITCOIND --version | sed -n '1!p' >> footer.h2m
 

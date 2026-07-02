@@ -4,7 +4,7 @@
 #include <boost/test/unit_test.hpp>
 #include "cuckoocache.h"
 #include "script/sigcache.h"
-#include "test/test_neoxa.h"
+#include "test/test_filopow.h"
 #include "random.h"
 #include <thread>
 

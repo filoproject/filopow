@@ -380,8 +380,8 @@ public:
         consensus.DIP0008Enabled = true;
        // consensus.DIP0003EnforcementHeight = 1047200;
         consensus.powLimit = uint256S("00ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); // ~uint256(0) >> 20
-        consensus.nPowTargetTimespan = 2016 * 60; // Neoxa: 1 day
-        consensus.nPowTargetSpacing = 1 * 60; // Neoxa: 1 minutes
+        consensus.nPowTargetTimespan = 2016 * 60; // Filopow: 1 day
+        consensus.nPowTargetSpacing = 1 * 60; // Filopow: 1 minutes
         consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.fPowNoRetargeting = false;
         consensus.nPowDGWHeight = 1;
@@ -588,8 +588,8 @@ public:
         consensus.BIPCSVEnabled = true;
      //   consensus.DIP0003EnforcementHeight = 7300;
         consensus.powLimit = uint256S("00ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); // ~uint256(0) >> 20
-        consensus.nPowTargetTimespan = 2016 * 60; // Neoxa: 1 day
-        consensus.nPowTargetSpacing = 60; // Neoxa: 1 minutes
+        consensus.nPowTargetTimespan = 2016 * 60; // Filopow: 1 day
+        consensus.nPowTargetSpacing = 60; // Filopow: 1 minutes
         consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.fPowNoRetargeting = false;
         consensus.nPowDGWHeight = 1;
@@ -662,9 +662,9 @@ public:
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,196);
         // Testnet private keys start with '9' or 'c' (Bitcoin defaults)
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,239);
-        // Testnet Neoxa BIP32 pubkeys start with 'tpub' (Bitcoin defaults)
+        // Testnet Filopow BIP32 pubkeys start with 'tpub' (Bitcoin defaults)
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x35, 0x87, 0xCF};
-        // Testnet Neoxa BIP32 prvkeys start with 'tprv' (Bitcoin defaults)
+        // Testnet Filopow BIP32 prvkeys start with 'tprv' (Bitcoin defaults)
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x35, 0x83, 0x94};
 
         // Testnet FILOPOW BIP44 coin type is '1' (all coins' testnet default)
@@ -717,7 +717,7 @@ public:
         };
 
         chainTxData = ChainTxData{
-        	// Update as we know more about the contents of the Neoxa chain
+        	// Update as we know more about the contents of the Filopow chain
             //1658331968, // * UNIX timestamp of last known number of transactions
             //4108,     // * total number of transactions between genesis and that timestamp
                         //   (the tx=... number in the SetBestChain debug.log lines)
@@ -755,7 +755,7 @@ public:
         nAssetActivationHeight = 1; // Asset activated block height
         nMessagingActivationBlock = 1; // Messaging activated block height
         nRestrictedActivationBlock = 1; // Restricted activated block height
-        /** NEOXA End **/
+        /** FILOPOW End **/
     }
 };
 
@@ -789,8 +789,8 @@ public:
         consensus.DIP0008Enabled = true;
        // consensus.DIP0003EnforcementHeight = 2; // DIP0003 activated immediately on devnet
         consensus.powLimit = uint256S("7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); // ~uint256(0) >> 1
-        consensus.nPowTargetTimespan = 24 * 60 * 60; // Neoxa: 1 day
-        consensus.nPowTargetSpacing = 2.5 * 60; // Neoxa: 2.5 minutes
+        consensus.nPowTargetTimespan = 24 * 60 * 60; // Filopow: 1 day
+        consensus.nPowTargetSpacing = 2.5 * 60; // Filopow: 2.5 minutes
         consensus.fPowAllowMinDifficultyBlocks = true;
         consensus.fPowNoRetargeting = false;
         consensus.nPowDGWHeight = 60;
@@ -827,20 +827,20 @@ public:
 
         vFixedSeeds.clear();
         vSeeds.clear();
-        //vSeeds.push_back(CDNSSeedData("neoxaevo.org",  "devnet-seed.neoxaevo.org"));
+        //vSeeds.push_back(CDNSSeedData("filopowevo.org",  "devnet-seed.filopowevo.org"));
 
-        // Testnet Neoxa addresses start with 'y'
+        // Testnet Filopow addresses start with 'y'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,140);
-        // Testnet Neoxa script addresses start with '8' or '9'
+        // Testnet Filopow script addresses start with '8' or '9'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,19);
         // Testnet private keys start with '9' or 'c' (Bitcoin defaults)
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,239);
-        // Testnet Neoxa BIP32 pubkeys start with 'tpub' (Bitcoin defaults)
+        // Testnet Filopow BIP32 pubkeys start with 'tpub' (Bitcoin defaults)
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x35, 0x87, 0xCF};
-        // Testnet Neoxa BIP32 prvkeys start with 'tprv' (Bitcoin defaults)
+        // Testnet Filopow BIP32 prvkeys start with 'tprv' (Bitcoin defaults)
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x35, 0x83, 0x94};
 
-        // Testnet Neoxa BIP44 coin type is '1' (All coin's testnet default)
+        // Testnet Filopow BIP44 coin type is '1' (All coin's testnet default)
         nExtCoinType = 1;
 
         // long living quorum params
@@ -907,8 +907,8 @@ public:
         consensus.DIP0008Enabled = true;
        // consensus.DIP0003EnforcementHeight = 500;
         consensus.powLimit = uint256S("7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); // ~uint256(0) >> 1
-        consensus.nPowTargetTimespan = 24 * 60 * 60; // Neoxa: 1 day
-        consensus.nPowTargetSpacing = 2 * 60; // Neoxa: 2.5 minutes
+        consensus.nPowTargetTimespan = 24 * 60 * 60; // Filopow: 1 day
+        consensus.nPowTargetSpacing = 2 * 60; // Filopow: 2.5 minutes
         consensus.nMinimumDifficultyBlocks = 2000;
         consensus.fPowAllowMinDifficultyBlocks = true;
         consensus.fPowNoRetargeting = true;
@@ -983,18 +983,18 @@ public:
             0
         };
 
-        // Regtest Neoxa addresses start with 'y'
+        // Regtest Filopow addresses start with 'y'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,140);
-        // Regtest Neoxa script addresses start with '8' or '9'
+        // Regtest Filopow script addresses start with '8' or '9'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,19);
         // Regtest private keys start with '9' or 'c' (Bitcoin defaults)
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,239);
-        // Regtest Neoxa BIP32 pubkeys start with 'tpub' (Bitcoin defaults)
+        // Regtest Filopow BIP32 pubkeys start with 'tpub' (Bitcoin defaults)
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x35, 0x87, 0xCF};
-        // Regtest Neoxa BIP32 prvkeys start with 'tprv' (Bitcoin defaults)
+        // Regtest Filopow BIP32 prvkeys start with 'tprv' (Bitcoin defaults)
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x35, 0x83, 0x94};
 
-        // Regtest Neoxa BIP44 coin type is '1' (All coin's testnet default)
+        // Regtest Filopow BIP44 coin type is '1' (All coin's testnet default)
         nExtCoinType = 1;
 
         // long living quorum params

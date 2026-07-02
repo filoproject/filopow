@@ -4,8 +4,8 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 
-#ifndef NEOXACOIN_ASSET_PROTOCOL_H
-#define NEOXACOIN_ASSET_PROTOCOL_H
+#ifndef FILOPOWCOIN_ASSET_PROTOCOL_H
+#define FILOPOWCOIN_ASSET_PROTOCOL_H
 
 #include "amount.h"
 #include "tinyformat.h"
@@ -18,12 +18,12 @@
 #include <list>
 
 
-#define NEOX_N 114
-#define NEOX_E 118
-#define NEOX_X 110
-#define NEOX_Q 113
-#define NEOX_T 116
-#define NEOX_O 111
+#define FPOW_N 114
+#define FPOW_E 118
+#define FPOW_X 110
+#define FPOW_Q 113
+#define FPOW_T 116
+#define FPOW_O 111
 
 
 #define DEFAULT_UNITS 0
@@ -469,10 +469,10 @@ bool CheckIssueBurnTx(const CTxOut& txOut, const AssetType& type);
 bool CheckReissueBurnTx(const CTxOut& txOut);
 
 //! issue asset scripts to make sure script meets the standards
-bool CheckIssueDataTx(const CTxOut& txOut); // OP_NEOXA_ASSET NEOXQ (That is a Q as in Que not an O)
-bool CheckOwnerDataTx(const CTxOut& txOut);// OP_NEOXA_ASSET NEOXO
-bool CheckReissueDataTx(const CTxOut& txOut);// OP_NEOXA_ASSET NEOXR
-bool CheckTransferOwnerTx(const CTxOut& txOut);// OP_NEOXA_ASSET NEOXT
+bool CheckIssueDataTx(const CTxOut& txOut); // OP_FILOPOW_ASSET FPOWQ (That is a Q as in Que not an O)
+bool CheckOwnerDataTx(const CTxOut& txOut);// OP_FILOPOW_ASSET FPOWO
+bool CheckReissueDataTx(const CTxOut& txOut);// OP_FILOPOW_ASSET FPOWR
+bool CheckTransferOwnerTx(const CTxOut& txOut);// OP_FILOPOW_ASSET FPOWT
 
 //! Check the Encoded hash and make sure it is either an IPFS hash or a OIP hash
 bool CheckEncoded(const std::string& hash, std::string& strError);
@@ -585,4 +585,4 @@ bool ContextualCheckReissueAsset(CAssetsCache* assetCache, const CReissueAsset& 
 bool ContextualCheckUniqueAssetTx(CAssetsCache* assetCache, std::string& strError, const CTransaction& tx);
 bool ContextualCheckUniqueAsset(CAssetsCache* assetCache, const CNewAsset& unique_asset, std::string& strError);
 
-#endif //NEOXACOIN_ASSET_PROTOCOL_H
+#endif //FILOPOWCOIN_ASSET_PROTOCOL_H

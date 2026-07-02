@@ -137,7 +137,7 @@ public:
 };
 
 /**
- * Neoxa RPC command dispatcher.
+ * Filopow RPC command dispatcher.
  */
 class CRPCTable
 {
@@ -186,7 +186,7 @@ extern int64_t ParseInt64V(const UniValue& v, const std::string &strName);
 extern double ParseDoubleV(const UniValue& v, const std::string &strName);
 extern bool ParseBoolV(const UniValue& v, const std::string &strName);
 
-extern CAmount AmountFromValue(const UniValue& value, bool p_isNEOX = true);
+extern CAmount AmountFromValue(const UniValue& value, bool p_isFPOW = true);
 extern std::string HelpExampleCli(const std::string& methodname, const std::string& args);
 extern std::string HelpExampleRpc(const std::string& methodname, const std::string& args);
 

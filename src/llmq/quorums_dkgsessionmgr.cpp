@@ -41,7 +41,7 @@ void CDKGSessionManager::StartMessageHandlerPool()
     }
 
     messageHandlerPool.resize(2);
-    RenameThreadPool(messageHandlerPool, "neoxa-q-msg");
+    RenameThreadPool(messageHandlerPool, "filopow-q-msg");
 }
 
 void CDKGSessionManager::StopMessageHandlerPool()

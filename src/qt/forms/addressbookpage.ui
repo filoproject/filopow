@@ -150,7 +150,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="../neoxa.qrc"/>
+  <include location="../filopow.qrc"/>
  </resources>
  <connections/>
 </ui>

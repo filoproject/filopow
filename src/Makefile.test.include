@@ -4,11 +4,11 @@
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-TESTS += test/test_neoxa
-bin_PROGRAMS += test/test_neoxa
-noinst_PROGRAMS += test/test_neoxa_fuzzy
+TESTS += test/test_filopow
+bin_PROGRAMS += test/test_filopow
+noinst_PROGRAMS += test/test_filopow_fuzzy
 TEST_SRCDIR = test
-TEST_BINARY=test/test_neoxa$(EXEEXT)
+TEST_BINARY=test/test_filopow$(EXEEXT)
 
 JSON_TEST_FILES = \
   test/data/script_tests.json \
@@ -26,7 +26,7 @@ RAW_TEST_FILES =
 
 GENERATED_TEST_FILES = $(JSON_TEST_FILES:.json=.json.h) $(RAW_TEST_FILES:.raw=.raw.h)
 
-# test_neoxa binary #
+# test_filopow binary #
 BITCOIN_TESTS =\
   test/assets/asset_tests.cpp \
   test/assets/serialization_tests.cpp \
@@ -99,9 +99,9 @@ BITCOIN_TESTS =\
   test/skiplist_tests.cpp \
   test/streams_tests.cpp \
   test/subsidy_tests.cpp \
-  test/test_neoxa.cpp \
-  test/test_neoxa.h \
-  test/test_neoxa_main.cpp \
+  test/test_filopow.cpp \
+  test/test_filopow.h \
+  test/test_filopow_main.cpp \
   test/timedata_tests.cpp \
   test/torcontrol_tests.cpp \
   test/transaction_tests.cpp \
@@ -120,31 +120,31 @@ BITCOIN_TESTS += \
   wallet/test/crypto_tests.cpp
 endif
 
-test_test_neoxa_SOURCES = $(BITCOIN_TESTS) $(JSON_TEST_FILES) $(RAW_TEST_FILES)
-test_test_neoxa_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(TESTDEFS) $(EVENT_CFLAGS)
-test_test_neoxa_LDADD =
+test_test_filopow_SOURCES = $(BITCOIN_TESTS) $(JSON_TEST_FILES) $(RAW_TEST_FILES)
+test_test_filopow_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(TESTDEFS) $(EVENT_CFLAGS)
+test_test_filopow_LDADD =
 if ENABLE_WALLET
-test_test_neoxa_LDADD += $(LIBBITCOIN_WALLET)
+test_test_filopow_LDADD += $(LIBBITCOIN_WALLET)
 endif
-test_test_neoxa_LDADD += $(LIBBITCOIN_SERVER) $(LIBBITCOIN_CLI) $(LIBBITCOIN_COMMON) $(LIBBITCOIN_UTIL) $(LIBBITCOIN_CONSENSUS) $(LIBBITCOIN_CRYPTO) $(LIBUNIVALUE) \
+test_test_filopow_LDADD += $(LIBBITCOIN_SERVER) $(LIBBITCOIN_CLI) $(LIBBITCOIN_COMMON) $(LIBBITCOIN_UTIL) $(LIBBITCOIN_CONSENSUS) $(LIBBITCOIN_CRYPTO) $(LIBUNIVALUE) \
   $(LIBLEVELDB) $(LIBLEVELDB_SSE42) $(LIBMEMENV) $(BACKTRACE_LIB) $(BOOST_LIBS) $(BOOST_UNIT_TEST_FRAMEWORK_LIB) $(LIBSECP256K1) $(EVENT_LIBS) $(EVENT_PTHREADS_LIBS)
-test_test_neoxa_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+test_test_filopow_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 
-test_test_neoxa_LDADD += $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(BLS_LIBS)
-test_test_neoxa_LDFLAGS = $(LDFLAGS_WRAP_EXCEPTIONS) $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) $(PTHREAD_FLAGS) $(PTHREAD_FLAGS) -static
+test_test_filopow_LDADD += $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(BLS_LIBS)
+test_test_filopow_LDFLAGS = $(LDFLAGS_WRAP_EXCEPTIONS) $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) $(PTHREAD_FLAGS) $(PTHREAD_FLAGS) -static
 
 if ENABLE_ZMQ
-test_test_neoxa_LDADD += $(ZMQ_LIBS)
+test_test_filopow_LDADD += $(ZMQ_LIBS)
 endif
 #
 
-# test_neoxa_fuzzy binary #
-test_test_neoxa_fuzzy_SOURCES = test/test_neoxa_fuzzy.cpp
-test_test_neoxa_fuzzy_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-test_test_neoxa_fuzzy_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-test_test_neoxa_fuzzy_LDFLAGS = $(LDFLAGS_WRAP_EXCEPTIONS) $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) $(PTHREAD_FLAGS)
+# test_filopow_fuzzy binary #
+test_test_filopow_fuzzy_SOURCES = test/test_filopow_fuzzy.cpp
+test_test_filopow_fuzzy_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+test_test_filopow_fuzzy_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+test_test_filopow_fuzzy_LDFLAGS = $(LDFLAGS_WRAP_EXCEPTIONS) $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) $(PTHREAD_FLAGS)
 
-test_test_neoxa_fuzzy_LDADD = \
+test_test_filopow_fuzzy_LDADD = \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_SERVER) \
   $(LIBBITCOIN_COMMON) \
@@ -156,10 +156,10 @@ test_test_neoxa_fuzzy_LDADD = \
   $(LIBBITCOIN_CRYPTO_SHANI) \
   $(LIBSECP256K1)
 
-test_test_neoxa_fuzzy_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS) $(BACKTRACE_LIB)
+test_test_filopow_fuzzy_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS) $(BACKTRACE_LIB)
 #
 
-nodist_test_test_neoxa_SOURCES = $(GENERATED_TEST_FILES)
+nodist_test_test_filopow_SOURCES = $(GENERATED_TEST_FILES)
 
 $(BITCOIN_TESTS): $(GENERATED_TEST_FILES)
 
@@ -167,13 +167,13 @@ CLEAN_BITCOIN_TEST = test/*.gcda test/*.gcno $(GENERATED_TEST_FILES)
 
 CLEANFILES += $(CLEAN_BITCOIN_TEST)
 
-neoxa_test: $(TEST_BINARY)
+filopow_test: $(TEST_BINARY)
 
-neoxa_test_check: $(TEST_BINARY) FORCE
+filopow_test_check: $(TEST_BINARY) FORCE
 	$(MAKE) check-TESTS TESTS=$^
 
-neoxa_test_clean : FORCE
-	rm -f $(CLEAN_BITCOIN_TEST) $(test_test_neoxa_OBJECTS) $(TEST_BINARY)
+filopow_test_clean : FORCE
+	rm -f $(CLEAN_BITCOIN_TEST) $(test_test_filopow_OBJECTS) $(TEST_BINARY)
 
 check-local:
 	@echo "Running test/util/bitcoin-util-test.py..."

@@ -187,7 +187,7 @@ void setupAddressWidget(QValidatedLineEdit *widget, QWidget *parent)
 #if QT_VERSION >= 0x040700
     // We don't want translators to use own addresses in translations
     // and this is the only place, where this address is supplied.
-    widget->setPlaceholderText(QObject::tr("Enter a Neoxa address (e.g. %1)").arg(
+    widget->setPlaceholderText(QObject::tr("Enter a Filopow address (e.g. %1)").arg(
         QString::fromStdString(DummyAddress(Params()))));
 #endif
     widget->setValidator(new BitcoinAddressEntryValidator(parent));
@@ -205,8 +205,8 @@ void setupAmountWidget(QLineEdit *widget, QWidget *parent)
 
 bool parseBitcoinURI(const QUrl &uri, SendCoinsRecipient *out)
 {
-    // return if URI is not valid or is no neoxa: URI
-    if(!uri.isValid() || uri.scheme() != QString("neoxa"))
+    // return if URI is not valid or is no filopow: URI
+    if(!uri.isValid() || uri.scheme() != QString("filopow"))
         return false;
 
     SendCoinsRecipient rv;
@@ -252,7 +252,7 @@ bool parseBitcoinURI(const QUrl &uri, SendCoinsRecipient *out)
         {
             if(!i->second.isEmpty())
             {
-                if(!BitcoinUnits::parse(BitcoinUnits::NEOX, i->second, &rv.amount))
+                if(!BitcoinUnits::parse(BitcoinUnits::FPOW, i->second, &rv.amount))
                 {
                     return false;
                 }
@@ -272,13 +272,13 @@ bool parseBitcoinURI(const QUrl &uri, SendCoinsRecipient *out)
 
 bool parseBitcoinURI(QString uri, SendCoinsRecipient *out)
 {
-    // Convert neoxa:// to neoxa:
+    // Convert filopow:// to filopow:
     //
-    //    Cannot handle this later, because neoxa:// will cause Qt to see the part after // as host,
+    //    Cannot handle this later, because filopow:// will cause Qt to see the part after // as host,
     //    which will lower-case it (and thus invalidate the address).
-    if(uri.startsWith("neoxa://", Qt::CaseInsensitive))
+    if(uri.startsWith("filopow://", Qt::CaseInsensitive))
     {
-        uri.replace(0, 7, "neoxa:");
+        uri.replace(0, 7, "filopow:");
     }
     QUrl uriInstance(uri);
     return parseBitcoinURI(uriInstance, out);
@@ -286,12 +286,12 @@ bool parseBitcoinURI(QString uri, SendCoinsRecipient *out)
 
 QString formatBitcoinURI(const SendCoinsRecipient &info)
 {
-    QString ret = QString("neoxa:%1").arg(info.address);
+    QString ret = QString("filopow:%1").arg(info.address);
     int paramCount = 0;
 
     if (info.amount)
     {
-        ret += QString("?amount=%1").arg(BitcoinUnits::format(BitcoinUnits::NEOX, info.amount, false, BitcoinUnits::separatorNever));
+        ret += QString("?amount=%1").arg(BitcoinUnits::format(BitcoinUnits::FPOW, info.amount, false, BitcoinUnits::separatorNever));
         paramCount++;
     }
 
@@ -486,7 +486,7 @@ void openConfigfile()
 {
     fs::path pathConfig = GetConfigFile(gArgs.GetArg("-conf", BITCOIN_CONF_FILENAME));
 
-    /* Open neoxa.conf with the associated application */
+    /* Open filopow.conf with the associated application */
     if (fs::exists(pathConfig))
         QDesktopServices::openUrl(QUrl::fromLocalFile(boostPathToQString(pathConfig)));
 }
@@ -687,15 +687,15 @@ fs::path static StartupShortcutPath()
 {
     std::string chain = ChainNameFromCommandLine();
     if (chain == CBaseChainParams::MAIN)
-        return GetSpecialFolderPath(CSIDL_STARTUP) / "Neoxa Core.lnk";
+        return GetSpecialFolderPath(CSIDL_STARTUP) / "FILOPOW Core.lnk";
     if (chain == CBaseChainParams::TESTNET) // Remove this special case when CBaseChainParams::TESTNET = "testnet4"
-        return GetSpecialFolderPath(CSIDL_STARTUP) / "Neoxa Core (testnet).lnk";
-    return GetSpecialFolderPath(CSIDL_STARTUP) / strprintf("Neoxa Core (%s).lnk", chain);
+        return GetSpecialFolderPath(CSIDL_STARTUP) / "FILOPOW Core (testnet).lnk";
+    return GetSpecialFolderPath(CSIDL_STARTUP) / strprintf("FILOPOW Core (%s).lnk", chain);
 }
 
 bool GetStartOnSystemStartup()
 {
-    // check for "Neoxa Core*.lnk"
+    // check for "FILOPOW Core*.lnk"
     return fs::exists(StartupShortcutPath());
 }
 
@@ -785,8 +785,8 @@ fs::path static GetAutostartFilePath()
 {
     std::string chain = ChainNameFromCommandLine();
     if (chain == CBaseChainParams::MAIN)
-        return GetAutostartDir() / "neoxacore.desktop";
-    return GetAutostartDir() / strprintf("neoxacore-%s.lnk", chain);
+        return GetAutostartDir() / "filopowcore.desktop";
+    return GetAutostartDir() / strprintf("filopowcore-%s.lnk", chain);
 }
 
 bool GetStartOnSystemStartup()
@@ -825,13 +825,13 @@ bool SetStartOnSystemStartup(bool fAutoStart)
         if (!optionFile.good())
             return false;
         std::string chain = ChainNameFromCommandLine();
-        // Write a neoxacore.desktop file to the autostart directory:
+        // Write a filopowcore.desktop file to the autostart directory:
         optionFile << "[Desktop Entry]\n";
         optionFile << "Type=Application\n";
         if (chain == CBaseChainParams::MAIN)
-            optionFile << "Name=Neoxa Core\n";
+            optionFile << "Name=FILOPOW Core\n";
         else
-            optionFile << strprintf("Name=Neoxa Core (%s)\n", chain);
+            optionFile << strprintf("Name=FILOPOW Core (%s)\n", chain);
         optionFile << "Exec=" << pszExePath << strprintf(" -min -testnet=%d -regtest=%d\n", gArgs.GetBoolArg("-testnet", false), gArgs.GetBoolArg("-regtest", false));
         optionFile << "Terminal=false\n";
         optionFile << "Hidden=false\n";
@@ -852,7 +852,7 @@ bool SetStartOnSystemStartup(bool fAutoStart)
 LSSharedFileListItemRef findStartupItemInList(LSSharedFileListRef list, CFURLRef findUrl);
 LSSharedFileListItemRef findStartupItemInList(LSSharedFileListRef list, CFURLRef findUrl)
 {
-    // loop through the list of startup items and try to find the Neoxa Core app
+    // loop through the list of startup items and try to find the FILOPOW Core app
     CFArrayRef listSnapshot = LSSharedFileListCopySnapshot(list, nullptr);
     for(int i = 0; i < CFArrayGetCount(listSnapshot); i++) {
         LSSharedFileListItemRef item = (LSSharedFileListItemRef)CFArrayGetValueAtIndex(listSnapshot, i);
@@ -897,7 +897,7 @@ bool SetStartOnSystemStartup(bool fAutoStart)
     LSSharedFileListItemRef foundItem = findStartupItemInList(loginItems, bitcoinAppUrl);
 
     if(fAutoStart && !foundItem) {
-        // add Neoxa Core app to startup item list
+        // add FILOPOW Core app to startup item list
         LSSharedFileListInsertItemURL(loginItems, kLSSharedFileListItemBeforeFirst, nullptr, nullptr, bitcoinAppUrl, nullptr, nullptr);
     }
     else if(!fAutoStart && foundItem) {

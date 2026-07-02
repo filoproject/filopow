@@ -4,32 +4,32 @@
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-bin_PROGRAMS += qt/neoxa-qt
-EXTRA_LIBRARIES += qt/libneoxaqt.a
+bin_PROGRAMS += qt/filopow-qt
+EXTRA_LIBRARIES += qt/libfilopowqt.a
 
-# neoxa qt core #
+# filopow qt core #
 QT_TS = \
-  qt/locale/neoxa_ar.ts \
-  qt/locale/neoxa_bg.ts \
-  qt/locale/neoxa_de.ts \
-  qt/locale/neoxa_en.ts \
-  qt/locale/neoxa_es.ts \
-  qt/locale/neoxa_fi.ts \
-  qt/locale/neoxa_fr.ts \
-  qt/locale/neoxa_it.ts \
-  qt/locale/neoxa_ja.ts \
-  qt/locale/neoxa_ko.ts \
-  qt/locale/neoxa_nl.ts \
-  qt/locale/neoxa_pl.ts \
-  qt/locale/neoxa_pt.ts \
-  qt/locale/neoxa_ro.ts \
-  qt/locale/neoxa_ru.ts \
-  qt/locale/neoxa_sk.ts \
-  qt/locale/neoxa_th.ts \
-  qt/locale/neoxa_tr.ts \
-  qt/locale/neoxa_vi.ts \
-  qt/locale/neoxa_zh_CN.ts \
-  qt/locale/neoxa_zh_TW.ts
+  qt/locale/filopow_ar.ts \
+  qt/locale/filopow_bg.ts \
+  qt/locale/filopow_de.ts \
+  qt/locale/filopow_en.ts \
+  qt/locale/filopow_es.ts \
+  qt/locale/filopow_fi.ts \
+  qt/locale/filopow_fr.ts \
+  qt/locale/filopow_it.ts \
+  qt/locale/filopow_ja.ts \
+  qt/locale/filopow_ko.ts \
+  qt/locale/filopow_nl.ts \
+  qt/locale/filopow_pl.ts \
+  qt/locale/filopow_pt.ts \
+  qt/locale/filopow_ro.ts \
+  qt/locale/filopow_ru.ts \
+  qt/locale/filopow_sk.ts \
+  qt/locale/filopow_th.ts \
+  qt/locale/filopow_tr.ts \
+  qt/locale/filopow_vi.ts \
+  qt/locale/filopow_zh_CN.ts \
+  qt/locale/filopow_zh_TW.ts
 
 QT_FORMS_UI = \
   qt/forms/addressbookpage.ui \
@@ -130,17 +130,17 @@ BITCOIN_MM = \
   qt/macos_appnap.mm
 
 QT_MOC = \
-  qt/neoxa.moc \
+  qt/filopow.moc \
   qt/bitcoinamountfield.moc \
   qt/callback.moc \
   qt/intro.moc \
   qt/overviewpage.moc \
   qt/rpcconsole.moc
 
-QT_QRC_CPP = qt/qrc_neoxa.cpp
-QT_QRC = qt/neoxa.qrc
-QT_QRC_LOCALE_CPP = qt/qrc_neoxa_locale.cpp
-QT_QRC_LOCALE = qt/neoxa_locale.qrc
+QT_QRC_CPP = qt/qrc_filopow.cpp
+QT_QRC = qt/filopow.qrc
+QT_QRC_LOCALE_CPP = qt/qrc_filopow_locale.cpp
+QT_QRC_LOCALE = qt/filopow_locale.qrc
 
 PROTOBUF_CC = qt/paymentrequest.pb.cc
 PROTOBUF_H = qt/paymentrequest.pb.h
@@ -365,10 +365,10 @@ RES_IMAGES = \
   qt/res/images/arrow_right_small.png \
   qt/res/images/arrow_up_small.png \
   qt/res/images/checked.png \
-  qt/res/images/neoxa_logo_horizontal.png \
-  qt/res/images/neoxa_logo_toolbar.png \
+  qt/res/images/filopow_logo_horizontal.png \
+  qt/res/images/filopow_logo_toolbar.png \
   qt/res/images/qtreeview_selected.png \
-  qt/res/images/splash_neoxa.png \
+  qt/res/images/splash_filopow.png \
   qt/res/images/unchecked.png
 
 RES_CSS = \
@@ -379,20 +379,20 @@ RES_CSS = \
 
 RES_MOVIES = $(wildcard $(srcdir)/qt/res/movies/spinner-*.png)
 
-BITCOIN_RC = qt/res/neoxa-qt-res.rc
+BITCOIN_RC = qt/res/filopow-qt-res.rc
 
 BITCOIN_QT_INCLUDES = -I$(builddir)/qt -I$(srcdir)/qt -I$(srcdir)/qt/forms \
   -I$(builddir)/qt/forms -DQT_NO_KEYWORDS
 
-qt_libneoxaqt_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
+qt_libfilopowqt_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
   $(QT_INCLUDES) $(QT_DBUS_INCLUDES) $(PROTOBUF_CFLAGS) $(QR_CFLAGS)
-qt_libneoxaqt_a_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
-qt_libneoxaqt_a_OBJCXXFLAGS = $(AM_OBJCXXFLAGS) $(QT_PIE_FLAGS)
+qt_libfilopowqt_a_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
+qt_libfilopowqt_a_OBJCXXFLAGS = $(AM_OBJCXXFLAGS) $(QT_PIE_FLAGS)
 
-qt_libneoxaqt_a_SOURCES = $(BITCOIN_QT_CPP) $(BITCOIN_QT_H) $(QT_FORMS_UI) \
+qt_libfilopowqt_a_SOURCES = $(BITCOIN_QT_CPP) $(BITCOIN_QT_H) $(QT_FORMS_UI) \
   $(QT_QRC) $(QT_QRC_LOCALE) $(QT_TS) $(PROTOBUF_PROTO) $(RES_ICONS) $(RES_IMAGES) $(RES_CSS) $(RES_FONTS) $(RES_MOVIES)
 
-nodist_qt_libneoxaqt_a_SOURCES = $(QT_MOC_CPP) $(QT_MOC) $(PROTOBUF_CC) \
+nodist_qt_libfilopowqt_a_SOURCES = $(QT_MOC_CPP) $(QT_MOC) $(PROTOBUF_CC) \
   $(PROTOBUF_H) $(QT_QRC_CPP) $(QT_QRC_LOCALE_CPP)
 
 # forms/foo.h -> forms/ui_foo.h
@@ -401,71 +401,71 @@ QT_FORMS_H=$(join $(dir $(QT_FORMS_UI)),$(addprefix ui_, $(notdir $(QT_FORMS_UI:
 # Most files will depend on the forms and moc files as includes. Generate them
 # before anything else.
 $(QT_MOC): $(QT_FORMS_H)
-$(qt_libneoxaqt_a_OBJECTS) $(qt_neoxa_qt_OBJECTS) : | $(QT_MOC)
+$(qt_libfilopowqt_a_OBJECTS) $(qt_filopow_qt_OBJECTS) : | $(QT_MOC)
 
 #Generating these with a half-written protobuf header leads to wacky results.
 #This makes sure it's done.
 $(QT_MOC): $(PROTOBUF_H)
 $(QT_MOC_CPP): $(PROTOBUF_H)
 
-# neoxa-qt binary #
-qt_neoxa_qt_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
+# filopow-qt binary #
+qt_filopow_qt_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
   $(QT_INCLUDES) $(PROTOBUF_CFLAGS) $(QR_CFLAGS)
-qt_neoxa_qt_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
+qt_filopow_qt_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
 
-qt_neoxa_qt_SOURCES = qt/neoxa.cpp
+qt_filopow_qt_SOURCES = qt/filopow.cpp
 if TARGET_DARWIN
-  qt_neoxa_qt_SOURCES += $(BITCOIN_MM)
+  qt_filopow_qt_SOURCES += $(BITCOIN_MM)
 endif
 if TARGET_WINDOWS
-  qt_neoxa_qt_SOURCES += $(BITCOIN_RC)
+  qt_filopow_qt_SOURCES += $(BITCOIN_RC)
 endif
-qt_neoxa_qt_LDADD = qt/libneoxaqt.a $(LIBBITCOIN_SERVER)
+qt_filopow_qt_LDADD = qt/libfilopowqt.a $(LIBBITCOIN_SERVER)
 if ENABLE_WALLET
-qt_neoxa_qt_LDADD += $(LIBBITCOIN_UTIL) $(LIBBITCOIN_WALLET)
+qt_filopow_qt_LDADD += $(LIBBITCOIN_UTIL) $(LIBBITCOIN_WALLET)
 endif
 if ENABLE_ZMQ
-qt_neoxa_qt_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
+qt_filopow_qt_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
 endif
-qt_neoxa_qt_LDADD += $(LIBBITCOIN_CLI) $(LIBBITCOIN_COMMON) $(LIBBITCOIN_UTIL) $(LIBBITCOIN_CONSENSUS) $(LIBBITCOIN_CRYPTO) $(LIBUNIVALUE) $(LIBLEVELDB) $(LIBLEVELDB_SSE42) $(LIBMEMENV) \
+qt_filopow_qt_LDADD += $(LIBBITCOIN_CLI) $(LIBBITCOIN_COMMON) $(LIBBITCOIN_UTIL) $(LIBBITCOIN_CONSENSUS) $(LIBBITCOIN_CRYPTO) $(LIBUNIVALUE) $(LIBLEVELDB) $(LIBLEVELDB_SSE42) $(LIBMEMENV) \
   $(BACKTRACE_LIB) $(BOOST_LIBS) $(QT_LIBS) $(QT_DBUS_LIBS) $(QR_LIBS) $(PROTOBUF_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(LIBSECP256K1) \
   $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(BLS_LIBS)
-qt_neoxa_qt_LDFLAGS = $(LDFLAGS_WRAP_EXCEPTIONS) $(RELDFLAGS) $(AM_LDFLAGS) $(QT_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
-qt_neoxa_qt_LIBTOOLFLAGS = $(AM_LIBTOOLFLAGS) --tag CXX
+qt_filopow_qt_LDFLAGS = $(LDFLAGS_WRAP_EXCEPTIONS) $(RELDFLAGS) $(AM_LDFLAGS) $(QT_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+qt_filopow_qt_LIBTOOLFLAGS = $(AM_LIBTOOLFLAGS) --tag CXX
 
 #locale/foo.ts -> locale/foo.qm
 QT_QM=$(QT_TS:.ts=.qm)
 
 SECONDARY: $(QT_QM)
 
-$(srcdir)/qt/neoxastrings.cpp: FORCE
+$(srcdir)/qt/filopowstrings.cpp: FORCE
 	@test -n $(XGETTEXT) || echo "xgettext is required for updating translations"
 	$(AM_V_GEN) cd $(srcdir); XGETTEXT=$(XGETTEXT) PACKAGE_NAME="$(PACKAGE_NAME)" COPYRIGHT_HOLDERS="$(COPYRIGHT_HOLDERS)" COPYRIGHT_HOLDERS_SUBSTITUTION="$(COPYRIGHT_HOLDERS_SUBSTITUTION)" $(PYTHON) ../share/qt/extract_strings_qt.py $(libdash_server_a_SOURCES) $(libdash_wallet_a_SOURCES) $(libdash_common_a_SOURCES) $(libdash_zmq_a_SOURCES) $(libdash_consensus_a_SOURCES) $(libdash_util_a_SOURCES)
 
-translate: $(srcdir)/qt/neoxastrings.cpp $(QT_FORMS_UI) $(QT_FORMS_UI) $(BITCOIN_QT_BASE_CPP) qt/neoxa.cpp $(BITCOIN_QT_WINDOWS_CPP) $(BITCOIN_QT_WALLET_CPP) $(BITCOIN_QT_H) $(BITCOIN_MM)
+translate: $(srcdir)/qt/filopowstrings.cpp $(QT_FORMS_UI) $(QT_FORMS_UI) $(BITCOIN_QT_BASE_CPP) qt/filopow.cpp $(BITCOIN_QT_WINDOWS_CPP) $(BITCOIN_QT_WALLET_CPP) $(BITCOIN_QT_H) $(BITCOIN_MM)
 	@test -n $(LUPDATE) || echo "lupdate is required for updating translations"
-	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LUPDATE) $^ -I$(srcdir) -locations relative -no-obsolete -ts $(srcdir)/qt/locale/neoxa_en.ts
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LUPDATE) $^ -I$(srcdir) -locations relative -no-obsolete -ts $(srcdir)/qt/locale/filopow_en.ts
 
 $(QT_QRC_LOCALE_CPP): $(QT_QRC_LOCALE) $(QT_QM)
 	@test -f $(RCC)
 	@cp -f $< $(@D)/temp_$(<F)
-	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) $(RCCFLAGS) -name neoxa_locale $(@D)/temp_$(<F) | \
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) $(RCCFLAGS) -name filopow_locale $(@D)/temp_$(<F) | \
 	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
 	@rm $(@D)/temp_$(<F)
 
 $(QT_QRC_CPP): $(QT_QRC) $(QT_FORMS_H) $(RES_ICONS) $(RES_IMAGES) $(RES_CSS) $(RES_FONTS) $(RES_MOVIES) $(PROTOBUF_H)
 	@test -f $(RCC)
-	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) $(RCCFLAGS) -name neoxa $< | \
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) $(RCCFLAGS) -name filopow $< | \
 	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
 
-CLEAN_QT = $(nodist_qt_libneoxaqt_a_SOURCES) $(QT_QM) $(QT_FORMS_H) qt/*.gcda qt/*.gcno qt/temp_neoxa_locale.qrc qt/res/css/colors/*
+CLEAN_QT = $(nodist_qt_libfilopowqt_a_SOURCES) $(QT_QM) $(QT_FORMS_H) qt/*.gcda qt/*.gcno qt/temp_filopow_locale.qrc qt/res/css/colors/*
 
 CLEANFILES += $(CLEAN_QT)
 
-neoxa_qt_clean: FORCE
-	rm -f $(CLEAN_QT) $(qt_libneoxaqt_a_OBJECTS) $(qt_neoxa_qt_OBJECTS) qt/neoxa-qt$(EXEEXT) $(LIBBITCOINQT)
+filopow_qt_clean: FORCE
+	rm -f $(CLEAN_QT) $(qt_libfilopowqt_a_OBJECTS) $(qt_filopow_qt_OBJECTS) qt/filopow-qt$(EXEEXT) $(LIBBITCOINQT)
 
-neoxa_qt : qt/neoxa-qt$(EXEEXT)
+filopow_qt : qt/filopow-qt$(EXEEXT)
 
 ui_%.h: %.ui
 	@test -f $(UIC)

@@ -3,8 +3,8 @@
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef NEOXA_QUORUMS_DKGSESSIONMGR_H
-#define NEOXA_QUORUMS_DKGSESSIONMGR_H
+#ifndef FILOPOW_QUORUMS_DKGSESSIONMGR_H
+#define FILOPOW_QUORUMS_DKGSESSIONMGR_H
 
 #include "llmq/quorums_dkgsessionhandler.h"
 
@@ -77,4 +77,4 @@ extern CDKGSessionManager* quorumDKGSessionManager;
 
 } // namespace llmq
 
-#endif //NEOXA_QUORUMS_DKGSESSIONMGR_H
+#endif //FILOPOW_QUORUMS_DKGSESSIONMGR_H

@@ -51,13 +51,13 @@ void smartnode_list_help()
             "  json           - Print info in JSON format (can be additionally filtered, partial match)\n"
             "  lastpaidblock  - Print the last block height a node was paid on the network\n"
             "  lastpaidtime   - Print the last time a node was paid on the network\n"
-            "  owneraddress   - Print the smartnode owner Neoxa address\n"
-            "  payee          - Print the smartnode payout Neoxa address (can be additionally filtered,\n"
+            "  owneraddress   - Print the smartnode owner Filopow address\n"
+            "  payee          - Print the smartnode payout Filopow address (can be additionally filtered,\n"
             "                   partial match)\n"
             "  pubKeyOperator - Print the smartnode operator public key\n"
             "  status         - Print smartnode status: ENABLED / POSE_BANNED\n"
             "                   (can be additionally filtered, partial match)\n"
-            "  votingaddress  - Print the smartnode voting Neoxa address\n"
+            "  votingaddress  - Print the smartnode voting Filopow address\n"
         );
 }
 
@@ -542,8 +542,8 @@ UniValue smartnodelist(const JSONRPCRequest& request)
 static const CRPCCommand commands[] =
 { //  category              name                      actor (function)         okSafe argNames
   //  --------------------- ------------------------  -----------------------  ------ ----------
-    { "neoxa",               "smartnode",             &smartnode,             true,  {} },
-    { "neoxa",               "smartnodelist",         &smartnodelist,         true,  {} },
+    { "filopow",               "smartnode",             &smartnode,             true,  {} },
+    { "filopow",               "smartnodelist",         &smartnodelist,         true,  {} },
 };
 
 void RegisterSmartnodeRPCCommands(CRPCTable &t)

@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef NEOXA_DETERMINISTICMNS_H
-#define NEOXA_DETERMINISTICMNS_H
+#ifndef FILOPOW_DETERMINISTICMNS_H
+#define FILOPOW_DETERMINISTICMNS_H
 
 #include "arith_uint256.h"
 #include "bls/bls.h"
@@ -686,4 +686,4 @@ private:
 
 extern CDeterministicMNManager* deterministicMNManager;
 
-#endif //NEOXA_DETERMINISTICMNS_H
+#endif //FILOPOW_DETERMINISTICMNS_H

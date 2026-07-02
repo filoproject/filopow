@@ -9,7 +9,7 @@ from decimal import Decimal
 from test_framework import mininode
 from test_framework.blocktools import get_smartnode_payment, create_coinbase, create_block
 from test_framework.mininode import *
-from test_framework.test_framework import NeoxaTestFramework
+from test_framework.test_framework import FilopowTestFramework
 from test_framework.util import sync_blocks, sync_mempools, p2p_port, assert_raises_rpc_error, set_node_times
 
 '''
@@ -47,9 +47,9 @@ class TestNode(NodeConnCB):
                 self.send_message(self.islocks[inv.hash])
 
 
-class LLMQ_IS_CL_Conflicts(NeoxaTestFramework):
+class LLMQ_IS_CL_Conflicts(FilopowTestFramework):
     def set_test_params(self):
-        self.set_neoxa_test_params(6, 5, fast_dip3_enforcement=True)
+        self.set_filopow_test_params(6, 5, fast_dip3_enforcement=True)
         #disable_mocktime()
 
     def run_test(self):

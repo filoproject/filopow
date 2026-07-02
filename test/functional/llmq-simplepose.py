@@ -6,7 +6,7 @@
 
 import time
 
-from test_framework.test_framework import NeoxaTestFramework
+from test_framework.test_framework import FilopowTestFramework
 from test_framework.util import *
 
 '''
@@ -16,9 +16,9 @@ Checks simple PoSe system based on LLMQ commitments
 
 '''
 
-class LLMQSimplePoSeTest(NeoxaTestFramework):
+class LLMQSimplePoSeTest(FilopowTestFramework):
     def set_test_params(self):
-        self.set_neoxa_test_params(6, 5, fast_dip3_enforcement=True)
+        self.set_filopow_test_params(6, 5, fast_dip3_enforcement=True)
 
     def run_test(self):
 

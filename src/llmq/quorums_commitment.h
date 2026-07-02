@@ -3,8 +3,8 @@
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef NEOXA_QUORUMS_COMMITMENT_H
-#define NEOXA_QUORUMS_COMMITMENT_H
+#ifndef FILOPOW_QUORUMS_COMMITMENT_H
+#define FILOPOW_QUORUMS_COMMITMENT_H
 
 #include "consensus/params.h"
 
@@ -137,4 +137,4 @@ bool CheckLLMQCommitment(const CTransaction& tx, const CBlockIndex* pindexPrev, 
 
 } // namespace llmq
 
-#endif //NEOXA_QUORUMS_COMMITMENT_H
+#endif //FILOPOW_QUORUMS_COMMITMENT_H

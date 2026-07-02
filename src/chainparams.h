@@ -40,7 +40,7 @@ struct ChainTxData {
 
 /**
  * CChainParams defines various tweakable parameters of a given instance of the
- * Neoxa system. There are three: the main network on which people trade goods
+ * Filopow system. There are three: the main network on which people trade goods
  * and services, the public test network which gets reset from time to time and
  * a regression test mode which is intended for private networks only. It has
  * minimal difficulty to ensure that blocks can be found instantly.
@@ -94,7 +94,7 @@ public:
     int PoolMinParticipants() const { return nPoolMinParticipants; }
     int PoolMaxParticipants() const { return nPoolMaxParticipants; }
     int FulfilledRequestExpireTime() const { return nFulfilledRequestExpireTime; }
-    /** NEOXA Start **/
+    /** FILOPOW Start **/
     const CAmount& IssueAssetBurnAmount() const { return nIssueAssetBurnAmount; }
     const CAmount& ReissueAssetBurnAmount() const { return nReissueAssetBurnAmount; }
     const CAmount& IssueSubAssetBurnAmount() const { return nIssueSubAssetBurnAmount; }
@@ -177,7 +177,7 @@ protected:
     int nMinSporkKeys;
     bool fBIP9CheckSmartnodesUpgraded;
     // Global Burn Address
-        /** NEOXA Start **/
+        /** FILOPOW Start **/
     // Burn Amounts
     CAmount nIssueAssetBurnAmount;
     CAmount nReissueAssetBurnAmount;
@@ -211,7 +211,7 @@ protected:
     unsigned int nRestrictedActivationBlock;
     int nAssetActivationHeight;
     uint32_t nKAAAWWWPOWActivationTime;
-    /** NEOXA End **/
+    /** FILOPOW End **/
 };
 
 /**

@@ -26,7 +26,7 @@ QT_BEGIN_NAMESPACE
 class QUrl;
 QT_END_NAMESPACE
 
-/** Dialog for sending neoxa */
+/** Dialog for sending filopow */
 class AssetsDialog : public QDialog
 {
     Q_OBJECT
@@ -106,10 +106,10 @@ private Q_SLOTS:
     void updateMinFeeLabel();
     void updateSmartFeeLabel();
 
-    /** NEOX START */
+    /** FPOW START */
     void assetControlUpdateSendCoinsDialog();
     void focusAsset(const QModelIndex& index);
-    /** NEOX END */
+    /** FPOW END */
 
     Q_SIGNALS:
             // Fired when a message should be reported to the user

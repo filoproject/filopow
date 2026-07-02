@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef NEOXA_ASSETDB_H
-#define NEOXA_ASSETDB_H
+#ifndef FILOPOW_ASSETDB_H
+#define FILOPOW_ASSETDB_H
 
 #include "fs.h"
 #include "serialize.h"
@@ -96,4 +96,4 @@ public:
 };
 
 
-#endif //NEOXA_ASSETDB_H
+#endif //FILOPOW_ASSETDB_H

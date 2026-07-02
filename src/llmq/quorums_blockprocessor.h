@@ -3,8 +3,8 @@
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef NEOXA_QUORUMS_BLOCKPROCESSOR_H
-#define NEOXA_QUORUMS_BLOCKPROCESSOR_H
+#ifndef FILOPOW_QUORUMS_BLOCKPROCESSOR_H
+#define FILOPOW_QUORUMS_BLOCKPROCESSOR_H
 
 #include "llmq/quorums_commitment.h"
 #include "llmq/quorums_utils.h"
@@ -69,4 +69,4 @@ extern CQuorumBlockProcessor* quorumBlockProcessor;
 
 } // namespace llmq
 
-#endif//NEOXA_QUORUMS_BLOCKPROCESSOR_H
+#endif//FILOPOW_QUORUMS_BLOCKPROCESSOR_H

@@ -1,5 +1,5 @@
-Building Neoxa
+Building Filopow
 =============
 
 See doc/build-*.md for instructions on building the various
-elements of the Neoxa Core reference implementation of Neoxa.
+elements of the FILOPOW Core reference implementation of Filopow.

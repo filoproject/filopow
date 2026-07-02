@@ -7,7 +7,7 @@ set -e
 set -x
 
 BUILD_PATH="/tmp/rabuild"
-PACKAGE_NAME="neoxa"
+PACKAGE_NAME="filopow"
 SRC_PATH=`pwd`
 SRC_DEB=$SRC_PATH/contrib/debian
 SRC_DOC=$SRC_PATH/doc
@@ -18,7 +18,7 @@ if [ ! -d $BUILD_PATH ]; then
     mkdir $BUILD_PATH
 fi
 
-PACKAGE_VERSION=$($SRC_PATH/src/neoxad --version | grep version | cut -d' ' -f4 | tr -d v)
+PACKAGE_VERSION=$($SRC_PATH/src/filopowd --version | grep version | cut -d' ' -f4 | tr -d v)
 DEBVERSION=$(echo $PACKAGE_VERSION | sed 's/-beta/~beta/' | sed 's/-rc/~rc/' | sed 's/-/+/')
 BUILD_DIR="$BUILD_PATH/$PACKAGE_NAME-$PACKAGE_VERSION-amd64"
 
@@ -39,32 +39,32 @@ chmod 0755 -R $BUILD_DIR/*
 #cp $SRC_DEB/preinst $BUILD_DIR/DEBIAN
 #cp $SRC_DEB/prerm $BUILD_DIR/DEBIAN
 # Copy binaries
-cp $SRC_PATH/src/neoxad $DEB_BIN
-cp $SRC_PATH/src/neoxa-cli $DEB_BIN
-cp $SRC_PATH/util/fetch-params.sh $DEB_BIN/neoxa-fetch-params
+cp $SRC_PATH/src/filopowd $DEB_BIN
+cp $SRC_PATH/src/filopow-cli $DEB_BIN
+cp $SRC_PATH/util/fetch-params.sh $DEB_BIN/filopow-fetch-params
 # Copy docs
 cp $SRC_PATH/doc/release-notes/release-notes-1.0.0.md $DEB_DOC/changelog
 cp $SRC_DEB/changelog $DEB_DOC/changelog.Debian
 cp $SRC_DEB/copyright $DEB_DOC
 cp -r $SRC_DEB/examples $DEB_DOC
 # Copy manpages
-cp $SRC_DOC/man/neoxad.1 $DEB_MAN
-cp $SRC_DOC/man/neoxa-cli.1 $DEB_MAN
-cp $SRC_DOC/man/neoxa-fetch-params.1 $DEB_MAN
+cp $SRC_DOC/man/filopowd.1 $DEB_MAN
+cp $SRC_DOC/man/filopow-cli.1 $DEB_MAN
+cp $SRC_DOC/man/filopow-fetch-params.1 $DEB_MAN
 # Copy bash completion files
-cp $SRC_PATH/contrib/neoxad.bash-completion $DEB_CMP/neoxad
-cp $SRC_PATH/contrib/neoxa-cli.bash-completion $DEB_CMP/neoxa-cli
+cp $SRC_PATH/contrib/filopowd.bash-completion $DEB_CMP/filopowd
+cp $SRC_PATH/contrib/filopow-cli.bash-completion $DEB_CMP/filopow-cli
 # Gzip files
 gzip --best -n $DEB_DOC/changelog
 gzip --best -n $DEB_DOC/changelog.Debian
-gzip --best -n $DEB_MAN/neoxad.1
-gzip --best -n $DEB_MAN/neoxa-cli.1
-gzip --best -n $DEB_MAN/neoxa-fetch-params.1
+gzip --best -n $DEB_MAN/filopowd.1
+gzip --best -n $DEB_MAN/filopow-cli.1
+gzip --best -n $DEB_MAN/filopow-fetch-params.1
 
 cd $SRC_PATH/contrib
 
 # Create the control file
-dpkg-shlibdeps $DEB_BIN/neoxad $DEB_BIN/neoxa-cli
+dpkg-shlibdeps $DEB_BIN/filopowd $DEB_BIN/filopow-cli
 dpkg-gencontrol -P$BUILD_DIR -v$DEBVERSION
 
 # Create the Debian package

@@ -100,7 +100,7 @@ std::string GetHelpString(int nParamNum, std::string strParamName)
 {
     static const std::map<std::string, std::string> mapParamHelp = {
         {"collateralAddress",
-            "%d. \"collateralAddress\"        (string, required) The neoxa address to send the collateral to.\n"
+            "%d. \"collateralAddress\"        (string, required) The filopow address to send the collateral to.\n"
         },
 		{"collateralAmount",
 			"%d. \"collateralAmount\"        (numeric, required) The collateral amount to be sent to collateral address.\n"
@@ -148,15 +148,15 @@ std::string GetHelpString(int nParamNum, std::string strParamName)
             "                              between 0.00 and 100.00.\n"
         },
         {"ownerAddress",
-            "%d. \"ownerAddress\"             (string, required) The neoxa address to use for payee updates and proposal voting.\n"
+            "%d. \"ownerAddress\"             (string, required) The filopow address to use for payee updates and proposal voting.\n"
             "                              The private key belonging to this address must be known in your wallet. The address must\n"
             "                              be unused and must differ from the collateralAddress\n"
         },
         {"payoutAddress_register",
-            "%d. \"payoutAddress\"            (string, required) The neoxa address to use for smartnode reward payments.\n"
+            "%d. \"payoutAddress\"            (string, required) The filopow address to use for smartnode reward payments.\n"
         },
         {"payoutAddress_update",
-            "%d. \"payoutAddress\"            (string, required) The neoxa address to use for smartnode reward payments.\n"
+            "%d. \"payoutAddress\"            (string, required) The filopow address to use for smartnode reward payments.\n"
             "                              If set to an empty string, the currently active payout address is reused.\n"
         },
         {"proTxHash",
@@ -184,7 +184,7 @@ std::string GetHelpString(int nParamNum, std::string strParamName)
     return strprintf(it->second, nParamNum);
 }
 
-// Allows to specify Neoxa address or priv key. In case of Neoxa address, the priv key is taken from the wallet
+// Allows to specify Filopow address or priv key. In case of Filopow address, the priv key is taken from the wallet
 static CKey ParsePrivKey(CWallet* pwallet, const std::string &strKeyOrAddress, bool allowAddresses = true) {
     CBitcoinAddress address;
     if (allowAddresses && address.SetString(strKeyOrAddress) && address.IsValid()) {
@@ -474,7 +474,7 @@ void protx_register_fund_help(CWallet* const pwallet)
 {
     throw std::runtime_error(
             "protx register_fund \"collateralAddress\" \"ipAndPort\" \"ownerAddress\" \"operatorPubKey\" \"votingAddress\" operatorReward \"payoutAddress\" ( \"fundAddress\" )\n"
-            "\nCreates, funds and sends a ProTx to the network. The resulting transaction will move 1000 Neoxa\n"
+            "\nCreates, funds and sends a ProTx to the network. The resulting transaction will move 1000 Filopow\n"
             "to the address specified by collateralAddress and will then function as the collateral of your\n"
             "smartnode.\n"
             "A few of the limitations you see in the arguments are temporary and might be lifted after DIP3\n"
@@ -680,7 +680,7 @@ UniValue protx_register(const JSONRPCRequest& request)
     if (request.params.size() > paramIdx + 6) {
         fundAddress = CBitcoinAddress(request.params[paramIdx + 6].get_str());
         if (!fundAddress.IsValid())
-            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid Neoxa address: ") + request.params[paramIdx + 6].get_str());
+            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid Filopow address: ") + request.params[paramIdx + 6].get_str());
     }
 
     FundSpecialTx(pwallet, tx, ptx, fundAddress.Get());
@@ -845,7 +845,7 @@ UniValue protx_update_service(const JSONRPCRequest& request)
     if (request.params.size() >= 6) {
         CBitcoinAddress feeSourceAddress = CBitcoinAddress(request.params[5].get_str());
         if (!feeSourceAddress.IsValid())
-            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid Neoxa address: ") + request.params[5].get_str());
+            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid Filopow address: ") + request.params[5].get_str());
         feeSource = feeSourceAddress.Get();
     } else {
         if (ptx.scriptOperatorPayout != CScript()) {
@@ -944,7 +944,7 @@ UniValue protx_update_registrar(const JSONRPCRequest& request)
     if (request.params.size() > 5) {
         CBitcoinAddress feeSourceAddress = CBitcoinAddress(request.params[5].get_str());
         if (!feeSourceAddress.IsValid())
-            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid Neoxa address: ") + request.params[5].get_str());
+            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid Filopow address: ") + request.params[5].get_str());
         feeSourceDest = feeSourceAddress.Get();
     }
 
@@ -1018,7 +1018,7 @@ UniValue protx_revoke(const JSONRPCRequest& request)
     if (request.params.size() > 4) {
         CBitcoinAddress feeSourceAddress = CBitcoinAddress(request.params[4].get_str());
         if (!feeSourceAddress.IsValid())
-            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid Neoxa address: ") + request.params[4].get_str());
+            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid Filopow address: ") + request.params[4].get_str());
         FundSpecialTx(pwallet, tx, ptx, feeSourceAddress.Get());
     } else if (dmn->pdmnState->scriptOperatorPayout != CScript()) {
         // Using funds from previousely specified operator payout address
@@ -1065,7 +1065,7 @@ void protx_quick_setup_help(CWallet* const pwallet)
 			"  \"collateralAmount\":      (numberic) The collateral Amount was used for this protx.\n"
 			"  \"operationPubkey\":       (string) The public key from bls generate.\n"
 			"  \"operationSecret\":       (string) The secret key from bls generate.\n"
-			"  \"neoxa.conf\" :       (string) The content of neoxa.conf to be used in vps node.\n"
+			"  \"filopow.conf\" :       (string) The content of filopow.conf to be used in vps node.\n"
             "}\n"
 			"\nExamples:\n"
             + HelpExampleCli("protx", "quick_setup \"collateralHash\" \"collateralIndex\" \"ipAndPort\" \"feeSourceAddress\"")
@@ -1114,7 +1114,7 @@ UniValue signMessage(CWallet * const pwallet, std::string strAddress, std::strin
 
 UniValue createConfigFile(string blsPrivateKey, string ip, string address) {
 
-	string fileName = get_current_dir() + "/" + address + "_neoxa.conf";
+	string fileName = get_current_dir() + "/" + address + "_filopow.conf";
 	ofstream configFile(fileName);
 	string username = generateRandomString(10, false);
 	string password = generateRandomString(20, true);
@@ -1184,7 +1184,7 @@ UniValue protx_quick_setup(const JSONRPCRequest& request) {
 	result.push_back(Pair("operatorPublic", blsKeys["public"].get_str()));
 	result.push_back(Pair("operatorSecret", blsKeys["secret"].get_str()));
 	UniValue config = createConfigFile( blsKeys["secret"].get_str(),request.params[3].get_str(),  prepareResult["collateralAddress"].get_str());
-	result.push_back(Pair("neoxa.conf",config.get_str()));
+	result.push_back(Pair("filopow.conf",config.get_str()));
 
 	return result;
 }

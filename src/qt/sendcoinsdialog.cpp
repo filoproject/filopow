@@ -71,7 +71,7 @@ SendCoinsDialog::SendCoinsDialog(const PlatformStyle *_platformStyle, QWidget *p
     connect(ui->checkBoxCoinControlChange, SIGNAL(stateChanged(int)), this, SLOT(coinControlChangeChecked(int)));
     connect(ui->lineEditCoinControlChange, SIGNAL(textEdited(const QString &)), this, SLOT(coinControlChangeEdited(const QString &)));
 
-    // Neoxa specific
+    // Filopow specific
     QSettings settings;
     //TODO remove Darksend sometime after 0.14.1
     if (settings.contains("bUseDarkSend")) {
@@ -878,7 +878,7 @@ void SendCoinsDialog::coinControlChangeEdited(const QString& text)
         }
         else if (!addr.IsValid()) // Invalid address
         {
-            ui->labelCoinControlChangeLabel->setText(tr("Warning: Invalid Neoxa address"));
+            ui->labelCoinControlChangeLabel->setText(tr("Warning: Invalid Filopow address"));
         }
         else // Valid address
         {

@@ -609,7 +609,7 @@ void TransactionView::showAddressQRCode()
 
     dialog->setModel(model);
     dialog->setAttribute(Qt::WA_DeleteOnClose);
-    dialog->setInfo(tr("QR code"), "neoxa:"+strAddress, "", strAddress);
+    dialog->setInfo(tr("QR code"), "filopow:"+strAddress, "", strAddress);
     dialog->show();
 }
 

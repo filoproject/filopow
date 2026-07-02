@@ -8,7 +8,7 @@
 #include <string>
 #include <map>
 #include <univalue.h>
-#include "test/test_neoxa.h"
+#include "test/test_filopow.h"
 
 #include <boost/test/unit_test.hpp>
 

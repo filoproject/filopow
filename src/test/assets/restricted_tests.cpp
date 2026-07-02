@@ -5,7 +5,7 @@
 
 
 #include <assets/assets.h>
-#include <test/test_neoxa.h>
+#include <test/test_filopow.h>
 #include <boost/test/unit_test.hpp>
 #include <amount.h>
 #include <base58.h>
@@ -64,9 +64,9 @@ BOOST_FIXTURE_TEST_SUITE(restricted_tests, BasicTestingSetup)
         BOOST_TEST_MESSAGE("Running Verify New Restricted transaction");
 
         /// Create CTxOut to use in the tests ///
-        // Create filler neox tx
-        CScript neoxTransfer = GetScriptForDestination(DecodeDestination(Params().GlobalBurnAddress()));
-        CTxOut neoxOut(1*COIN, neoxTransfer);
+        // Create filler fpow tx
+        CScript fpowTransfer = GetScriptForDestination(DecodeDestination(Params().GlobalBurnAddress()));
+        CTxOut fpowOut(1*COIN, fpowTransfer);
 
         // Create transaction and add burn to it
         CScript burnScript = GetScriptForDestination(DecodeDestination(GetBurnAddress(AssetType::RESTRICTED)));
@@ -99,7 +99,7 @@ BOOST_FIXTURE_TEST_SUITE(restricted_tests, BasicTestingSetup)
         // Run successful test 1
         std::string error;
         CMutableTransaction mutTxTest1;
-        mutTxTest1.vout.emplace_back(neoxOut); 
+        mutTxTest1.vout.emplace_back(fpowOut); 
         mutTxTest1.vout.emplace_back(burnOut);
         mutTxTest1.vout.emplace_back(parentOut);
         mutTxTest1.vout.emplace_back(verifierOut);
@@ -109,7 +109,7 @@ BOOST_FIXTURE_TEST_SUITE(restricted_tests, BasicTestingSetup)
 
         // Run failure test 2
         CMutableTransaction mutTxTest2;
-        mutTxTest2.vout.emplace_back(neoxOut);
+        mutTxTest2.vout.emplace_back(fpowOut);
         mutTxTest2.vout.emplace_back(burnOut);
         mutTxTest2.vout.emplace_back(verifierOut);
         mutTxTest2.vout.emplace_back(assetOut);
@@ -119,7 +119,7 @@ BOOST_FIXTURE_TEST_SUITE(restricted_tests, BasicTestingSetup)
 
         // Run failure test 3
         CMutableTransaction mutTxTest3;
-        mutTxTest3.vout.emplace_back(neoxOut);
+        mutTxTest3.vout.emplace_back(fpowOut);
         mutTxTest3.vout.emplace_back(burnOut);
         mutTxTest3.vout.emplace_back(parentOut);
         mutTxTest3.vout.emplace_back(assetOut);
@@ -129,7 +129,7 @@ BOOST_FIXTURE_TEST_SUITE(restricted_tests, BasicTestingSetup)
 
         // Run failure test 4
         CMutableTransaction mutTxTest4;
-        mutTxTest4.vout.emplace_back(neoxOut);
+        mutTxTest4.vout.emplace_back(fpowOut);
         mutTxTest4.vout.emplace_back(parentOut);
         mutTxTest4.vout.emplace_back(verifierOut);
         mutTxTest4.vout.emplace_back(assetOut);
@@ -139,7 +139,7 @@ BOOST_FIXTURE_TEST_SUITE(restricted_tests, BasicTestingSetup)
 
         // Run failure test 5
         CMutableTransaction mutTxTest5;
-        mutTxTest5.vout.emplace_back(neoxOut);
+        mutTxTest5.vout.emplace_back(fpowOut);
         mutTxTest5.vout.emplace_back(burnOut);
         mutTxTest5.vout.emplace_back(parentOut);
         mutTxTest5.vout.emplace_back(verifierOut);
@@ -149,7 +149,7 @@ BOOST_FIXTURE_TEST_SUITE(restricted_tests, BasicTestingSetup)
 
         // Run failure test 6
         CMutableTransaction mutTxTest6;
-        mutTxTest6.vout.emplace_back(neoxOut);
+        mutTxTest6.vout.emplace_back(fpowOut);
         mutTxTest6.vout.emplace_back(burnOut);
         mutTxTest6.vout.emplace_back(parentOut);
         mutTxTest6.vout.emplace_back(verifierOut);
@@ -161,7 +161,7 @@ BOOST_FIXTURE_TEST_SUITE(restricted_tests, BasicTestingSetup)
 
         // Run failure test 7
         CMutableTransaction mutTxTest7;
-        mutTxTest7.vout.emplace_back(neoxOut);
+        mutTxTest7.vout.emplace_back(fpowOut);
         mutTxTest7.vout.emplace_back(burnOut);
         mutTxTest7.vout.emplace_back(parentOut);
         mutTxTest7.vout.emplace_back(verifierOut);
@@ -173,7 +173,7 @@ BOOST_FIXTURE_TEST_SUITE(restricted_tests, BasicTestingSetup)
 
         // Run failure test 8
         CMutableTransaction mutTxTest8;
-        mutTxTest8.vout.emplace_back(neoxOut);
+        mutTxTest8.vout.emplace_back(fpowOut);
         mutTxTest8.vout.emplace_back(burnOut);
         mutTxTest8.vout.emplace_back(parentOut);
         mutTxTest8.vout.emplace_back(verifierOut);

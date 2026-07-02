@@ -13,7 +13,7 @@ static const int MODEL_UPDATE_DELAY = 250;
 /* AskPassphraseDialog -- Maximum passphrase length */
 static const int MAX_PASSPHRASE_SIZE = 1024;
 
-/* NeoxaGUI -- Size of icons in status bar */
+/* FilopowGUI -- Size of icons in status bar */
 static const int STATUSBAR_ICONSIZE = 16;
 
 static const bool DEFAULT_SPLASHSCREEN = true;
@@ -32,11 +32,11 @@ static const int MAX_URI_LENGTH = 255;
 /* Number of frames in spinner animation */
 #define SPINNER_FRAMES 36
 
-#define QAPP_ORG_NAME "Neoxa"
-#define QAPP_ORG_DOMAIN "neoxa.net"
-#define QAPP_APP_NAME_DEFAULT "Neoxa-Qt-v2"
-#define QAPP_APP_NAME_TESTNET "Neoxa-Qt-v2-testnet"
-#define QAPP_APP_NAME_DEVNET "Neoxa-Qt-v2-%s"
-#define QAPP_APP_NAME_REGTEST "Neoxa-Qt-v2-regtest"
+#define QAPP_ORG_NAME "Filopow"
+#define QAPP_ORG_DOMAIN "github.com/filoproject/filopow"
+#define QAPP_APP_NAME_DEFAULT "Filopow-Qt-v2"
+#define QAPP_APP_NAME_TESTNET "Filopow-Qt-v2-testnet"
+#define QAPP_APP_NAME_DEVNET "Filopow-Qt-v2-%s"
+#define QAPP_APP_NAME_REGTEST "Filopow-Qt-v2-regtest"
 
 #endif // BITCOIN_QT_GUICONSTANTS_H

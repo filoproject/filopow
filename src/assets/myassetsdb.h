@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef NEOXACOIN_MYASSETSDB_H
-#define NEOXACOIN_MYASSETSDB_H
+#ifndef FILOPOWCOIN_MYASSETSDB_H
+#define FILOPOWCOIN_MYASSETSDB_H
 
 #include <dbwrapper.h>
 
@@ -79,4 +79,4 @@ public:
 };
 
 
-#endif //NEOXACOIN_MYASSETSDB_H
+#endif //FILOPOWCOIN_MYASSETSDB_H

@@ -46,10 +46,10 @@ public:
     //! Controls which types of coins are allowed to be used (default: ALL_COINS)
     CoinType nCoinType;
 
-    /** NEOX START */
+    /** FPOW START */
     //! Name of the asset that is selected, used when sending assets with coincontrol
     std::string strAssetSelected;
-    /** NEOX END */
+    /** FPOW END */
 
     CCoinControl()
     {
@@ -132,7 +132,7 @@ public:
         vOutpoints.assign(setAssetsSelected.begin(), setAssetsSelected.end());
     }
 
-    // Neoxa-specific helpers
+    // Filopow-specific helpers
 
     void UsePrivateSend(bool fUsePrivateSend)
     {

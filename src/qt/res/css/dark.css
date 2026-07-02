@@ -742,16 +742,16 @@ WalletFrame {
     color: #ccc;
     }
     
-    /* About Neoxa Dialog */
+    /* About Filopow Dialog */
     QDialog#AboutDialog {
     background-color: #07131c;
     }
     
-    QDialog#AboutDialog QLabel#label, QDialog#AboutDialog QLabel#copyrightLabel, QDialog#AboutDialog QLabel#label_2 { /* About Neoxa Contents */
+    QDialog#AboutDialog QLabel#label, QDialog#AboutDialog QLabel#copyrightLabel, QDialog#AboutDialog QLabel#label_2 { /* About Filopow Contents */
     margin-left:10px;
     }
     
-    QDialog#AboutDialog QLabel#label_2 { /* Margin for About Neoxa text */
+    QDialog#AboutDialog QLabel#label_2 { /* Margin for About Filopow text */
     margin-right:10px;
     }
     

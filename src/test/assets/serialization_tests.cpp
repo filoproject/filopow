@@ -5,7 +5,7 @@
 
 #include <assets/assets.h>
 
-#include <test/test_neoxa.h>
+#include <test/test_filopow.h>
 
 #include <boost/test/unit_test.hpp>
 

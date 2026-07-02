@@ -1,11 +1,11 @@
 Sample configuration files for:
 ```
-SystemD: neoxad.service
-Upstart: neoxad.conf
-OpenRC:  neoxad.openrc
-         neoxad.openrcconf
-CentOS:  neoxad.init
-OS X:    org.neoxa.neoxad.plist
+SystemD: filopowd.service
+Upstart: filopowd.conf
+OpenRC:  filopowd.openrc
+         filopowd.openrcconf
+CentOS:  filopowd.init
+OS X:    org.filopow.filopowd.plist
 ```
 have been made available to assist packagers in creating node packages here.
 

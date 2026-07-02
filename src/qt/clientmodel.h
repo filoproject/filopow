@@ -39,7 +39,7 @@ enum NumConnections {
     CONNECTIONS_ALL  = (CONNECTIONS_IN | CONNECTIONS_OUT),
 };
 
-/** Model for Neoxa network client. */
+/** Model for Filopow network client. */
 class ClientModel : public QObject
 {
     Q_OBJECT

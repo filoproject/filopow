@@ -9,7 +9,7 @@
 #define BITCOIN_VALIDATION_H
 
 #if defined(HAVE_CONFIG_H)
-#include "config/neoxa-config.h"
+#include "config/filopow-config.h"
 #endif
 
 #include "amount.h"
@@ -487,7 +487,7 @@ extern CCoinsViewCache *pcoinsTip;
 /** Global variable that points to the active block tree (protected by cs_main) */
 extern CBlockTreeDB *pblocktree;
 
-/** NEOX START */
+/** FPOW START */
 
 /** Global variable that point to the active assets database (protected by cs_main) */
 extern CAssetsDB *passetsdb;
@@ -539,7 +539,7 @@ extern CAssetSnapshotDB *pAssetSnapshotDb;
 
 extern CDistributeSnapshotRequestDB *pDistributeSnapshotDb;
 
-/** NEOX END */
+/** FPOW END */
 
 /**
  * Return the spend height, which is one more than the inputs.GetBestBlock().

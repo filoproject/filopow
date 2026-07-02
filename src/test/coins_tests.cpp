@@ -7,7 +7,7 @@
 #include "uint256.h"
 #include "undo.h"
 #include "utilstrencodings.h"
-#include "test/test_neoxa.h"
+#include "test/test_filopow.h"
 #include "validation.h"
 #include "consensus/validation.h"
 

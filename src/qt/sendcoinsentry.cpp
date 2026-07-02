@@ -40,7 +40,7 @@ SendCoinsEntry::SendCoinsEntry(const PlatformStyle *_platformStyle, QWidget *par
     ui->deleteButton_is->setIcon(QIcon(":/icons/remove"));
     ui->deleteButton_s->setIcon(QIcon(":/icons/remove"));
       
-    // normal neoxa address field
+    // normal filopow address field
     GUIUtil::setupAddressWidget(ui->payTo, this);
     
     // Connect signals
