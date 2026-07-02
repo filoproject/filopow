@@ -588,18 +588,23 @@ BOOST_FIXTURE_TEST_SUITE(asset_tx_tests, BasicTestingSetup)
         CTransaction tx(coinbaseTx);
         CValidationState state;
 
-        // Setting the coinbase check to true
-        // This check should now fail on the CheckTransaction call
+        // A coinbase carrying an asset output must be rejected.
         SetEnforcedCoinbase(true);
         bool fCheck = CheckTransaction(tx, state, true);
         BOOST_CHECK(!fCheck);
         BOOST_CHECK(state.GetRejectReason() == "bad-txns-coinbase-contains-asset-txes");
 
-        // Setting the coinbase check to false
-        // This check should now pass the CheckTransaction call
+        // On FILOPOW, COINBASE_ASSETS is active from genesis, so the runtime
+        // SetEnforcedCoinbase(false) hook cannot turn the check off: the next
+        // CheckTransaction re-reads the (always-active) deployment state and
+        // re-enables enforcement, so an asset-bearing coinbase stays rejected.
+        // (Raven's upstream test ran with the deployment not yet active, where
+        // toggling it off let the transaction pass.)
         SetEnforcedCoinbase(false);
-        fCheck = CheckTransaction(tx, state, true);
-        BOOST_CHECK(fCheck);
+        CValidationState state2;
+        fCheck = CheckTransaction(tx, state2, true);
+        BOOST_CHECK(!fCheck);
+        BOOST_CHECK(state2.GetRejectReason() == "bad-txns-coinbase-contains-asset-txes");
 
         // Remove wallet used for testing
         bitdb.Flush(true);
