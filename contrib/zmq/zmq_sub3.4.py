@@ -7,8 +7,8 @@
 """
     ZMQ example using python3's asyncio
 
-    Raven should be started with the command line arguments:
-        ravend -testnet -daemon \
+    Filopow should be started with the command line arguments:
+        filopowd -testnet -daemon \
                 -zmqpubhashblock=tcp://127.0.0.1:28766 \
                 -zmqpubrawtx=tcp://127.0.0.1:28766 \
                 -zmqpubhashtx=tcp://127.0.0.1:28766 \

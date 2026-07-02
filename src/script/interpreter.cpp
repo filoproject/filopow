@@ -1114,10 +1114,10 @@ bool EvalScript(std::vector<std::vector<unsigned char> > &stack, const CScript &
                     }
                         break;
 
-                        /** RVN START */
-                    case OP_RVN_ASSET:
+                        /** FPOW START */
+                    case OP_FPOW_ASSET:
                         break;
-                        /** RVN END */
+                        /** FPOW END */
 
 
                     default:

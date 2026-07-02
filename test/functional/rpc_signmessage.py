@@ -6,10 +6,10 @@
 
 """Test RPC commands for signing and verifying messages."""
 
-from test_framework.test_framework import RavenTestFramework
+from test_framework.test_framework import FilopowTestFramework
 from test_framework.util import assert_equal
 
-class SignMessagesTest(RavenTestFramework):
+class SignMessagesTest(FilopowTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 1

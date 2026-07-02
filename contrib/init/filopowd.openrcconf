@@ -1,0 +1,33 @@
+# /etc/conf.d/filopowd: config file for /etc/init.d/filopowd
+
+# Config file location
+#FILOPOWD_CONFIGFILE="/etc/filopow/filopow.conf"
+
+# What directory to write pidfile to?  (created and owned by $FILOPOWD_USER)
+#FILOPOWD_PIDDIR="/var/run/filopowd"
+
+# What filename to give the pidfile
+#FILOPOWD_PIDFILE="${FILOPOWD_PIDDIR}/filopowd.pid"
+
+# Where to write filopowd data (be mindful that the blockchain is large)
+#FILOPOWD_DATADIR="/var/lib/filopowd"
+
+# User and group to own filopowd process
+#FILOPOWD_USER="filopow"
+#FILOPOWD_GROUP="filopow"
+
+# Path to filopowd executable
+#FILOPOWD_BIN="/usr/bin/filopowd"
+
+# Nice value to run filopowd under
+#FILOPOWD_NICE=0
+
+# Additional options (avoid -conf and -datadir, use flags above)
+#FILOPOWD_OPTS=""
+
+# The timeout in seconds OpenRC will wait for filopowd to terminate
+# after a SIGTERM has been raised.
+# Note that this will be mapped as argument to start-stop-daemon's
+# '--retry' option, which means you can specify a retry schedule
+# here. For more information see man 8 start-stop-daemon.
+FILOPOWD_SIGTERM_TIMEOUT=60

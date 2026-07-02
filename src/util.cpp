@@ -5,7 +5,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include "config/raven-config.h"
+#include "config/filopow-config.h"
 #endif
 
 #include "util.h"
@@ -88,8 +88,8 @@
 // Application startup time (used for uptime calculation)
 const int64_t nStartupTime = GetTime();
 
-const char *const RAVEN_CONF_FILENAME = "raven.conf";
-const char *const RAVEN_PID_FILENAME = "ravend.pid";
+const char *const FILOPOW_CONF_FILENAME = "filopow.conf";
+const char *const FILOPOW_PID_FILENAME = "filopowd.pid";
 
 ArgsManager gArgs;
 bool fPrintToConsole = false;
@@ -530,7 +530,7 @@ static std::string FormatException(const std::exception *pex, const char *pszThr
     char pszModule[MAX_PATH] = "";
     GetModuleFileNameA(nullptr, pszModule, sizeof(pszModule));
 #else
-    const char *pszModule = "raven";
+    const char *pszModule = "filopow";
 #endif
     if (pex)
         return strprintf(
@@ -549,13 +549,13 @@ void PrintExceptionContinue(const std::exception *pex, const char *pszThread)
 
 fs::path GetDefaultDataDir()
 {
-    // Windows < Vista: C:\Documents and Settings\Username\Application Data\Raven
-    // Windows >= Vista: C:\Users\Username\AppData\Roaming\Raven
-    // Mac: ~/Library/Application Support/Raven
-    // Unix: ~/.raven
+    // Windows < Vista: C:\Documents and Settings\Username\Application Data\Filopow
+    // Windows >= Vista: C:\Users\Username\AppData\Roaming\Filopow
+    // Mac: ~/Library/Application Support/Filopow
+    // Unix: ~/.filopow
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "Raven";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "Filopow";
 #else
     fs::path pathRet;
     char *pszHome = getenv("HOME");
@@ -565,10 +565,10 @@ fs::path GetDefaultDataDir()
         pathRet = fs::path(pszHome);
 #ifdef MAC_OSX
     // Mac
-    return pathRet / "Library/Application Support/Raven";
+    return pathRet / "Library/Application Support/Filopow";
 #else
     // Unix
-    return pathRet / ".raven";
+    return pathRet / ".filopow";
 #endif
 #endif
 }
@@ -630,7 +630,7 @@ void ArgsManager::ReadConfigFile(const std::string &confPath)
 {
     fs::ifstream streamConfig(GetConfigFile(confPath));
     if (!streamConfig.good())
-        return; // No raven.conf file is OK
+        return; // No filopow.conf file is OK
 
     {
         LOCK(cs_args);
@@ -639,7 +639,7 @@ void ArgsManager::ReadConfigFile(const std::string &confPath)
 
         for (boost::program_options::detail::config_file_iterator it(streamConfig, setOptions), end; it != end; ++it)
         {
-            // Don't overwrite existing settings so command line settings override raven.conf
+            // Don't overwrite existing settings so command line settings override filopow.conf
             std::string strKey = std::string("-") + it->string_key;
             std::string strValue = it->value[0];
             InterpretNegativeSetting(strKey, strValue);
@@ -656,7 +656,7 @@ void ArgsManager::ReadConfigFile(const std::string &confPath)
 
 fs::path GetPidFile()
 {
-    fs::path pathPidFile(gArgs.GetArg("-pid", RAVEN_PID_FILENAME));
+    fs::path pathPidFile(gArgs.GetArg("-pid", FILOPOW_PID_FILENAME));
     if (!pathPidFile.is_complete()) pathPidFile = GetDataDir() / pathPidFile;
     return pathPidFile;
 }
@@ -926,7 +926,8 @@ std::string CopyrightHolders(const std::string &strPrefix)
 {
     std::string strCopyrightHolders = strPrefix + strprintf(_(COPYRIGHT_HOLDERS), _(COPYRIGHT_HOLDERS_SUBSTITUTION));
 
-    // Check for untranslated substitution to make sure Raven Core copyright is not removed by accident
+    // FILOPOW is a fork of Raven Core: always keep the upstream attribution in
+    // --version/About output, whatever the configured holders string says.
     if (strprintf(COPYRIGHT_HOLDERS, COPYRIGHT_HOLDERS_SUBSTITUTION).find("Raven Core") == std::string::npos)
     {
         strCopyrightHolders += "\n" + strPrefix + "The Raven Core developers";

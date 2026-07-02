@@ -8,11 +8,11 @@
 
 import http.client
 import urllib.parse
-from test_framework.test_framework import RavenTestFramework
+from test_framework.test_framework import FilopowTestFramework
 from test_framework.util import str_to_b64str, assert_equal
 
 # noinspection PyUnresolvedReferences
-class HTTPBasicsTest (RavenTestFramework):
+class HTTPBasicsTest (FilopowTestFramework):
     def set_test_params(self):
         self.num_nodes = 3
 
@@ -90,7 +90,7 @@ class HTTPBasicsTest (RavenTestFramework):
         conn.request('POST', '/', '{"method": "getbestblockhash"}', headers)
         out1 = conn.getresponse().read()
         assert(b'"error":null' in out1)
-        assert(conn.sock is not None) #connection must be closed because ravend should use keep-alive by default
+        assert(conn.sock is not None) #connection must be closed because filopowd should use keep-alive by default
 
         # Check excessive request size
         conn = http.client.HTTPConnection(urlNode2.hostname, urlNode2.port)
