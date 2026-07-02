@@ -151,3 +151,6 @@ dist/
 /neoxa.iml
 /testnet3_binary/
 /testnet4/
+
+# Local session files (not part of the public repo)
+CLAUDE.md
