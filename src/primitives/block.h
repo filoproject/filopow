@@ -21,6 +21,12 @@
  * of the block.
  */
 
+/** FILOPOW: KawPow activates one second after the (X16R-hashed, static) genesis.
+ *  Every mined block is KawPow. This constant MUST stay genesis nTime + 1 when
+ *  the genesis is reground for launch. (Upstream Neoxa hardcoded its own cutoff
+*  literal at each of these sites.) */
+static constexpr uint32_t nKawPowActivationTime = 1783006714;
+
 class CBlockHeader
 {
 public:
@@ -53,7 +59,7 @@ public:
         READWRITE(hashMerkleRoot);
         READWRITE(nTime);
         READWRITE(nBits);
-        if (nTime < 1651444217) {
+        if (nTime < nKawPowActivationTime) {
             READWRITE(nNonce);
         } else {
             READWRITE(nHeight);

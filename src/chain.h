@@ -421,7 +421,7 @@ public:
         READWRITE(hashMerkleRoot);
         READWRITE(nTime);
         READWRITE(nBits);
-        if (nTime < 1651444217) {
+        if (nTime < nKawPowActivationTime) {
             READWRITE(nNonce);
         } else {
             //KAWPOW

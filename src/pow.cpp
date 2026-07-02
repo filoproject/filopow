@@ -56,7 +56,7 @@ unsigned int static DarkGravityWave(const CBlockIndex* pindexLast, const CBlockH
         }
 
         // Count how blocks are KAWPOW mined in the last 180 blocks
-        if (pindex->nTime >= 1651444217) {
+        if (pindex->nTime >= nKawPowActivationTime) {
             nKAWPOWBlocksFound++;
         }
 
@@ -70,7 +70,7 @@ unsigned int static DarkGravityWave(const CBlockIndex* pindexLast, const CBlockH
     // 180 KAWPOW blocks already. If we haven't we are going to return our
     // temp limit. This will allow us to change algos to kawpow without having to
     // change the DGW math.
-    if (pblock->nTime >= 1651444217) {
+    if (pblock->nTime >= nKawPowActivationTime) {
         if (nKAWPOWBlocksFound != nPastBlocks) {
             const arith_uint256 bnKawPowLimit = UintToArith256(params.powLimit);
             return bnKawPowLimit.GetCompact();

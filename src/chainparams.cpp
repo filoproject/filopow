@@ -45,7 +45,11 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
 
 static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
-    const char* pszTimestamp = "The Times 03/30/2021 Bitcoin is name of the game for new generation of firms";
+    // PROVISIONAL: replace with a real launch-week news headline and regrind all
+    // four genesis blocks before the launch announcement (the headline is the
+    // public proof the chain could not have been mined earlier). Keep
+    // nKawPowActivationTime (primitives/block.h) = mainnet genesis nTime + 1.
+    const char* pszTimestamp = "FILOPOW PROVISIONAL GENESIS - REGRIND WITH LAUNCH WEEK HEADLINE BEFORE ANNOUNCE";
     const CScript genesisOutputScript = CScript() << ParseHex("04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f") << OP_CHECKSIG;
     return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
 }
@@ -89,7 +93,7 @@ void CChainParams::UpdateLLMQChainLocks(Consensus::LLMQType llmqType) {
 static void FindMainNetGenesisBlock(uint32_t nTime, uint32_t nBits, const char* network)
 {
 
-    CBlock block = CreateGenesisBlock(nTime, 0, nBits, 4, 5000 * COIN);
+    CBlock block = CreateGenesisBlock(nTime, 0, nBits, 4, 5 * COIN);
 
     arith_uint256 bnTarget;
     bnTarget.SetCompact(block.nBits);
@@ -353,8 +357,8 @@ public:
     CMainParams() {
         strNetworkID = "main";
         consensus.nSubsidyHalvingInterval = 2100000; // Note: actual number of blocks per calendar year with DGW v3 is ~200700 (for example 449750 - 249050)
-        consensus.nSmartnodePaymentsStartBlock = 99999; // 
-        consensus.nSmartnodePaymentsIncreaseBlock = 158000; // actual historical value
+        consensus.nSmartnodePaymentsStartBlock = 1000; // legacy pre-DIP3 field; real gates are DIP0003Height + the 150-smartnode count
+        consensus.nSmartnodePaymentsIncreaseBlock = 2000; // legacy, unused with deterministic smartnodes
         consensus.nSmartnodePaymentsIncreasePeriod = 576*30; // 17280 - actual historical value
         consensus.nInstantSendConfirmationsRequired = 6;
         consensus.nInstantSendKeepLock = 24;
@@ -372,7 +376,7 @@ public:
         consensus.BIP65Enabled = true; // 00000000000076d8fcea02ec0963de4abfd01e771fec0863f960c2c64fe6f357
         consensus.BIP66Enabled = true; // 00000000000b1fa2dfa312863570e13fae9ca7b5566cb27e55422620b469aefa
         consensus.nSegwitEnabled = true;
-        consensus.DIP0003Height = 620000;
+        consensus.DIP0003Height = 1; // deterministic smartnodes from the start (fresh chain; devnet precedent)
         consensus.DIP0008Enabled = true;
        // consensus.DIP0003EnforcementHeight = 1047200;
         consensus.powLimit = uint256S("00ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); // ~uint256(0) >> 20
@@ -384,7 +388,7 @@ public:
         consensus.DGWBlocksAvg = 60;
         consensus.nRuleChangeActivationThreshold = 1916; // 95% of 2016
         consensus.nMinerConfirmationWindow = 2016; // nPowTargetTimespan / nPowTargetSpacing
-        consensus.smartnodePaymentFixedBlock = 620000;
+        consensus.smartnodePaymentFixedBlock = 1; // enforce smartnode payee from the start (soft until 150 smartnodes exist)
         consensus.nAssetsForkBlock = 1;
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 1653004800; // January 1, 2008
@@ -420,56 +424,64 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_DIP0003].nWindowSize = 4032;
         consensus.vDeployments[Consensus::DEPLOYMENT_DIP0003].nThreshold = 3226; // 80% of 4032
 
-        // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("00000000000000000000000000000000000000000000000281bc668b4e7c2dc4"); // 1119745
+        // Fresh chain: no accumulated work yet.
+        consensus.nMinimumChainWork = uint256S("0x00");
 
-        // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("00000000000b6d6c3d2252cf88b086c96709f1e30922522fcec9e4b4c60ddb0a"); // 1119745
+        // Fresh chain: validate every signature from genesis.
+        consensus.defaultAssumeValid = uint256S("0x00");
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 32-bit integer with any alignment.
          */
-        pchMessageStart[0] = 0x47; // G
-        pchMessageStart[1] = 0x41; // A
-        pchMessageStart[2] = 0x4d; // M
-        pchMessageStart[3] = 0x45; // E
-        nDefaultPort = 8788;
+        pchMessageStart[0] = 0x46; // F
+        pchMessageStart[1] = 0x50; // P
+        pchMessageStart[2] = 0x4f; // O
+        pchMessageStart[3] = 0x57; // W
+        nDefaultPort = 7767;
         nPruneAfterHeight = 100000;
    //   FindMainNetGenesisBlock(1652138420, 0x20001fff, "main");
-        uint32_t nGenesisTime = 1651442858;	
+        uint32_t nGenesisTime = 1783006713; // PROVISIONAL; = nKawPowActivationTime - 1
 
-	    genesis = CreateGenesisBlock(nGenesisTime, 3244753, 0x1e00ffff, 4, 5000 * COIN);
-        consensus.hashGenesisBlock = genesis.GetX16RHash();	
-        //std::cout << "hashGenesisBlock " << consensus.hashGenesisBlock.GetHex() << std::endl;
-	    assert(consensus.hashGenesisBlock == uint256S("0000000a50fdaaf22f1c98b8c61559e15ab2269249aa1fb20683180703cdbf07"));
-        assert(genesis.hashMerkleRoot == uint256S("7c1d71731b98c560a80cee3b88993c8c863342b9661894304fd843bf7e75a41f"));
+	    genesis = CreateGenesisBlock(nGenesisTime, 48363058, 0x1e00ffff, 4, 5 * COIN);
+        consensus.hashGenesisBlock = genesis.GetX16RHash();
+	    assert(consensus.hashGenesisBlock == uint256S("00000083d104392c2da392111cb1b39f1cdf4ed5281522b3fcaaae0cf5653a78"));
+        assert(genesis.hashMerkleRoot == uint256S("4fb05191fe7f0907bd27cf57757cc2d4f4eee6755781355df1ebf31a6c82942a"));
 
-        vSeeds.emplace_back("seed.neoxa.net", false);
-	    vSeeds.emplace_back("seed1.neoxa.net", false);
-	    vSeeds.emplace_back("seed2.neoxa.net", false);
+        // Fresh chain: no DNS seeds yet. Populate with our own seed nodes before
+        // the launch announcement (Phase 5).
 
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,38);
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,122);
-        base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,112);
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,36);  // 'F'
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,95);  // 'f'
+        base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,128);
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x88, 0xB2, 0x1E};
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x88, 0xAD, 0xE4};
 
-        // NEOXA BIP44 cointype in mainnet is '1668'
-        nExtCoinType = 1668;
+        // FILOPOW BIP44 cointype in mainnet is '7767' (matches the default P2P port)
+        nExtCoinType = 7767;
 
-        vector<FounderRewardStructure> rewardStructures = { {620000, 15},// 15%
-                                                            {INT_MAX, 10}// 10% founder/dev fee forever
+        // FILOPOW dev fee: a transparent, disclosed 10% of the block subsidy that
+        // SUNSETS: 10% for blocks up to 1,050,000 (~2 years at 1-min blocks),
+        // 0% forever after. It funds filodex/exchange liquidity. There is no
+        // premine and no insider allocation. The address below is a burn-style
+        // PLACEHOLDER with no known key — REPLACE with the real operator
+        // treasury address before the mainnet launch (like the genesis regrind).
+        vector<FounderRewardStructure> rewardStructures = { {1050000, 10}, // 10% dev fee until ~2yr
+                                                            {INT_MAX, 0}  // sunset: 0% forever after
                                                             };
-        consensus.nFounderPayment = FounderPayment(rewardStructures, 1);
-        consensus.nSpecialRewardShare = Consensus::SpecialRewardShare(0.8,0.2,0.0);
+        consensus.nFounderPayment = FounderPayment(rewardStructures, 1, "FXTreasuryDevFundXXXXXXXXXXXTJfuCd");
+        consensus.nSpecialRewardShare = Consensus::SpecialRewardShare(0.6,0.4,0.0);
+        // Smartnode collateral 5,000 FPOW. Smartnode share of (subsidy+fees):
+        // 54% while the dev fee runs, 60% after the sunset — miner keeps the
+        // remainder (36% -> 40%). Paid only once >=150 smartnodes are registered
+        // (GetSmartnodePayment); until then the miner receives the whole share.
         consensus.nCollaterals = SmartnodeCollaterals(
-          { 
-            {INT_MAX, 1000000 * COIN}
+          {
+            {INT_MAX, 5000 * COIN}
           },
-          { {622500, 0}, {INT_MAX, 45} }
+          { {1050000, 54}, {INT_MAX, 60} }
         );
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
@@ -493,60 +505,51 @@ public:
         nPoolMaxParticipants = 5;
         nFulfilledRequestExpireTime = 60*60; // fulfilled requests expire in 1 hour
 
-        vSporkAddresses = {"GdJwLvyP6jgJxtA2MEdonzcC9dj8XLsurZ"};
+        vSporkAddresses = {"FZwoXmA5h3aogGqJWKJoKvB1Dvt9qkZ7RE"}; // FILOPOW operator spork key (private key held offline)
         nMinSporkKeys = 1;
         fBIP9CheckSmartnodesUpgraded = true;
 
         checkpointData = {
-            {  
-                {0, uint256S("0000000a50fdaaf22f1c98b8c61559e15ab2269249aa1fb20683180703cdbf07")},
-                {1600, uint256S("000000000dae516974be0590d0dcd1ba8ecd28f6969cd04b719dfec483445286")},
-                {1900, uint256S("00000000008ec6725fd46ab63b46d30f34632ce3caec68c59aae5fc19092871f")},
-                {2582, uint256S("00000000002029b6964d84ee232c027573c9b33da2673f9cdeed5238a1b65a32")},
-                {7028, uint256S("0000000000f6e894e284e9a447ecdcfe888623d2df9d908c49904a4e04b53431")},
-                {7339, uint256S("00000000012be3885f8c8648cacf55b1ee45021cf3c5dd214c61526e5bf81363")},
-                {20000, uint256S("0000000000e244579b5e0a2622db902bba222022577aff23169506893bb18fc2")},
-                {28862, uint256S("000000000032b28e62977a388f241c3119a00e375471b84569995d1e29a63e0b")},
-                {35900, uint256S("00000000006fa70f70804bc376871d1a75a6b120b32948f0c97b6cb69f05c0ec")},
-                {157581, uint256S("0000000000008ea299bed393aaeedcdac66baf26c7228c60636fa432addc4777")},
-                {568654, uint256S("00000000000455f159bd9ab7d027ef7f0edec468a903670ab6e2ea2351f355b6")},  
-		{1119746, uint256S("000000000002e2d7f645ac854f18afdcb8f69fd5eea356638b334aa111edc897")}
+            {
+                {0, uint256S("00000083d104392c2da392111cb1b39f1cdf4ed5281522b3fcaaae0cf5653a78")},
             }
 	    };
 
         chainTxData = ChainTxData{
-            // Update as we know more about the contents of the Neoxa chain
-        	1662386772, // * UNIX timestamp of last known number of transactions 2021-06-18 22:03:06 UTC
-            130153,    // * total number of transactions between genesis and that timestamp
-                        //   (the tx=... number in the SetBestChain debug.log lines)
-            0.05014635153727871       // * estimated number of transactions per second after that timestamp
+            // Fresh chain: no transaction history yet.
+            0,
+            0,
+            0
         };
 
-         // Burn Amounts
-        nIssueAssetBurnAmount = 500 * COIN;
-        nReissueAssetBurnAmount = 100 * COIN;
-        nIssueSubAssetBurnAmount = 100 * COIN;
-        nIssueUniqueAssetBurnAmount = 5 * COIN;
-        nIssueMsgChannelAssetBurnAmount = 100 * COIN;
-        nIssueQualifierAssetBurnAmount = 1000 * COIN;
-        nIssueSubQualifierAssetBurnAmount = 100 * COIN;
-        nIssueRestrictedAssetBurnAmount = 1500 * COIN;
-        nAddNullQualifierTagBurnAmount = .1 * COIN;
+         // Burn Amounts — Raven-family fee schedule scaled 1/1000, matching the
+        // 1/1000-scaled emission (5 FPOW/block, ~21M max supply). Integer math.
+        nIssueAssetBurnAmount = COIN / 2;                // 0.5 FPOW
+        nReissueAssetBurnAmount = COIN / 10;             // 0.1 FPOW
+        nIssueSubAssetBurnAmount = COIN / 10;            // 0.1 FPOW
+        nIssueUniqueAssetBurnAmount = COIN / 200;        // 0.005 FPOW
+        nIssueMsgChannelAssetBurnAmount = COIN / 10;     // 0.1 FPOW
+        nIssueQualifierAssetBurnAmount = 1 * COIN;       // 1 FPOW
+        nIssueSubQualifierAssetBurnAmount = COIN / 10;   // 0.1 FPOW
+        nIssueRestrictedAssetBurnAmount = 3 * COIN / 2;  // 1.5 FPOW
+        nAddNullQualifierTagBurnAmount = COIN / 10000;   // 0.0001 FPOW
 
-        // Burn Addresses
-	    strIssueAssetBurnAddress = "GcmKXqWrFrbDnywuY8F3orEnNR5L1g2mZQ";
-        strReissueAssetBurnAddress = "GX61EFYjZdXKWAY5UsBt5sLxHkWaqjBL59";
-        strIssueSubAssetBurnAddress = "GNgg3bLoGocLD9iU2W1gw3McHipzfZ8R13";
-        strIssueUniqueAssetBurnAddress = "GKXyGTyzibPLhPpTpvqqBK3SJBz8gp7Kfa";
-        strIssueMsgChannelAssetBurnAddress = "GMm13zRL8eGjZxYXfiCN1zCJFHiL5HkMYa";
-        strIssueQualifierAssetBurnAddress = "GZW36RFFgRWcCQ3cN1qWJGC6z4EAqgt7M6";
-        strIssueSubQualifierAssetBurnAddress = "GcDdxyK7JCuQfg83SxFHRpD8QHFivbdYjZ";
-        strIssueRestrictedAssetBurnAddress = "GcDdxyK7JCuQfg83SxFHRpD8QHFivbdYjZ";
-        strAddNullQualifierTagBurnAddress = "GTfS34Z3CrzXSPEmGx9xpjw7PShUC93YFi";
+        // Burn Addresses (prefix byte 36 -> 'F'; fixed X-pattern payloads with a
+        // recomputed checksum, no known keys)
+	    strIssueAssetBurnAddress = "FXissueAssetXXXXXXXXXXXXXXXXXUQiaG";
+        strReissueAssetBurnAddress = "FXReissueAssetXXXXXXXXXXXXXXTXRFtA";
+        strIssueSubAssetBurnAddress = "FXissueSubAssetXXXXXXXXXXXXXW8XgnQ";
+        strIssueUniqueAssetBurnAddress = "FXissueUniqueAssetXXXXXXXXXXVLfask";
+        strIssueMsgChannelAssetBurnAddress = "FXissueMsgChanneLAssetXXXXXXSPXmAr";
+        strIssueQualifierAssetBurnAddress = "FXissueQuaLifierXXXXXXXXXXXXW6Sw85";
+        strIssueSubQualifierAssetBurnAddress = "FXissueSubQuaLifierXXXXXXXXXX5h64b";
+        strIssueRestrictedAssetBurnAddress = "FXissueRestrictedXXXXXXXXXXXWoghPk";
+        strAddNullQualifierTagBurnAddress = "FXaddTagBurnXXXXXXXXXXXXXXXXUz54UP";
         //Global Burn Address
-        strGlobalBurnAddress = "GeNvn7GXr1aLqhDx9HG9aYWnPA5qoRsz9X";
-        // ProofOfGame Address
-        strCommunityAutonomousAddress = "GTbBCJzqRWyFBMrap2fY39eZaXnLnojJ3F";
+        strGlobalBurnAddress = "FXBurnXXXXXXXXXXXXXXXXXXXXXXTSYoiG";
+        // No gaming layer on FILOPOW: keep this legacy field pointed at the
+        // global burn address (it is only referenced by IsBurnAddress()).
+        strCommunityAutonomousAddress = "FXBurnXXXXXXXXXXXXXXXXXXXXXXTSYoiG";
 
         nAssetActivationHeight = 1; // Asset activated block height
         nMessagingActivationBlock = 1; // Messaging activated block height
@@ -580,7 +583,7 @@ public:
         consensus.BIP65Enabled = true; // 0000039cf01242c7f921dcb4806a5994bc003b48c1973ae0c89b67809c2bb2ab
         consensus.BIP66Enabled = true; // 0000002acdd29a14583540cb72e1c5cc83783560e38fa7081495d474fe1671f7
         consensus.nSegwitEnabled = true;
-        consensus.DIP0003Height = 30;
+        consensus.DIP0003Height = 2;
         consensus.DIP0008Enabled = true;
         consensus.BIPCSVEnabled = true;
      //   consensus.DIP0003EnforcementHeight = 7300;
@@ -635,41 +638,37 @@ public:
         // By default assume that the signatures in ancestors of this block are valid.
         consensus.defaultAssumeValid = uint256S("0x0"); // 0
 
-        pchMessageStart[0] = 0x60;
-        pchMessageStart[1] = 0x63;
-        pchMessageStart[2] = 0x56;
-        pchMessageStart[3] = 0x65;
-        nDefaultPort = 4572;
+        pchMessageStart[0] = 0x66; // f
+        pchMessageStart[1] = 0x70; // p
+        pchMessageStart[2] = 0x6f; // o
+        pchMessageStart[3] = 0x77; // w
+        nDefaultPort = 17767;
         nPruneAfterHeight = 1000;
         
-        uint32_t nGenesisTime = 1685977420;  // Sunday, 22 May 2022 19:26:45
-        //FindMainNetGenesisBlock(nGenesisTime, 0x20001fff, "test");    
+        uint32_t nGenesisTime = 1783006613; // PROVISIONAL; X16R genesis (< nKawPowActivationTime), every mined block is KawPow
 
-        genesis = CreateGenesisBlock(nGenesisTime, 2250, 0x20001fff, 4, 5000 * COIN);
-        uint256 mix_hash;
-        consensus.hashGenesisBlock = genesis.GetHashFull(mix_hash);
-        genesis.mix_hash = mix_hash;
-        assert(consensus.hashGenesisBlock == uint256S("000b93d1594035cc0ebe80bc5f69e3cebfbf80069480c8f64e7f974d1627d8a6"));
-        assert(genesis.hashMerkleRoot == uint256S("7c1d71731b98c560a80cee3b88993c8c863342b9661894304fd843bf7e75a41f"));		
-		
+        genesis = CreateGenesisBlock(nGenesisTime, 484, 0x20001fff, 4, 5 * COIN);
+        consensus.hashGenesisBlock = genesis.GetX16RHash();
+        assert(consensus.hashGenesisBlock == uint256S("00160818d863a5227918570fc5dab9d45497a0ec4f59716427f5fd196cf53550"));
+        assert(genesis.hashMerkleRoot == uint256S("4fb05191fe7f0907bd27cf57757cc2d4f4eee6755781355df1ebf31a6c82942a"));
+
         vFixedSeeds.clear();
         vSeeds.clear();
-        // nodes with support for servicebits filtering should be at the top
-        vSeeds.emplace_back("testnet.neoxa.net", false);
+        // Fresh chain: no testnet DNS seeds yet — add before launch (Phase 5).
 
-        // Testnet Neoxa addresses start with 'r'
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,42);
-        // Testnet Neoxa script addresses start with '8' or '9'
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,124);
+        // Testnet FILOPOW addresses start with 'm' or 'n' (Bitcoin testnet defaults)
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,111);
+        // Testnet FILOPOW script addresses start with '2' (Bitcoin testnet defaults)
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,196);
         // Testnet private keys start with '9' or 'c' (Bitcoin defaults)
-        base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,114);
+        base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,239);
         // Testnet Neoxa BIP32 pubkeys start with 'tpub' (Bitcoin defaults)
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x35, 0x87, 0xCF};
         // Testnet Neoxa BIP32 prvkeys start with 'tprv' (Bitcoin defaults)
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x35, 0x83, 0x94};
 
-        // Testnet Neoxa BIP44 coin type is '1' (All coin's testnet default)
-        nExtCoinType = 10227;
+        // Testnet FILOPOW BIP44 coin type is '1' (all coins' testnet default)
+        nExtCoinType = 1;
 
         // long living quorum params
         consensus.llmqs[Consensus::LLMQ_50_60] = llmq3_60;
@@ -678,20 +677,22 @@ public:
 		consensus.llmqTypeChainLocks = Consensus::LLMQ_400_60;
 		consensus.llmqTypeInstantSend = Consensus::LLMQ_50_60;
 
+		// Same economics as mainnet, with the dev-fee sunset at height 2000 so it
+		// is actually exercisable on testnet.
 		consensus.nCollaterals = SmartnodeCollaterals(
 			{
-				{INT_MAX, 60000 * COIN}
+				{INT_MAX, 5000 * COIN}
 			},
 			{
-				{INT_MAX, 45}
+				{2000, 54}, {INT_MAX, 60}
 			}
 		);
 
-        vector<FounderRewardStructure> rewardStructures = {  {30, 15},// 15% founder/dev fee
-                                                             {INT_MAX, 10}// 10% founder/dev fee forever
+        vector<FounderRewardStructure> rewardStructures = {  {2000, 10}, // 10% dev fee until the testnet sunset height
+                                                             {INT_MAX, 0} // sunset
                                                 										   };
-		consensus.nFounderPayment = FounderPayment(rewardStructures, 0, "J8db9nuaVL3Jo8hDcfKh77pZnG2J8jvxWH");
-        consensus.nSpecialRewardShare = Consensus::SpecialRewardShare(0.8,0.2,0.0);
+		consensus.nFounderPayment = FounderPayment(rewardStructures, 1, "n1TreasuryDevFundXXXXXXXXXXXRrp3sS");
+        consensus.nSpecialRewardShare = Consensus::SpecialRewardShare(0.6,0.4,0.0);
 
         fDefaultConsistencyChecks = false;
         fRequireStandard = false;
@@ -705,7 +706,7 @@ public:
         nPoolMaxParticipants = 5;
         nFulfilledRequestExpireTime = 5*60; // fulfilled requests expire in 5 minutes
 
-        vSporkAddresses = {"JHEfoNN6kH4rB1C3teiPtBLG9rXHvPG6ix"};
+        vSporkAddresses = {"n4FX25CvdZfSNvbyaA271JLsYoEiFDspHk"}; // FILOPOW testnet spork key
         nMinSporkKeys = 1;
         fBIP9CheckSmartnodesUpgraded = true;
 
@@ -723,33 +724,33 @@ public:
            // 0.01518114964117619        // * estimated number of transactions per second after that timestamp
         };
 
-        /** NEOXA Start **/
-        // Burn Amounts
-        nIssueAssetBurnAmount = 500 * COIN;
-        nReissueAssetBurnAmount = 100 * COIN;
-        nIssueSubAssetBurnAmount = 100 * COIN;
-        nIssueUniqueAssetBurnAmount = 5 * COIN;
-        nIssueMsgChannelAssetBurnAmount = 100 * COIN;
-        nIssueQualifierAssetBurnAmount = 1000 * COIN;
-        nIssueSubQualifierAssetBurnAmount = 100 * COIN;
-        nIssueRestrictedAssetBurnAmount = 1500 * COIN;
-        nAddNullQualifierTagBurnAmount = .1 * COIN;
+        /** FPOW Start **/
+        // Burn Amounts — Raven-family fee schedule scaled 1/1000 (see mainnet)
+        nIssueAssetBurnAmount = COIN / 2;                // 0.5 FPOW
+        nReissueAssetBurnAmount = COIN / 10;             // 0.1 FPOW
+        nIssueSubAssetBurnAmount = COIN / 10;            // 0.1 FPOW
+        nIssueUniqueAssetBurnAmount = COIN / 200;        // 0.005 FPOW
+        nIssueMsgChannelAssetBurnAmount = COIN / 10;     // 0.1 FPOW
+        nIssueQualifierAssetBurnAmount = 1 * COIN;       // 1 FPOW
+        nIssueSubQualifierAssetBurnAmount = COIN / 10;   // 0.1 FPOW
+        nIssueRestrictedAssetBurnAmount = 3 * COIN / 2;  // 1.5 FPOW
+        nAddNullQualifierTagBurnAmount = COIN / 10000;   // 0.0001 FPOW
 
-        // Burn Addresses
-	    strIssueAssetBurnAddress = "J1VQJKLSLVZ4syiCAx5hEPq8BrkFaxAXAi";
-        strReissueAssetBurnAddress = "J2yh4DiLETuVVDvpvBNSq3QCmHcdMmNEdp";
-        strIssueSubAssetBurnAddress = "J3PE3FsHqfszvz7nhwK2Gc32wykrc7pNMA";
-        strIssueUniqueAssetBurnAddress = "J4yKRTYF2nRryYEnupsNnQQmRKsQhdspYB";
-        strIssueMsgChannelAssetBurnAddress = "J58ndjHjLYKHMszr4ehUg9YMWPAiXNEepa";
-        strIssueQualifierAssetBurnAddress = "J68wpmVvdE6bMSkiCEDQWCHCKZs4VVdE2G";
-        strIssueSubQualifierAssetBurnAddress = "J7MSidYgNJrPE15ouEsXPYXFYH2AAPXmhr";
-        strIssueRestrictedAssetBurnAddress = "J8uX8jfZn14P1VNzh6YjSzLaRTQAdoFSHn";
-        strAddNullQualifierTagBurnAddress = "J9CrKy8m548AvSbcv1mcn7tyJQkgcwVfj6";		
+        // Burn Addresses (standard testnet prefix byte 111)
+	    strIssueAssetBurnAddress = "n1issueAssetXXXXXXXXXXXXXXXXWdnemQ";
+        strReissueAssetBurnAddress = "n1ReissueAssetXXXXXXXXXXXXXXWG9NLd";
+        strIssueSubAssetBurnAddress = "n1issueSubAssetXXXXXXXXXXXXXbNiH6v";
+        strIssueUniqueAssetBurnAddress = "n1issueUniqueAssetXXXXXXXXXXS4695i";
+        strIssueMsgChannelAssetBurnAddress = "n1issueMsgChanneLAssetXXXXXXT2PBdD";
+        strIssueQualifierAssetBurnAddress = "n1issueQuaLifierXXXXXXXXXXXXUysLTj";
+        strIssueSubQualifierAssetBurnAddress = "n1issueSubQuaLifierXXXXXXXXXYffPLh";
+        strIssueRestrictedAssetBurnAddress = "n1issueRestrictedXXXXXXXXXXXXZVT9V";
+        strAddNullQualifierTagBurnAddress = "n1addTagBurnXXXXXXXXXXXXXXXXX5oLMH";
 	    //Global Burn Address
-        strGlobalBurnAddress = "JGYQBki6wWWnJLp2dcgdtNZWs9a2e1nXM3";
-		
-	    //CommunityAutonomousAddress
-        strCommunityAutonomousAddress = "J8db9nuaVL3Jo8hDcfKh77pZnG2J8jvxWH";
+        strGlobalBurnAddress = "n1BurnXXXXXXXXXXXXXXXXXXXXXXU1qejP";
+
+	    // No gaming layer on FILOPOW (see mainnet)
+        strCommunityAutonomousAddress = "n1BurnXXXXXXXXXXXXXXXXXXXXXXU1qejP";
 
         nAssetActivationHeight = 1; // Asset activated block height
         nMessagingActivationBlock = 1; // Messaging activated block height
@@ -814,14 +815,14 @@ public:
         nDefaultPort = 19799;
         nPruneAfterHeight = 1000;
 
-        genesis = CreateGenesisBlock(1417713337, 1096447, 0x207fffff, 1, 50 * COIN);
+        genesis = CreateGenesisBlock(1783006413, 0, 0x207fffff, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x000008ca1832a4baf228eb1553c03d3a2c8e02399550dd6ea8d65cec3ef23d2e"));
-        assert(genesis.hashMerkleRoot == uint256S("0xe0028eb9648db56b1ac77cf090b99048a8007e2bb64b68f092c03c7f56a662c7"));
+        assert(consensus.hashGenesisBlock == uint256S("0x6a25492cdc3e623b7fa3e561409517e607c3b9255614d527c93e36eac13d2291"));
+        assert(genesis.hashMerkleRoot == uint256S("0x36d401379590843ce1f8d56256bad07ada48877f3ce8d231cc30f413c64d7ceb"));
 
-        vector<FounderRewardStructure> rewardStructures = {  {INT_MAX, 5}// 5% founder/dev fee forever
+        vector<FounderRewardStructure> rewardStructures = {  {INT_MAX, 5}// devnet: flat 5% for payment-path testing
                                                                 										   };
-		consensus.nFounderPayment = FounderPayment(rewardStructures, 200);
+		consensus.nFounderPayment = FounderPayment(rewardStructures, 200, "yaackz5YDLnFuuX6gGzEs9EMRQGfqmNYjc");
         consensus.nSpecialRewardShare = Consensus::SpecialRewardShare(0.8,0.2,0.0);
 
         vFixedSeeds.clear();
@@ -866,7 +867,7 @@ public:
 
         checkpointData = (CCheckpointData) {
             {
-                { 0, uint256S("0x000008ca1832a4baf228eb1553c03d3a2c8e02399550dd6ea8d65cec3ef23d2e")},
+                { 0, uint256S("0x6a25492cdc3e623b7fa3e561409517e607c3b9255614d527c93e36eac13d2291")},
             }
         };
 
@@ -939,10 +940,10 @@ public:
         
         //FindMainNetGenesisBlock(1417713337, 0x20001fff, "regtest");
 
-        genesis = CreateGenesisBlock(1417713337, 2765, 0x20001fff, 4, 5000 * COIN);
+        genesis = CreateGenesisBlock(1783006513, 343, 0x20001fff, 4, 5 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x000432ed6cdd023a95d044131e1044a4a14ecdffeb6d97dcaa9d4ba36800f61a"));
-        assert(genesis.hashMerkleRoot == uint256S("0x7c1d71731b98c560a80cee3b88993c8c863342b9661894304fd843bf7e75a41f"));
+        assert(consensus.hashGenesisBlock == uint256S("0x000258da4393d73eb88e8ade48a0590dac07414425e0b1258da678d612e2a196"));
+        assert(genesis.hashMerkleRoot == uint256S("0x4fb05191fe7f0907bd27cf57757cc2d4f4eee6755781355df1ebf31a6c82942a"));
 
         vFixedSeeds.clear(); //!< Regtest mode doesn't have any fixed seeds.
         vSeeds.clear();      //!< Regtest mode doesn't have any DNS seeds.
@@ -971,7 +972,8 @@ public:
 
         checkpointData = (CCheckpointData) {
             {
-                {0, uint256S("0x000008ca1832a4baf228eb1553c03d3a2c8e02399550dd6ea8d65cec3ef23d2e")},
+                // (upstream Neoxa mistakenly pointed this at the devnet genesis)
+                {0, uint256S("0x000258da4393d73eb88e8ade48a0590dac07414425e0b1258da678d612e2a196")},
             }
         };
 

@@ -37,6 +37,13 @@ void FounderPayment::FillFounderPayment(CMutableTransaction& txNew, int nBlockHe
 //	    return;
 //
 //	}
+	// FILOPOW: after the dev-fee sunset the payment is 0 — add no output at all
+	// (validation does not require one when the founder reward is 0, and a
+	// permanent 0-value output per block would only bloat the UTXO set).
+	if (founderPayment == 0) {
+	    txoutFounderRet = CTxOut();
+	    return;
+	}
 	txoutFounderRet = CTxOut();
     CScript payee;
     // fill payee with the foundFounderRewardStrcutureFounderRewardStrcutureer address

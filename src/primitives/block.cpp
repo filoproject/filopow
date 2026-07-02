@@ -13,7 +13,7 @@
 uint256 CBlockHeader::GetHash() const
 {
 	//return SerializeHash(*this);
-    if (nTime < 1651444217)
+    if (nTime < nKawPowActivationTime)
         return HashX16R(BEGIN(nVersion), END(nNonce), hashPrevBlock);
     else
         return KAWPOWHash_OnlyMix(*this);
@@ -21,7 +21,7 @@ uint256 CBlockHeader::GetHash() const
 
 uint256 CBlockHeader::GetHashFull(uint256& mix_hash) const
 {
-    if (nTime < 1651444217) {
+    if (nTime < nKawPowActivationTime) {
         return HashX16R(BEGIN(nVersion), END(nNonce), hashPrevBlock);
     } else {
         return KAWPOWHash(*this, mix_hash);
