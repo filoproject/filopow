@@ -41,6 +41,11 @@ struct BIP9Deployment {
     uint32_t nOverrideMinerConfirmationWindow;
     /** Use to override the the activation threshold on a specific BIP */
     uint32_t nOverrideRuleChangeActivationThreshold;
+
+    /** Special value for nStartTime indicating that the deployment is always active
+     *  (ported from Bitcoin Core). FILOPOW is a fresh chain: every historical Raven
+     *  feature deployment is active from genesis, with no signalling period. */
+    static constexpr int64_t ALWAYS_ACTIVE = -1;
 };
 
 /**

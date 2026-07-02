@@ -1326,8 +1326,9 @@ CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
     if (halvings >= 64)
         return 0;
 
-    CAmount nSubsidy = 5000 * COIN;
+    CAmount nSubsidy = 5 * COIN;
     // Subsidy is cut in half every 2,100,000 blocks which will occur approximately every 4 years.
+    // 5 FPOW per 1-minute block -> ~21,000,000 FPOW maximum supply (1/1000 of Raven's curve).
     nSubsidy >>= halvings;
     return nSubsidy;
 }

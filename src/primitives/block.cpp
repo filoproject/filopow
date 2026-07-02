@@ -12,10 +12,6 @@
 #include "crypto/common.h"
 
 
-static const uint32_t MAINNET_X16RV2ACTIVATIONTIME = 1569945600;
-static const uint32_t TESTNET_X16RV2ACTIVATIONTIME = 1567533600;
-static const uint32_t REGTEST_X16RV2ACTIVATIONTIME = 1569931200;
-
 uint32_t nKAWPOWActivationTime;
 
 BlockNetwork bNetwork = BlockNetwork();
@@ -37,17 +33,10 @@ void BlockNetwork::SetNetwork(const std::string& net)
 
 uint256 CBlockHeader::GetHash() const
 {
+    // FILOPOW never had Raven's X16R/X16RV2 mining eras: KawPow activates one
+    // second after the genesis timestamp, so the only block that can take this
+    // branch is the genesis block itself, which is a static X16R-hashed constant.
     if (nTime < nKAWPOWActivationTime) {
-        uint32_t nTimeToUse = MAINNET_X16RV2ACTIVATIONTIME;
-        if (bNetwork.fOnTestnet) {
-            nTimeToUse = TESTNET_X16RV2ACTIVATIONTIME;
-        } else if (bNetwork.fOnRegtest) {
-            nTimeToUse = REGTEST_X16RV2ACTIVATIONTIME;
-        }
-        if (nTime >= nTimeToUse) {
-            return HashX16RV2(BEGIN(nVersion), END(nNonce), hashPrevBlock);
-        }
-
         return HashX16R(BEGIN(nVersion), END(nNonce), hashPrevBlock);
     } else {
         return KAWPOWHash_OnlyMix(*this);
@@ -57,16 +46,6 @@ uint256 CBlockHeader::GetHash() const
 uint256 CBlockHeader::GetHashFull(uint256& mix_hash) const
 {
     if (nTime < nKAWPOWActivationTime) {
-        uint32_t nTimeToUse = MAINNET_X16RV2ACTIVATIONTIME;
-        if (bNetwork.fOnTestnet) {
-            nTimeToUse = TESTNET_X16RV2ACTIVATIONTIME;
-        } else if (bNetwork.fOnRegtest) {
-            nTimeToUse = REGTEST_X16RV2ACTIVATIONTIME;
-        }
-        if (nTime >= nTimeToUse) {
-            return HashX16RV2(BEGIN(nVersion), END(nNonce), hashPrevBlock);
-        }
-
         return HashX16R(BEGIN(nVersion), END(nNonce), hashPrevBlock);
     } else {
         return KAWPOWHash(*this, mix_hash);
