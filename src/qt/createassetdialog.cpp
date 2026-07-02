@@ -1403,7 +1403,7 @@ void CreateAssetDialog::setQualifierSelected()
 
 void CreateAssetDialog::clearSelected()
 {
-    ui->quantitySpinBox->setMaximum(21000000000);
+    ui->quantitySpinBox->setMaximum(MAX_MONEY / COIN);  // 21,000,000 FPOW
     ui->quantitySpinBox->setDisabled(false);
 
     ui->unitBox->setValue(0);
@@ -1479,7 +1479,7 @@ void CreateAssetDialog::clear()
     ui->assetFullName->clear();
     ui->unitBox->setDisabled(false);
     ui->quantitySpinBox->setDisabled(false);
-    ui->quantitySpinBox->setMaximum(21000000000);
+    ui->quantitySpinBox->setMaximum(MAX_MONEY / COIN);  // 21,000,000 FPOW
     ui->nameText->setEnabled(true);
 
     ui->reissuableBox->setDisabled(false);

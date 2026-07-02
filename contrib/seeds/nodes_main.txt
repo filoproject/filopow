@@ -1,1 +1,2 @@
-2.228.70.198:8767
+# FILOPOW mainnet fixed seeds — populated at launch (Phase 5).
+# One host:port per line, e.g. 203.0.113.7:7767

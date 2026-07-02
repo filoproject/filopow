@@ -517,7 +517,7 @@ void ReissueAssetDialog::CheckFormState()
 
     // If the quantity is to large
     if (asset->nAmount + ui->quantitySpinBox->value() * COIN > MAX_MONEY) {
-        showMessage(tr("Quantity is to large. Max is 21,000,000,000"));
+        showMessage(tr("Quantity is to large. Max is 21,000,000"));
         return;
     }
 
@@ -748,7 +748,7 @@ void ReissueAssetDialog::onAssetSelected(int index)
             ui->unitSpinBox->setDisabled(true);
         }
         
-        ui->quantitySpinBox->setMaximum(21000000000 - value.get_real());
+        ui->quantitySpinBox->setMaximum(MAX_MONEY / COIN - value.get_real());  // 21,000,000 FPOW
 
         ui->currentAssetData->clear();
         // Create the QString to display to the user

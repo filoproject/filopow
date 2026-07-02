@@ -599,7 +599,7 @@ UniValue issueunique(const JSONRPCRequest& request)
                 "root_name must be an asset you own.\n"
                 "An asset will be created for each element of asset_tags.\n"
                 "If provided ipfs_hashes must be the same length as asset_tags.\n"
-                "Five (5) FPOW will be burned for each asset created.\n"
+                "0.005 FPOW will be burned for each asset created.\n"
 
                 "\nArguments:\n"
                 "1. \"root_name\"             (string, required) name of the asset the unique asset(s) are being issued under\n"

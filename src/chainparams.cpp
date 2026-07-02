@@ -13,8 +13,7 @@
 #include "arith_uint256.h"
 
 #include <assert.h>
-// chainparamsseeds.h intentionally not included: fresh chain, no fixed seeds yet.
-// Regenerate with contrib/seeds and re-include before launch (Phase 5).
+#include "chainparamsseeds.h"  // fresh chain: arrays are empty until Phase 5 seed population
 
 //TODO: Take these out
 extern double algoHashTotal[16];
@@ -206,7 +205,9 @@ public:
         // Filopow BIP44 cointype in mainnet is '7767' (matches the default P2P port)
         nExtCoinType = 7767;
 
-        vFixedSeeds.clear(); // no fixed seeds yet — add before launch (Phase 5)
+        // pnSeed6_main is empty until Phase 5 seed population (regenerate
+        // chainparamsseeds.h from contrib/seeds/nodes_main.txt).
+        vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
 
         fDefaultConsistencyChecks = false;
         fRequireStandard = true;
@@ -416,7 +417,6 @@ public:
         assert(consensus.hashGenesisBlock == uint256S("0x0000007cd099969fb0d1d834ca0a6339f72984ba511b6fcdcb515de8b40e1bad"));
         assert(genesis.hashMerkleRoot == uint256S("4fb05191fe7f0907bd27cf57757cc2d4f4eee6755781355df1ebf31a6c82942a"));
 
-        vFixedSeeds.clear();
         vSeeds.clear();
         // Fresh chain: no testnet DNS seeds yet — add before launch (Phase 5).
 
@@ -428,6 +428,9 @@ public:
 
         // Filopow BIP44 cointype in testnet
         nExtCoinType = 1;
+
+        // pnSeed6_test is empty until Phase 5 seed population.
+        vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_test, pnSeed6_test + ARRAYLEN(pnSeed6_test));
 
         fDefaultConsistencyChecks = false;
         fRequireStandard = false;

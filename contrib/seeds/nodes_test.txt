@@ -1,6 +1,1 @@
-# List of fixed seed nodes for testnet
-
-# Onion nodes
-thfsmmn2jfilopow.onion
-
-
+# FILOPOW testnet fixed seeds — populated at launch (Phase 5).

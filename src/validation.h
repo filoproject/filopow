@@ -67,9 +67,14 @@ static const bool DEFAULT_WHITELISTRELAY = true;
 static const bool DEFAULT_WHITELISTFORCERELAY = true;
 /** Default for -minrelaytxfee, minimum relay fee for transactions */
 static const unsigned int DEFAULT_MIN_RELAY_TX_FEE = 1000000;
-//! -maxtxfee default
-static const CAmount DEFAULT_TRANSACTION_MAXFEE = 1000 * COIN;
-//! Discourage users to set fees higher than this amount (in satoshis) per kB
+//! -maxtxfee default. Raven's 1000-coin fat-finger ceiling is far too high in
+//! FILOPOW's 1/1000 economy (1000 FPOW ~ 200 blocks of subsidy). Lowered to a
+//! sane accident rail that still leaves headroom for large asset transactions
+//! at the (unscaled, per-byte) relay fee. Fee POLICY, revisit if FPOW is priced.
+static const CAmount DEFAULT_TRANSACTION_MAXFEE = 10 * COIN;
+//! Discourage users to set fees higher than this amount (in satoshis) per kB.
+//! Left at Raven's value: per-byte relay economics, not supply-proportional,
+//! and must stay above DEFAULT_MIN_RELAY_TX_FEE (0.01/kB).
 static const CAmount HIGH_TX_FEE_PER_KB = 0.1 * COIN;
 //! -maxtxfee will warn if called with a higher fee than this amount (in satoshis)
 static const CAmount HIGH_MAX_TX_FEE = 100 * HIGH_TX_FEE_PER_KB;
