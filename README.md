@@ -5,6 +5,16 @@ https://github.com/filoproject/filopow
 
 To see how to run FILOPOW, please read the respective files in [the doc folder](doc).
 
+Key documents:
+
+- [doc/filopow-params.md](doc/filopow-params.md) — network parameters, emission
+  schedule, ports, address format.
+- [doc/mining.md](doc/mining.md) — how to point a GPU miner at FILOPOW.
+- [doc/fair-launch.md](doc/fair-launch.md) — the no-premine commitments and how
+  to verify them; security policy.
+- [doc/launch-runbook.md](doc/launch-runbook.md) — operator checklist to launch
+  the chain.
+
 
 What is FILOPOW?
 ----------------
