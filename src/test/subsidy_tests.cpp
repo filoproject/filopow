@@ -12,63 +12,49 @@
 
 BOOST_FIXTURE_TEST_SUITE(subsidy_tests, TestingSetup)
 
+// FILOPOW subsidy is a flat 5 FPOW that halves every nSubsidyHalvingInterval
+// (2,100,000) blocks and ignores the difficulty argument. (The upstream Dash
+// test here checked a difficulty-dependent curve that FILOPOW does not use.)
 BOOST_AUTO_TEST_CASE(block_subsidy_test)
 {
     const auto chainParams = CreateChainParams(CBaseChainParams::MAIN);
+    const Consensus::Params& c = chainParams->GetConsensus();
+    const CAmount base = 5 * COIN;
 
-    uint32_t nPrevBits;
-    int32_t nPrevHeight;
-    CAmount nSubsidy;
+    // Era 0: every height below the first halving pays the full 5 FPOW.
+    BOOST_CHECK_EQUAL(GetBlockSubsidy(0, 0, c, false), base);
+    BOOST_CHECK_EQUAL(GetBlockSubsidy(0, 1, c, false), base);
+    BOOST_CHECK_EQUAL(GetBlockSubsidy(0, c.nSubsidyHalvingInterval - 1, c, false), base);
 
-    // details for block 4249 (subsidy returned will be for block 4250)
-    nPrevBits = 0x1c4a47c4;
-    nPrevHeight = 4249;
-    nSubsidy = GetBlockSubsidy(nPrevBits, nPrevHeight, chainParams->GetConsensus(), false);
-    BOOST_CHECK_EQUAL(nSubsidy, 50000000000ULL);
+    // The difficulty argument must not change the subsidy.
+    BOOST_CHECK_EQUAL(GetBlockSubsidy(0x1c4a47c4, 4249, c, false), base);
+    BOOST_CHECK_EQUAL(GetBlockSubsidy(0x1b10cf42, 99999, c, false), base);
 
-    // details for block 4501 (subsidy returned will be for block 4502)
-    nPrevBits = 0x1c4a47c4;
-    nPrevHeight = 4501;
-    nSubsidy = GetBlockSubsidy(nPrevBits, nPrevHeight, chainParams->GetConsensus(), false);
-    BOOST_CHECK_EQUAL(nSubsidy, 5600000000ULL);
+    // Each halving epoch halves the reward.
+    for (int halvings = 0; halvings < 20; ++halvings) {
+        int nPrevHeight = halvings * c.nSubsidyHalvingInterval;
+        CAmount expected = base >> halvings;
+        BOOST_CHECK_EQUAL(GetBlockSubsidy(0, nPrevHeight, c, false), expected);
+    }
 
-    // details for block 5464 (subsidy returned will be for block 5465)
-    nPrevBits = 0x1c29ec00;
-    nPrevHeight = 5464;
-    nSubsidy = GetBlockSubsidy(nPrevBits, nPrevHeight, chainParams->GetConsensus(), false);
-    BOOST_CHECK_EQUAL(nSubsidy, 2100000000ULL);
+    // Beyond 64 halvings the reward is zero.
+    BOOST_CHECK_EQUAL(GetBlockSubsidy(0, 64 * c.nSubsidyHalvingInterval, c, false), 0);
+}
 
-    // details for block 5465 (subsidy returned will be for block 5466)
-    nPrevBits = 0x1c29ec00;
-    nPrevHeight = 5465;
-    nSubsidy = GetBlockSubsidy(nPrevBits, nPrevHeight, chainParams->GetConsensus(), false);
-    BOOST_CHECK_EQUAL(nSubsidy, 12200000000ULL);
-
-    // details for block 17588 (subsidy returned will be for block 17589)
-    nPrevBits = 0x1c08ba34;
-    nPrevHeight = 17588;
-    nSubsidy = GetBlockSubsidy(nPrevBits, nPrevHeight, chainParams->GetConsensus(), false);
-    BOOST_CHECK_EQUAL(nSubsidy, 6100000000ULL);
-
-    // details for block 99999 (subsidy returned will be for block 100000)
-    nPrevBits = 0x1b10cf42;
-    nPrevHeight = 99999;
-    nSubsidy = GetBlockSubsidy(nPrevBits, nPrevHeight, chainParams->GetConsensus(), false);
-    BOOST_CHECK_EQUAL(nSubsidy, 500000000ULL);
-
-    // details for block 210239 (subsidy returned will be for block 210240)
-    nPrevBits = 0x1b11548e;
-    nPrevHeight = 210239;
-    nSubsidy = GetBlockSubsidy(nPrevBits, nPrevHeight, chainParams->GetConsensus(), false);
-    BOOST_CHECK_EQUAL(nSubsidy, 500000000ULL);
-
-    // 1st subsidy reduction happens here
-
-    // details for block 210240 (subsidy returned will be for block 210241)
-    nPrevBits = 0x1b10d50b;
-    nPrevHeight = 210240;
-    nSubsidy = GetBlockSubsidy(nPrevBits, nPrevHeight, chainParams->GetConsensus(), false);
-    BOOST_CHECK_EQUAL(nSubsidy, 464285715ULL);
+// The summed emission stays under MAX_MONEY (~21,000,000 FPOW).
+BOOST_AUTO_TEST_CASE(subsidy_limit_test)
+{
+    const auto chainParams = CreateChainParams(CBaseChainParams::MAIN);
+    const Consensus::Params& c = chainParams->GetConsensus();
+    CAmount nSum = 0;
+    for (int nHeight = 0; nHeight < 64 * c.nSubsidyHalvingInterval; nHeight += 1000) {
+        CAmount nSubsidy = GetBlockSubsidy(0, nHeight, c, false);
+        BOOST_CHECK(nSubsidy <= 5 * COIN);
+        nSum += nSubsidy * 1000;
+        BOOST_CHECK(MoneyRange(nSum));
+    }
+    BOOST_CHECK(nSum > 0);
+    BOOST_CHECK(nSum <= MAX_MONEY);
 }
 
 BOOST_AUTO_TEST_SUITE_END()
