@@ -479,7 +479,10 @@ def sync_mempools(rpc_connections, *, wait=1, timeout=60, flush_scheduler=True, 
         if pool.count(pool[0]) == len(rpc_connections):
             if flush_scheduler:
                 for r in rpc_connections:
-                    r.syncwithvalidationinterfacequeue()
+                    try:
+                        r.syncwithvalidationinterfacequeue()
+                    except JSONRPCException:
+                        pass  # not available on this Raven-lineage node
             return
         if wait_func is not None:
             wait_func()
