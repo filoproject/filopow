@@ -62,7 +62,7 @@ TEST_EXIT_PASSED = 0
 TEST_EXIT_FAILED = 1
 TEST_EXIT_SKIPPED = 77
 
-GENESISTIME = 1417713337
+GENESISTIME = 1783006520  # FILOPOW: just after the regtest genesis nTime (was Dash 2014)
 
 class BitcoinTestFramework():
     """Base class for a bitcoin test script.
