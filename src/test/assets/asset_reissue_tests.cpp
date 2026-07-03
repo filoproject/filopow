@@ -197,10 +197,12 @@ BOOST_FIXTURE_TEST_SUITE(asset_reissue_tests, BasicTestingSetup)
         // Add new asset3 to a valid fpow address
         BOOST_CHECK_MESSAGE(cache.AddNewAsset(asset3, Params().GlobalBurnAddress(), 0, uint256()), "Failed to add new asset");
 
-        // Create a reissuance of the asset that is valid txid but messaging isn't active in unit tests
+        // Reissuance with a valid txid-style hash. On FILOPOW, messaging (RIP5) is
+        // active from genesis, so a txid hash IS allowed here (upstream ran with
+        // messaging not yet active and expected rejection).
         CReissueAsset reissue7("DATAHASH", CAmount(1 * COIN), 8, 1, DecodeAssetData("9c2c8e121a0139ba39bffd3ca97267bca9d4c0c1e84ac0c34a883c28e7a912ca"));
 
-        BOOST_CHECK_MESSAGE(!ContextualCheckReissueAsset(&cache, reissue7, error), "Reissue should have been not valid because messaging isn't active yet, and txid aren't allowed until messaging is active");
+        BOOST_CHECK_MESSAGE(ContextualCheckReissueAsset(&cache, reissue7, error), "Reissue7 should be valid: messaging is active from genesis on FILOPOW");
     }
 
 
