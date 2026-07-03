@@ -18,7 +18,7 @@
 #include <limits.h>
 using namespace std;
 
-static const string DEFAULT_FOUNDER_ADDRESS = "FXTreasuryDevFundXXXXXXXXXXXTJfuCd"; // PLACEHOLDER burn-style, replace with the real FILOPOW treasury before mainnet
+static const string DEFAULT_FOUNDER_ADDRESS = "Fs388X5W9h9Ung1qd2qCxpCiZMAJZ185nr"; // FILOPOW mainnet dev-fee treasury (WIF at /root/validator-keys/filopow)
 struct FounderRewardStructure {
 	int blockHeight;
 	int rewardPercentage;

@@ -45,11 +45,12 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
 
 static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
-    // PROVISIONAL: replace with a real launch-week news headline and regrind all
-    // four genesis blocks before the launch announcement (the headline is the
-    // public proof the chain could not have been mined earlier). Keep
-    // nKawPowActivationTime (primitives/block.h) = mainnet genesis nTime + 1.
-    const char* pszTimestamp = "FILOPOW PROVISIONAL GENESIS - REGRIND WITH LAUNCH WEEK HEADLINE BEFORE ANNOUNCE";
+    // FILOPOW launch is 07 Jul 2026 (mainnet genesis nTime). For the strongest
+    // no-premine proof, swap this line for a real 07-Jul-2026 news headline and
+    // regrind all four geneses on the day (keep nKawPowActivationTime =
+    // primitives/block.h = mainnet genesis nTime + 1); the date and all params
+    // are otherwise final.
+    const char* pszTimestamp = "FILOPOW genesis 07 Jul 2026 - fair launch, no premine, GPU + smartnodes for FILO";
     const CScript genesisOutputScript = CScript() << ParseHex("04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f") << OP_CHECKSIG;
     return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
 }
@@ -442,12 +443,12 @@ public:
         nDefaultPort = 7767;
         nPruneAfterHeight = 100000;
    //   FindMainNetGenesisBlock(1652138420, 0x20001fff, "main");
-        uint32_t nGenesisTime = 1783006713; // PROVISIONAL; = nKawPowActivationTime - 1
+        uint32_t nGenesisTime = 1783429200; // 07 Jul 2026 13:00:00 UTC (= nKawPowActivationTime - 1)
 
-	    genesis = CreateGenesisBlock(nGenesisTime, 48363058, 0x1e00ffff, 4, 5 * COIN);
+	    genesis = CreateGenesisBlock(nGenesisTime, 22286728, 0x1e00ffff, 4, 5 * COIN);
         consensus.hashGenesisBlock = genesis.GetX16RHash();
-	    assert(consensus.hashGenesisBlock == uint256S("00000083d104392c2da392111cb1b39f1cdf4ed5281522b3fcaaae0cf5653a78"));
-        assert(genesis.hashMerkleRoot == uint256S("4fb05191fe7f0907bd27cf57757cc2d4f4eee6755781355df1ebf31a6c82942a"));
+	    assert(consensus.hashGenesisBlock == uint256S("0000007efd4b4e86228279d20fc796c793d54898ebcb02a98cd1991f2bc4d24a"));
+        assert(genesis.hashMerkleRoot == uint256S("57d79c44b12e7c5d1f8e2afb7e469b9b23bf43344dcd652051d00b0212591730"));
 
         // Fresh chain: no DNS seeds yet. Populate with our own seed nodes before
         // the launch announcement (Phase 5).
@@ -471,7 +472,7 @@ public:
         vector<FounderRewardStructure> rewardStructures = { {1050000, 10}, // 10% dev fee until ~2yr
                                                             {INT_MAX, 0}  // sunset: 0% forever after
                                                             };
-        consensus.nFounderPayment = FounderPayment(rewardStructures, 1, "FXTreasuryDevFundXXXXXXXXXXXTJfuCd");
+        consensus.nFounderPayment = FounderPayment(rewardStructures, 1, "Fs388X5W9h9Ung1qd2qCxpCiZMAJZ185nr"); // mainnet dev-fee treasury (WIF at /root/validator-keys/filopow)
         consensus.nSpecialRewardShare = Consensus::SpecialRewardShare(0.6,0.4,0.0);
         // Smartnode collateral 5,000 FPOW. Smartnode share of (subsidy+fees):
         // 54% while the dev fee runs, 60% after the sunset — miner keeps the
@@ -505,13 +506,13 @@ public:
         nPoolMaxParticipants = 5;
         nFulfilledRequestExpireTime = 60*60; // fulfilled requests expire in 1 hour
 
-        vSporkAddresses = {"FZwoXmA5h3aogGqJWKJoKvB1Dvt9qkZ7RE"}; // FILOPOW operator spork key (private key held offline)
+        vSporkAddresses = {"Fs8XNV3sz4xLJXQn3BUJ3MgAeWpu6A2cML"}; // FILOPOW operator spork key (WIF at /root/validator-keys/filopow, hold offline)
         nMinSporkKeys = 1;
         fBIP9CheckSmartnodesUpgraded = true;
 
         checkpointData = {
             {
-                {0, uint256S("00000083d104392c2da392111cb1b39f1cdf4ed5281522b3fcaaae0cf5653a78")},
+                {0, uint256S("0000007efd4b4e86228279d20fc796c793d54898ebcb02a98cd1991f2bc4d24a")},
             }
 	    };
 
@@ -645,12 +646,12 @@ public:
         nDefaultPort = 17767;
         nPruneAfterHeight = 1000;
         
-        uint32_t nGenesisTime = 1783006613; // PROVISIONAL; X16R genesis (< nKawPowActivationTime), every mined block is KawPow
+        uint32_t nGenesisTime = 1783006613; // X16R genesis (< nKawPowActivationTime), every mined block is KawPow
 
-        genesis = CreateGenesisBlock(nGenesisTime, 484, 0x20001fff, 4, 5 * COIN);
+        genesis = CreateGenesisBlock(nGenesisTime, 78, 0x20001fff, 4, 5 * COIN);
         consensus.hashGenesisBlock = genesis.GetX16RHash();
-        assert(consensus.hashGenesisBlock == uint256S("00160818d863a5227918570fc5dab9d45497a0ec4f59716427f5fd196cf53550"));
-        assert(genesis.hashMerkleRoot == uint256S("4fb05191fe7f0907bd27cf57757cc2d4f4eee6755781355df1ebf31a6c82942a"));
+        assert(consensus.hashGenesisBlock == uint256S("0011712b79c259d5e0639016ed7a50f93cd4a4def726241b3623e88b50677d91"));
+        assert(genesis.hashMerkleRoot == uint256S("57d79c44b12e7c5d1f8e2afb7e469b9b23bf43344dcd652051d00b0212591730"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -691,7 +692,7 @@ public:
         vector<FounderRewardStructure> rewardStructures = {  {2000, 10}, // 10% dev fee until the testnet sunset height
                                                              {INT_MAX, 0} // sunset
                                                 										   };
-		consensus.nFounderPayment = FounderPayment(rewardStructures, 1, "n1TreasuryDevFundXXXXXXXXXXXRrp3sS");
+		consensus.nFounderPayment = FounderPayment(rewardStructures, 1, "mm5TiSGhnHRi8u7j7G8GVavSvQLzz2j3ew");
         consensus.nSpecialRewardShare = Consensus::SpecialRewardShare(0.6,0.4,0.0);
 
         fDefaultConsistencyChecks = false;
@@ -706,7 +707,7 @@ public:
         nPoolMaxParticipants = 5;
         nFulfilledRequestExpireTime = 5*60; // fulfilled requests expire in 5 minutes
 
-        vSporkAddresses = {"n4FX25CvdZfSNvbyaA271JLsYoEiFDspHk"}; // FILOPOW testnet spork key
+        vSporkAddresses = {"n3dvEANDLbcekEev8yaFRw9Bjky5caN3V8"}; // FILOPOW testnet spork key
         nMinSporkKeys = 1;
         fBIP9CheckSmartnodesUpgraded = true;
 
@@ -817,8 +818,8 @@ public:
 
         genesis = CreateGenesisBlock(1783006413, 0, 0x207fffff, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x6a25492cdc3e623b7fa3e561409517e607c3b9255614d527c93e36eac13d2291"));
-        assert(genesis.hashMerkleRoot == uint256S("0x36d401379590843ce1f8d56256bad07ada48877f3ce8d231cc30f413c64d7ceb"));
+        assert(consensus.hashGenesisBlock == uint256S("0x411583b2164126a2dd83e968511ab64cf5b6777249a9a8d34e89a4c49f5b9264"));
+        assert(genesis.hashMerkleRoot == uint256S("0x4291076213861926a81625dee79b49ac2968dd005b6d9d1b18bf2e2bf8e25d50"));
 
         vector<FounderRewardStructure> rewardStructures = {  {INT_MAX, 5}// devnet: flat 5% for payment-path testing
                                                                 										   };
@@ -867,7 +868,7 @@ public:
 
         checkpointData = (CCheckpointData) {
             {
-                { 0, uint256S("0x6a25492cdc3e623b7fa3e561409517e607c3b9255614d527c93e36eac13d2291")},
+                { 0, uint256S("0x411583b2164126a2dd83e968511ab64cf5b6777249a9a8d34e89a4c49f5b9264")},
             }
         };
 
@@ -940,10 +941,10 @@ public:
         
         //FindMainNetGenesisBlock(1417713337, 0x20001fff, "regtest");
 
-        genesis = CreateGenesisBlock(1783006513, 343, 0x20001fff, 4, 5 * COIN);
+        genesis = CreateGenesisBlock(1783006513, 2395, 0x20001fff, 4, 5 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x000258da4393d73eb88e8ade48a0590dac07414425e0b1258da678d612e2a196"));
-        assert(genesis.hashMerkleRoot == uint256S("0x4fb05191fe7f0907bd27cf57757cc2d4f4eee6755781355df1ebf31a6c82942a"));
+        assert(consensus.hashGenesisBlock == uint256S("0x001dde5b96caa2eb455144104e1886b35365cb7e5eae7e4432afefd16af86afd"));
+        assert(genesis.hashMerkleRoot == uint256S("0x57d79c44b12e7c5d1f8e2afb7e469b9b23bf43344dcd652051d00b0212591730"));
 
         vFixedSeeds.clear(); //!< Regtest mode doesn't have any fixed seeds.
         vSeeds.clear();      //!< Regtest mode doesn't have any DNS seeds.
@@ -973,7 +974,7 @@ public:
         checkpointData = (CCheckpointData) {
             {
                 // (upstream Neoxa mistakenly pointed this at the devnet genesis)
-                {0, uint256S("0x000258da4393d73eb88e8ade48a0590dac07414425e0b1258da678d612e2a196")},
+                {0, uint256S("0x001dde5b96caa2eb455144104e1886b35365cb7e5eae7e4432afefd16af86afd")},
             }
         };
 

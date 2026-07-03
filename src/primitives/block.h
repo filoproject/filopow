@@ -25,7 +25,7 @@
  *  Every mined block is KawPow. This constant MUST stay genesis nTime + 1 when
  *  the genesis is reground for launch. (Upstream Neoxa hardcoded its own cutoff
 *  literal at each of these sites.) */
-static constexpr uint32_t nKawPowActivationTime = 1783006714;
+static constexpr uint32_t nKawPowActivationTime = 1783429201; // 07 Jul 2026 13:00:01 UTC = mainnet genesis + 1
 
 class CBlockHeader
 {
