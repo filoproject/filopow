@@ -1202,7 +1202,9 @@ CAmount GetBlockSubsidy(int nPrevBits, int nPrevHeight, const Consensus::Params&
 CAmount GetSmartnodePayment(int nHeight, CAmount blockValue, CAmount specialTxFees)
 { 
 	size_t mnCount = chainActive.Tip() == nullptr ? 0 : deterministicMNManager->GetListForBlock(chainActive.Tip()).GetAllMNsCount();
-	if(mnCount >= 150 || (mnCount >= 10 && Params().NetworkIDString() != CBaseChainParams::MAIN)) {
+	// FILOPOW: smartnode payments begin at 10 registered smartnodes on every net
+	// (was 150 on mainnet) so lockers are rewarded early and encouraged to hold.
+	if(mnCount >= 10) {
 		int percentage = Params().GetConsensus().nCollaterals.getRewardPercentage(nHeight);
 		CAmount specialFeeReward = specialTxFees * Params().GetConsensus().nSpecialRewardShare.smartnode; 
         return blockValue * percentage / 100 + specialFeeReward;

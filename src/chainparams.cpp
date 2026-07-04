@@ -358,7 +358,7 @@ public:
     CMainParams() {
         strNetworkID = "main";
         consensus.nSubsidyHalvingInterval = 2100000; // Note: actual number of blocks per calendar year with DGW v3 is ~200700 (for example 449750 - 249050)
-        consensus.nSmartnodePaymentsStartBlock = 1000; // legacy pre-DIP3 field; real gates are DIP0003Height + the 150-smartnode count
+        consensus.nSmartnodePaymentsStartBlock = 1000; // legacy pre-DIP3 field; real gates are DIP0003Height + the 10-smartnode count
         consensus.nSmartnodePaymentsIncreaseBlock = 2000; // legacy, unused with deterministic smartnodes
         consensus.nSmartnodePaymentsIncreasePeriod = 576*30; // 17280 - actual historical value
         consensus.nInstantSendConfirmationsRequired = 6;
@@ -389,7 +389,7 @@ public:
         consensus.DGWBlocksAvg = 60;
         consensus.nRuleChangeActivationThreshold = 1916; // 95% of 2016
         consensus.nMinerConfirmationWindow = 2016; // nPowTargetTimespan / nPowTargetSpacing
-        consensus.smartnodePaymentFixedBlock = 1; // enforce smartnode payee from the start (soft until 150 smartnodes exist)
+        consensus.smartnodePaymentFixedBlock = 1; // enforce smartnode payee from the start (soft until 10 smartnodes exist)
         consensus.nAssetsForkBlock = 1;
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 1653004800; // January 1, 2008
@@ -476,7 +476,7 @@ public:
         consensus.nSpecialRewardShare = Consensus::SpecialRewardShare(0.6,0.4,0.0);
         // Smartnode collateral 5,000 FPOW. Smartnode share of (subsidy+fees):
         // 54% while the dev fee runs, 60% after the sunset — miner keeps the
-        // remainder (36% -> 40%). Paid only once >=150 smartnodes are registered
+        // remainder (36% -> 40%). Paid only once >=10 smartnodes are registered
         // (GetSmartnodePayment); until then the miner receives the whole share.
         consensus.nCollaterals = SmartnodeCollaterals(
           {
