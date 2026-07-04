@@ -1,5 +1,5 @@
 WalletFrame {
-    background-color: #07131c;
+    background-color: #010102;
     border-top:0px solid #000;
     margin:0;
     padding-top:20px;
@@ -7,7 +7,7 @@ WalletFrame {
     }
     
     QStatusBar {
-    background-color: #07131c;
+    background-color: #010102;
     color: #ccc;
     }
     
@@ -17,21 +17,21 @@ WalletFrame {
     }
     
     QMenuBar {
-    background-color: #07131c;
+    background-color: #010102;
     }
     
     QMenuBar::item {
-    background-color: #07131c;
+    background-color: #010102;
     color: #ccc;
     }
     
     QMenuBar::item:selected {
-    background-color: #07131c;
+    background-color: #010102;
     color: #ccc; 
     }
     
     QMenu {
-    background-color: #07131c;
+    background-color: #010102;
     }
     
     QMenu::item {
@@ -40,12 +40,12 @@ WalletFrame {
     
     QMenu::item:selected {
     background-color: #666;
-    color: #0c2030;
+    color: #141516;
     }
     
     QToolBar {
     min-width: 180px;
-    background-color: #0c2030;
+    background-color: #141516;
     border: 0;
     padding:0;
     margin:0;
@@ -53,7 +53,7 @@ WalletFrame {
     
     QToolBar > QToolButton {
     min-width: 180px;
-    background-color: #0c2030;
+    background-color: #141516;
     border: 0;
     font-size: 14px;
     min-height: 48%;
@@ -64,7 +64,7 @@ WalletFrame {
     }
     
     QToolBar > QToolButton:checked {
-    background-color: #091306;
+    background-color: #0f1011;
     font-weight: bold;
     }
 
@@ -79,7 +79,7 @@ WalletFrame {
     }
     
     QMessageBox {
-    background-color: #07131c;
+    background-color: #010102;
     }
     
     /*******************************************************/
@@ -103,9 +103,9 @@ WalletFrame {
     min-height:31px;
     outline:0;
     padding: 0px 3px 0px 3px;
-    background-color: #0c2030; 
+    background-color: #141516; 
     color: #aaa;
-    border: 1px solid #003852;
+    border: 1px solid #23252a;
     }
     
     .QLineEdit:!focus {
@@ -133,7 +133,7 @@ WalletFrame {
     /*******************************************************/
     
     QPushButton { /* Global Button Style */
-    background-color: #0c2030;
+    background-color: #141516;
     border: 0;
     border-radius:8px;
     color:#ffffff;
@@ -147,7 +147,7 @@ WalletFrame {
     }
     
     QPushButton:hover {
-    background-color: #0c2030; /* aka Dark Blue */
+    background-color: #141516; /* aka Dark Blue */
     }
     
     QPushButton:focus {
@@ -156,7 +156,7 @@ WalletFrame {
     }
     
     QPushButton:pressed {
-    border: 1px solid #003852;
+    border: 1px solid #23252a;
     }
     
     QPushButton:disabled {
@@ -164,9 +164,9 @@ WalletFrame {
     }
     
     QComboBox { /* Dropdown Menus */
-    border: 1px solid #0c2030;
+    border: 1px solid #141516;
     padding: 0px 5px 0px 5px;
-    background: #1a2016;
+    background: #141516;
     min-height:31px;
     color: #aaa;
     }
@@ -176,9 +176,9 @@ WalletFrame {
     }
     
     QComboBox:editable {
-    background: #0c2030;
+    background: #141516;
     color:#cacaca;
-    border:1px solid #003852;
+    border:1px solid #23252a;
     }
     
     QComboBox::drop-down {
@@ -192,7 +192,7 @@ WalletFrame {
     
     QComboBox QListView {
     color: #aaa;
-    background: #07131c;
+    background: #010102;
     padding: 3px;
     }
     
@@ -203,7 +203,7 @@ WalletFrame {
     }
     
     QComboBox::item:alternate {
-    background:#091306;
+    background:#0f1011;
     }
     
     QComboBox::item:selected {
@@ -220,9 +220,9 @@ WalletFrame {
     }
     
     QAbstractSpinBox {
-    border: 1px solid #1c75bc;
+    border: 1px solid #34d399;
     padding: 0px 5px 0px 5px;
-    background: #07131c;
+    background: #010102;
     min-height:31px;
     color: #aaa;
     }
@@ -231,10 +231,10 @@ WalletFrame {
     subcontrol-origin: border;
     subcontrol-position: top right;
     width:21px;
-    background: #07131c;
+    background: #010102;
     border-left:0px;
-    border-right: 1px solid #1c75bc;
-    border-top: 1px solid #1c75bc;
+    border-right: 1px solid #34d399;
+    border-top: 1px solid #34d399;
     border-bottom:0px;
     padding-right:1px;
     padding-left:5px;
@@ -249,11 +249,11 @@ WalletFrame {
     subcontrol-origin: border;
     subcontrol-position: bottom right;
     width:21px;
-    background: #07131c;
+    background: #010102;
     border-top:0px;
     border-left:0px;
-    border-right: 1px solid #1c75bc;
-    border-bottom: 1px solid #1c75bc;
+    border-right: 1px solid #34d399;
+    border-bottom: 1px solid #34d399;
     padding-right:1px;
     padding-left:5px;
     padding-bottom:2px;
@@ -312,7 +312,7 @@ WalletFrame {
     
     QHeaderView::section { /* Table Header Sections */
     qproperty-alignment:center;
-    background-color: #0c2030;
+    background-color: #141516;
     color: #ccc;
     min-height:25px;
     font-weight:bold;
@@ -327,7 +327,7 @@ WalletFrame {
     }
     
     QHeaderView::section:last {
-    border-right: 0px solid #07131c;
+    border-right: 0px solid #010102;
     }
     
     .QScrollArea {
@@ -336,13 +336,13 @@ WalletFrame {
     }
     
     .QTableView { /* Table - has to be selected as a class otherwise it throws off QCalendarWidget */
-    border: 0px solid #091306;
-    background-color: #07131c;
+    border: 0px solid #0f1011;
+    background-color: #010102;
     color: #aaa;
     }
     
     QTableView::item { /* Table Item */
-    background-color: #07131c;
+    background-color: #010102;
     /*color: #aaa;*/ /* Do not do this!!! This breaks tx format from transactiontablemodel.cpp, apply to individual tables instead */
     font-size:12px;
     }
@@ -353,8 +353,8 @@ WalletFrame {
     }
     
     .QTableWidget {
-    border: 0px solid #091306;
-    background-color: #07131c;
+    border: 0px solid #0f1011;
+    background-color: #010102;
     color: #aaa;
     }
     
@@ -365,44 +365,44 @@ WalletFrame {
     /*******************************************************/
     
     .QTabWidget {
-    border-bottom: 1px solid #091306;
+    border-bottom: 1px solid #0f1011;
     }
     
     .QTabWidget::pane {
-    border: 1px solid #07131c;
-    background-color: #091306;
+    border: 1px solid #010102;
+    background-color: #0f1011;
     }
     
     .QTabWidget QTabBar::tab {
     background-color: #ccc;
-    color: #091306;
+    color: #0f1011;
     padding-left:10px;
     padding-right:10px;
     padding-top:5px;
     padding-bottom:5px;
-    border-top: 1px solid #07131c;
+    border-top: 1px solid #010102;
     }
     
     .QTabWidget QTabBar::tab:first {
-    border-left: 1px solid #07131c;
+    border-left: 1px solid #010102;
     }
     
     .QTabWidget QTabBar::tab:last {
-    border-right: 1px solid #07131c;
+    border-right: 1px solid #010102;
     }
     
     .QTabWidget QTabBar::tab:selected{
-    background-color: #091306;
+    background-color: #0f1011;
     color: #ccc;
     }
     
     .QTabWidget QTabBar::tab:hover {
-    background-color: #07131c;
+    background-color: #010102;
     color: #ccc;
     }
     
     .QTabWidget .QWidget {
-    color: #091306;
+    color: #0f1011;
     }
     
     .QTabWidget .QWidget QAbstractSpinBox {
@@ -420,7 +420,7 @@ WalletFrame {
     /* DIALOG BOXES */
     
     .QProgressDialog {
-    background-color: #091306;
+    background-color: #0f1011;
     color: #ccc;
     }
     
@@ -431,7 +431,7 @@ WalletFrame {
     /* SHUTDOWN WINDOW */
     
     QWidget#ShutdownWindow {
-    background-color: #091306;
+    background-color: #0f1011;
     }
     
     /*******************************************************/
@@ -439,7 +439,7 @@ WalletFrame {
     
     /* Dialog: Open URI */
     QDialog#OpenURIDialog {
-    background-color: #07131c;
+    background-color: #010102;
     }
     
     QDialog#OpenURIDialog QLabel#label { /* URI Label */
@@ -449,14 +449,14 @@ WalletFrame {
     QDialog#OpenURIDialog QPushButton#selectFileButton { /* ... Button */
     background-color: #ddd;
     border: 0;
-    color: #091306;
+    color: #0f1011;
     padding-left:10px;
     padding-right:10px;
     }
     
     QDialog#OpenURIDialog QPushButton#selectFileButton:hover {
     background-color: #aaa;
-    color: #07131c;
+    color: #010102;
     }
     
     QDialog#OpenURIDialog QPushButton#selectFileButton:pressed {
@@ -465,7 +465,7 @@ WalletFrame {
     
     /* Dialog: Sign / Verify Message */
     QDialog#SignVerifyMessageDialog {
-    background-color: #07131c;
+    background-color: #010102;
     }
     
     QDialog#SignVerifyMessageDialog QPushButton#addressBookButton_SM { /* Address Book Button */
@@ -475,8 +475,8 @@ WalletFrame {
     }
     
     QDialog#SignVerifyMessageDialog QPlainTextEdit { /* Message Signing Text */
-    border: 1px solid #0c2030;
-    background-color: #091306;
+    border: 1px solid #141516;
+    background-color: #0f1011;
     color: #ccc;
     }
     
@@ -498,14 +498,14 @@ WalletFrame {
     QDialog#SignVerifyMessageDialog QPushButton#clearButton_SM { /* Clear Button */
     background-color: #ddd;
     border: 0;
-    color: #091306;
+    color: #0f1011;
     padding-left:10px;
     padding-right:10px;
     }
     
     QDialog#SignVerifyMessageDialog QPushButton#clearButton_SM:hover {
     background-color: #aaa;
-    color: #07131c;
+    color: #010102;
     }
     
     QDialog#SignVerifyMessageDialog QPushButton#clearButton_SM:pressed {
@@ -522,14 +522,14 @@ WalletFrame {
     QDialog#SignVerifyMessageDialog QPushButton#clearButton_VM { /* Verify Message - Clear Button */
     background-color: #ddd;
     border: 0;
-    color: #091306;
+    color: #0f1011;
     padding-left:10px;
     padding-right:10px;
     }
     
     QDialog#SignVerifyMessageDialog QPushButton#clearButton_VM:hover {
     background-color: #aaa;
-    color: #07131c;
+    color: #010102;
     }
     
     QDialog#SignVerifyMessageDialog QPushButton#clearButton_VM:pressed {
@@ -538,20 +538,20 @@ WalletFrame {
     
     /* Dialog: Send and Receive */
     QWidget#AddressBookPage {
-    background-color: #07131c;
+    background-color: #010102;
     }
     
     QWidget#AddressBookPage QPushButton#newAddress { /* New Address Button */
     background-color: #ddd;
     border: 0;
-    color: #091306;
+    color: #0f1011;
     padding-left:10px;
     padding-right:10px;
     }
     
     QWidget#AddressBookPage QPushButton#newAddress:hover {
     background-color: #aaa;
-    color: #07131c;
+    color: #010102;
     }
     
     QWidget#AddressBookPage QPushButton#newAddress:pressed {
@@ -561,14 +561,14 @@ WalletFrame {
     QWidget#AddressBookPage QPushButton#copyAddress { /* Copy Address Button */
     background-color: #ddd;
     border: 0;
-    color: #091306;
+    color: #0f1011;
     padding-left:10px;
     padding-right:10px;
     }
     
     QWidget#AddressBookPage QPushButton#copyAddress:hover {
     background-color: #aaa;
-    color: #07131c;
+    color: #010102;
     }
     
     QWidget#AddressBookPage QPushButton#copyAddress:pressed {
@@ -578,14 +578,14 @@ WalletFrame {
     QWidget#AddressBookPage QPushButton#showAddressQRCode { /* Show Address QR code Button */
     background-color: #ddd;
     border: 0;
-    color: #091306;
+    color: #0f1011;
     padding-left:10px;
     padding-right:10px;
     }
     
     QWidget#AddressBookPage QPushButton#showAddressQRCode:hover {
     background-color: #aaa;
-    color: #07131c;
+    color: #010102;
     }
     
     QWidget#AddressBookPage QPushButton#showAddressQRCode:pressed {
@@ -595,14 +595,14 @@ WalletFrame {
     QWidget#AddressBookPage QPushButton#deleteAddress { /* Delete Address Button */
     background-color: #ddd;
     border: 0;
-    color: #091306;
+    color: #0f1011;
     padding-left:10px;
     padding-right:10px;
     }
     
     QWidget#AddressBookPage QPushButton#deleteAddress:hover {
     background-color: #aaa;
-    color: #07131c;
+    color: #010102;
     }
     
     QWidget#AddressBookPage QPushButton#deleteAddress:pressed {
@@ -625,7 +625,7 @@ WalletFrame {
     
     /* Encrypt Wallet and Change Passphrase Dialog */
     QDialog#AskPassphraseDialog {
-    background-color: #07131c;
+    background-color: #010102;
     }
     
     QDialog#AskPassphraseDialog QLabel#passLabel1, QDialog#AskPassphraseDialog QLabel#passLabel2, QDialog#AskPassphraseDialog QLabel#passLabel3 {
@@ -636,7 +636,7 @@ WalletFrame {
     
     /* Options Dialog */
     QDialog#OptionsDialog {
-    background-color: #07131c;
+    background-color: #010102;
     }
     
     QDialog#OptionsDialog QValueComboBox, QDialog#OptionsDialog QSpinBox {
@@ -676,7 +676,7 @@ WalletFrame {
     /* TOOLS MENU */
     
     QWidget#RPCConsole { /* RPC Console Dialog Box */
-    background-color: #07131c;
+    background-color: #010102;
     }
     
     QWidget#RPCConsole QWidget#tab_info QLabel#label_11, QWidget#RPCConsole QWidget#tab_info QLabel#label_10 { /* Margin between Network and Block Chain headers */
@@ -710,15 +710,15 @@ WalletFrame {
     }
     
     QWidget#RPCConsole QWidget#tab_nettraffic .QGroupBox#groupBox #line { /* Network In Line */
-    background-color:#003852;
+    background-color:#23252a;
     }
     
     QWidget#RPCConsole QWidget#tab_nettraffic .QGroupBox#groupBox #line_2 { /* Network Out Line */
-    background-color:#ff0000;
+    background-color:#f87171;
     }
     
     QWidget#RPCConsole QWidget#tab_peers QLabel#peerHeading { /* Peers Info Header */
-    color: #1c75bc;
+    color: #34d399;
     }
     
     QWidget#RPCConsole QWidget#tab_peers QTableView { /* Peers Tables */
@@ -729,22 +729,22 @@ WalletFrame {
     
     /* Command Line Options Dialog */
     QDialog#HelpMessageDialog {
-    background-color: #07131c;
+    background-color: #010102;
     }
     
     QDialog#HelpMessageDialog QScrollArea * {
-    background-color: #091306;
+    background-color: #0f1011;
     }
     
     QDialog#HelpMessageDialog QTextEdit {
-    background-color: #091306;
-    border: 1px solid #07131c;
+    background-color: #0f1011;
+    border: 1px solid #010102;
     color: #ccc;
     }
     
     /* About Filopow Dialog */
     QDialog#AboutDialog {
-    background-color: #07131c;
+    background-color: #010102;
     }
     
     QDialog#AboutDialog QLabel#label, QDialog#AboutDialog QLabel#copyrightLabel, QDialog#AboutDialog QLabel#label_2 { /* About Filopow Contents */
@@ -757,7 +757,7 @@ WalletFrame {
     
     /* Edit Address Dialog */
     QDialog#EditAddressDialog {
-    background-color: #07131c;
+    background-color: #010102;
     }
     
     QDialog#EditAddressDialog QLabel {
@@ -792,7 +792,7 @@ WalletFrame {
     
     QWidget .QFrame#frame .QLabel#labelWalletStatus { /* Wallet Sync Status */
     qproperty-alignment: 'AlignVCenter | AlignLeft';
-    color: #ff4500;
+    color: #34d399;
     margin-left:3px;
     }
     
@@ -811,7 +811,7 @@ WalletFrame {
     QWidget .QFrame#frame .QLabel#labelBalanceText { /* Available Balance Label */
     qproperty-alignment: 'AlignVCenter | AlignRight';
     min-width:160px;
-    background-color: #07131c;
+    background-color: #010102;
     margin-right:5px;
     padding-right:5px;
     font-size:14px;
@@ -821,7 +821,7 @@ WalletFrame {
     
     QWidget .QFrame#frame .QLabel#labelBalance { /* Available Balance */
     qproperty-alignment: 'AlignVCenter | AlignLeft';
-    color: #008de4;
+    color: #34d399;
     font-size:16px;
     font-weight: bold;
     margin-left:0px;
@@ -837,7 +837,7 @@ WalletFrame {
     qproperty-alignment: 'AlignVCenter | AlignRight';
     min-width:160px;
     font-size:12px;
-    background-color: #07131c;
+    background-color: #010102;
     margin-right:5px;
     padding-right:5px;
     }
@@ -858,7 +858,7 @@ WalletFrame {
     qproperty-alignment: 'AlignVCenter | AlignRight';
     min-width:160px;
     font-size:12px;
-    background-color: #07131c;
+    background-color: #010102;
     margin-right:5px;
     padding-right:5px;
     }
@@ -879,7 +879,7 @@ WalletFrame {
     qproperty-alignment: 'AlignVCenter | AlignRight';
     min-width:160px;
     font-size:12px;
-    background-color: #07131c;
+    background-color: #010102;
     margin-right:5px;
     padding-right:5px;
     }
@@ -925,7 +925,7 @@ WalletFrame {
     /******************************************************************/
     QWidget .QFrame#framePrivateSend .QLabel#labelPrivateSendSyncStatus { /* PrivateSend Sync Status */
     qproperty-alignment: 'AlignVCenter | AlignLeft';
-    color: #ff4500;
+    color: #34d399;
     margin-left:2px;
     padding-right:5px;
     }
@@ -944,7 +944,7 @@ WalletFrame {
     QWidget .QFrame#framePrivateSend #privateSendFormLayoutWidget .QLabel#labelPrivateSendEnabledText { /* PrivateSend Enabled Status Label */
     qproperty-alignment: 'AlignVCenter | AlignRight';
     min-width:160px;
-    background-color: #07131c;
+    background-color: #010102;
     margin-right:5px;
     padding-right:5px;
     }
@@ -956,7 +956,7 @@ WalletFrame {
     QWidget .QFrame#framePrivateSend #privateSendFormLayoutWidget .QLabel#labelCompletitionText { /* PrivateSend Completion Label */
     qproperty-alignment: 'AlignVCenter | AlignRight';
     min-width:160px;
-    background-color: #07131c;
+    background-color: #010102;
     margin-right:5px;
     padding-right:5px;
     
@@ -971,14 +971,14 @@ WalletFrame {
     }
     
     QWidget .QFrame#framePrivateSend #privateSendFormLayoutWidget .QProgressBar#privateSendProgress::chunk {
-    background-color: #0c2030;
+    background-color: #141516;
     width:1px;
     }
     
     QWidget .QFrame#framePrivateSend #privateSendFormLayoutWidget .QLabel#labelAnonymizedText { /* PrivateSend Balance Label */
     qproperty-alignment: 'AlignVCenter | AlignRight';
     min-width:160px;
-    background-color: #07131c;
+    background-color: #010102;
     margin-right:5px;
     padding-right:5px;
     }
@@ -990,7 +990,7 @@ WalletFrame {
     QWidget .QFrame#framePrivateSend #privateSendFormLayoutWidget .QLabel#labelAmountAndRoundsText { /* PrivateSend Amount and Rounds Label */
     qproperty-alignment: 'AlignVCenter | AlignRight';
     min-width:160px;
-    background-color: #07131c;
+    background-color: #010102;
     margin-right:5px;
     padding-right:5px;
     }
@@ -1002,7 +1002,7 @@ WalletFrame {
     QWidget .QFrame#framePrivateSend #privateSendFormLayoutWidget .QLabel#labelSubmittedDenomText { /* PrivateSend Submitted Denom Label */
     qproperty-alignment: 'AlignVCenter | AlignRight';
     min-width:160px;
-    background-color: #07131c;
+    background-color: #010102;
     margin-right:5px;
     padding-right:5px;
     }
@@ -1066,7 +1066,7 @@ WalletFrame {
     }
 
     QWidget .QFrame#assetFrame QListView{ /* Transactions Widget */
-    background-color: #091306;
+    background-color: #0f1011;
     color: #ccc;
     font-weight:normal;
     font-size:12px;
@@ -1088,7 +1088,7 @@ WalletFrame {
     
     QWidget .QFrame#assetFrame .QLabel#labelAssetStatus { /* Recent Transactions Sync Status */
     qproperty-alignment: 'AlignBottom | AlignRight';
-    color: #ff4500;
+    color: #34d399;
     min-width:93px;
     margin-top:0;
     margin-left:16px;
@@ -1098,7 +1098,7 @@ WalletFrame {
 
     QWidget .QFrame#frame_2 .QLabel#labelTransactionsStatus { /* Recent Transactions Sync Status */
       qproperty-alignment: 'AlignBottom | AlignRight';
-      color: #ff4500;
+      color: #34d399;
       min-width:93px;
       margin-top:0;
       margin-left:16px;
@@ -1131,7 +1131,7 @@ WalletFrame {
     }
     
     QWidget#contentWidget { /* The actual content with the text/buttons/etc... */
-    background-color: #091306;
+    background-color: #0f1011;
     border-top:0px solid #000;
     margin:0;
     padding-top:20px;
@@ -1185,7 +1185,7 @@ WalletFrame {
     }
     
     QDialog#SendCoinsDialog .QFrame#frameCoinControl .QLabel#labelCoinControlInsuffFunds { /* Insufficient Funds Label */
-    color: #ff4500;
+    color: #34d399;
     }
     
     QDialog#SendCoinsDialog .QScrollArea#scrollArea .QWidget#scrollAreaWidgetContents { /* Send To Widget */
@@ -1200,14 +1200,14 @@ WalletFrame {
     QDialog#SendCoinsDialog .QPushButton#clearButton { /* Clear Button */
     background-color: #ddd;
     border: 0;
-    color: #091306;
+    color: #0f1011;
     padding-left:10px;
     padding-right:10px;
     }
     
     QDialog#SendCoinsDialog .QPushButton#clearButton:hover {
     background-color: #aaa;
-    color: #07131c;
+    color: #010102;
     }
     
     QDialog#SendCoinsDialog .QPushButton#clearButton:pressed {
@@ -1217,14 +1217,14 @@ WalletFrame {
     QDialog#SendCoinsDialog .QPushButton#addButton { /* Add Button */
     background-color: #ddd;
     border: 0;
-    color: #091306;
+    color: #0f1011;
     padding-left:10px;
     padding-right:10px;
     }
     
     QDialog#SendCoinsDialog .QPushButton#addButton:hover {
     background-color: #aaa;
-    color: #07131c;
+    color: #010102;
     }
     
     QDialog#SendCoinsDialog .QPushButton#addButton:pressed {
@@ -1275,7 +1275,7 @@ WalletFrame {
     /* SEND COINS ENTRY */
     
     QStackedWidget#SendCoinsEntry .QFrame#SendCoins > .QLabel { /* Send Coin Entry Labels */
-    background-color: #07131c;
+    background-color: #010102;
     min-width:102px;
     font-weight:normal;
     /*font-size:11px;*/
@@ -1286,7 +1286,7 @@ WalletFrame {
     }
     
     QStackedWidget#SendCoinsEntry .QFrame#SendCoins .QLabel#amountLabel {
-    color: #091306;
+    color: #0f1011;
     background-color:#999;
     }
     
@@ -1361,7 +1361,7 @@ WalletFrame {
        }
        
        QDialog#AssetsDialog .QFrame#frameCoinControl .QLabel#labelCoinControlInsuffFunds { /* Insufficient Funds Label */
-       color: #ff4500;
+       color: #34d399;
        }
        
        QDialog#AssetsDialog .QScrollArea#scrollArea .QWidget#scrollAreaWidgetContents { /* Send To Widget */
@@ -1376,14 +1376,14 @@ WalletFrame {
        QDialog#AssetsDialog .QPushButton#clearButton { /* Clear Button */
        background-color: #ddd;
        border: 0;
-       color: #091306;
+       color: #0f1011;
        padding-left:10px;
        padding-right:10px;
        }
        
        QDialog#AssetsDialog .QPushButton#clearButton:hover {
        background-color: #aaa;
-       color: #07131c;
+       color: #010102;
        }
        
        QDialog#AssetsDialog .QPushButton#clearButton:pressed {
@@ -1393,14 +1393,14 @@ WalletFrame {
        QDialog#AssetsDialog .QPushButton#addButton { /* Add Button */
        background-color: #ddd;
        border: 0;
-       color: #091306;
+       color: #0f1011;
        padding-left:10px;
        padding-right:10px;
        }
        
        QDialog#AssetsDialog .QPushButton#addButton:hover {
        background-color: #aaa;
-       color: #07131c;
+       color: #010102;
        }
        
        QDialog#AssetsDialog .QPushButton#addButton:pressed {
@@ -1451,7 +1451,7 @@ WalletFrame {
        /* SEND COINS ENTRY */
        
        QStackedWidget#SendAssetsEntry .QFrame#SendCoins > .QLabel { /* Send Coin Entry Labels */
-       background-color: #07131c;
+       background-color: #010102;
        min-width:102px;
        font-weight:normal;
        /*font-size:11px;*/
@@ -1463,7 +1463,7 @@ WalletFrame {
        
        QStackedWidget#SendAssetsEntry .QFrame#SendCoins .QLabel#amountLabel {
        color: #ccc;
-       background-color:#07131c;
+       background-color:#010102;
        }
        
        QStackedWidget#SendAssetsEntry .QValidatedLineEdit#payTo { /* Pay To Input Field */
@@ -1536,10 +1536,10 @@ WalletFrame {
    }
    
    QDialog#ReissueAssetDialog .QFrame#frameCoinControl .QLabel#labelCoinControlInsuffFunds { /* Insufficient Funds Label */
-   color: #ff4500;
+   color: #34d399;
    }
       QDialog#ReissueAssetDialog .QScrollArea#scrollArea .QWidget#scrollAreaWidgetContents { /* Send To Widget */
-      background-color: #07131c;
+      background-color: #010102;
       }
 
       QDialog#ReissueAssetDialog .QTextBrowser{ /* Send To Widget */
@@ -1550,7 +1550,7 @@ WalletFrame {
     /* COIN CONTROL POPUP */
     
     QDialog#CoinControlDialog { /* Coin Control Dialog Window */
-    background-color: #07131c;
+    background-color: #010102;
     }
     
     QDialog#CoinControlDialog .QLabel#labelCoinControlQuantityText { /* Coin Control Quantity Label */
@@ -1639,8 +1639,8 @@ WalletFrame {
     
     QDialog#CoinControlDialog .CoinControlTreeWidget#treeWidget { /* Coin Control Widget Container */
     outline:0;
-    background-color: #091306;
-    alternate-background-color: #07131c;
+    background-color: #0f1011;
+    alternate-background-color: #010102;
     color: #ccc;
     border:0px solid #aaa;
     }
@@ -1670,7 +1670,7 @@ WalletFrame {
     background-image: url(':/images/qtreeview_selected');
     background-repeat:no-repeat;
     background-position:center;
-    background-color: #07131c;
+    background-color: #010102;
     color: #ccc;
     }
     
@@ -1685,8 +1685,8 @@ WalletFrame {
     /* RECEIVE COINS */
     
     QWidget#ReceiveCoinsDialog .QFrame#frame2 .QLabel#label_2 { /* Label Label */
-    background-color: #07131c;
-    border: 1px solid #091306;
+    background-color: #010102;
+    border: 1px solid #0f1011;
     min-width:102px;
     color: #ccc;
     /*font-weight:bold;
@@ -1696,17 +1696,17 @@ WalletFrame {
     
     QWidget#ReceiveCoinsDialog .QFrame#frame2 .QLabel#label { /* Amount Label */
     background-color:#999;
-    border: 1px solid #091306;
+    border: 1px solid #0f1011;
     min-width:102px;
-    color: #091306;
+    color: #0f1011;
     /*font-weight:bold;
     font-size:11px;*/
     padding-right:5px;
     }
     
     QWidget#ReceiveCoinsDialog .QFrame#frame2 .QLabel#label_3 { /* Message Label */
-    background-color: #07131c;
-    border: 1px solid #091306;
+    background-color: #010102;
+    border: 1px solid #0f1011;
     min-width:102px;
     color: #ccc;
     /*font-weight:bold;
@@ -1717,14 +1717,14 @@ WalletFrame {
     QWidget#ReceiveCoinsDialog .QFrame#frame2 QPushButton#clearButton { /* Clear Button */
     background-color: #ddd;
     border: 0;
-    color: #091306;
+    color: #0f1011;
     padding-left:10px;
     padding-right:10px;
     }
     
     QWidget#ReceiveCoinsDialog .QFrame#frame2 QPushButton#clearButton:hover {
     background-color: #aaa;
-    color: #07131c;
+    color: #010102;
     }
     
     QWidget#ReceiveCoinsDialog .QFrame#frame2 QPushButton#clearButton:pressed {
@@ -1734,14 +1734,14 @@ WalletFrame {
     QWidget#ReceiveCoinsDialog .QFrame#frame QPushButton#showRequestButton { /* Show Button */
     background-color: #ddd;
     border: 0;
-    color: #091306;
+    color: #0f1011;
     padding-left:10px;
     padding-right:10px;
     }
     
     QWidget#ReceiveCoinsDialog .QFrame#frame QPushButton#showRequestButton:hover {
     background-color: #aaa;
-    color: #07131c;
+    color: #010102;
     }
     
     QWidget#ReceiveCoinsDialog .QFrame#frame QPushButton#showRequestButton:pressed {
@@ -1756,14 +1756,14 @@ WalletFrame {
     QWidget#ReceiveCoinsDialog .QFrame#frame QPushButton#removeRequestButton { /* Remove Button */
     background-color: #ddd;
     border: 0;
-    color: #091306;
+    color: #0f1011;
     padding-left:10px;
     padding-right:10px;
     }
     
     QWidget#ReceiveCoinsDialog .QFrame#frame QPushButton#removeRequestButton:hover {
     background-color: #aaa;
-    color: #07131c;
+    color: #010102;
     }
     
     QWidget#ReceiveCoinsDialog .QFrame#frame QPushButton#removeRequestButton:pressed {
@@ -1788,24 +1788,24 @@ WalletFrame {
     /* RECEIVE COINS DIALOG */
     
     QDialog#ReceiveRequestDialog {
-    background-color: #07131c;
+    background-color: #010102;
     }
     
     QDialog#ReceiveRequestDialog QTextEdit { /* Contents of Receive Coin Dialog */
-    border: 1px solid #07131c;
-    background-color: #07131c;
+    border: 1px solid #010102;
+    background-color: #010102;
     color: #ccc;
     }
     
     /* General QR-code DIALOG */
     
     QDialog#QRDialog {
-    background-color: #07131c;
+    background-color: #010102;
     }
     
     QDialog#QRDialog QTextEdit { /* Contents of QR-code Dialog */
-    border:1px solid #07131c;
-    background-color: #07131c;
+    border:1px solid #010102;
+    background-color: #010102;
     color: #ccc;
     }
     
@@ -1849,13 +1849,13 @@ WalletFrame {
     /* TRANSACTION DETAIL DIALOG */
     
     QDialog#TransactionDescDialog {
-    background-color: #07131c;
+    background-color: #010102;
     }
     
     QDialog#TransactionDescDialog QTextEdit { /* Contents of Receive Coin Dialog */
       background-color: #00192e;
       color: #ccc;
-      border:1px solid #07131c;
+      border:1px solid #010102;
     }
     
     /* MASTERNODE LIST TAB */
@@ -1863,3 +1863,74 @@ WalletFrame {
     QWidget#SmartnodeList QTableWidget#tableWidgetSmartnodesDIP3 {
       color: #aaa;
     }
+/******************************************************
+FILO: HD Wallet Setup (mnemonic) dialog — dark, on-brand.
+The mnemonic box is a bare QTextEdit (no dark rule -> Qt default white);
+this scopes a full dark treatment to QDialog#MnemonicDialog only.
+******************************************************/
+QDialog#MnemonicDialog {
+    background-color: #010102;
+}
+QDialog#MnemonicDialog QLabel {
+    background: transparent;
+    color: #d0d6e0;
+}
+QDialog#MnemonicDialog QTabWidget::pane {
+    background-color: #010102;
+    border: 1px solid #23252a;
+    border-radius: 8px;
+    top: -1px;
+}
+QDialog#MnemonicDialog > QTabWidget > QWidget {
+    background-color: #010102;
+}
+QDialog#MnemonicDialog QTabBar::tab {
+    background-color: #0f1011;
+    color: #8a8f98;
+    padding: 6px 18px;
+    border: 1px solid #23252a;
+    border-bottom: none;
+    margin-right: 2px;
+}
+QDialog#MnemonicDialog QTabBar::tab:selected {
+    background-color: #18191a;
+    color: #f7f8f8;
+}
+QDialog#MnemonicDialog QTextEdit {
+    background-color: #141516;
+    color: #f7f8f8;
+    border: 1px solid #23252a;
+    border-radius: 8px;
+    padding: 6px 8px;
+    selection-background-color: #34d399;
+    selection-color: #010102;
+}
+QDialog#MnemonicDialog QTextEdit:focus {
+    border: 1px solid #34d399;
+}
+QDialog#MnemonicDialog QLineEdit {
+    background-color: #141516;
+    color: #f7f8f8;
+    border: 1px solid #23252a;
+    border-radius: 8px;
+    min-height: 31px;
+    padding: 0px 8px;
+}
+QDialog#MnemonicDialog QLineEdit:focus {
+    border: 1px solid #34d399;
+}
+QDialog#MnemonicDialog QPushButton {
+    background-color: #141516;
+    color: #f7f8f8;
+    border: 1px solid #23252a;
+    border-radius: 8px;
+    min-height: 30px;
+    padding: 4px 16px;
+}
+QDialog#MnemonicDialog QPushButton:hover {
+    border: 1px solid #34d399;
+    color: #34d399;
+}
+QDialog#MnemonicDialog QPushButton:pressed {
+    background-color: #18191a;
+}

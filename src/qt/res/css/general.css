@@ -34,9 +34,9 @@ in the <theme.css> file.
 
 #00000000
 #222222
-#5e8c41
-#a84832
-#c79304
+#34d399
+#f87171
+#fbbf24
 
 </colors>
 */
@@ -1286,7 +1286,7 @@ QDialog#OptionsDialog QLabel#label_3 { /* Translations Missing? Label */
     qproperty-alignment: 'AlignVCenter | AlignLeft';
     padding-left: 8px;
     min-height: 60px;
-    color: #c79304;
+    color: #fbbf24;
 }
 
 QDialog#OptionsDialog #line,
@@ -1308,7 +1308,7 @@ QDialog#OptionsDialog QLabel#overriddenByCommandLineInfoLabel {
  ******************************************************/
 
 QWidget#OverviewPage QLabel#labelAlerts {
-     background-color: #c79304;
+     background-color: #fbbf24;
      color: #222222;
      border-radius: 5px;
      padding: 5px;
@@ -1334,7 +1334,7 @@ QWidget .QFrame#frame .QLabel#label_5 { /* Wallet Label */
 
 QWidget .QFrame#frame .QLabel#labelWalletStatus { /* Wallet Sync Status */
     qproperty-alignment: 'AlignVCenter | AlignLeft';
-    color: #a84832;
+    color: #f87171;
 }
 
 QWidget .QFrame#frame .QLabel#labelSpendable { /* Spendable Header */
@@ -1445,7 +1445,7 @@ QWidget .QFrame#frameCoinJoin .QLabel#labelCoinJoinHeader { /* CoinJoin Header *
 
 QWidget .QFrame#frameCoinJoin .QLabel#labelCoinJoinSyncStatus { /* CoinJoin Sync Status */
     qproperty-alignment: 'AlignVCenter | AlignLeft';
-    color: #a84832;
+    color: #f87171;
 }
 
 QWidget .QFrame#frameCoinJoin  .QLabel#labelCoinJoinEnabledText { /* CoinJoin Enabled Status Label */
@@ -1533,7 +1533,7 @@ QWidget .QFrame#frame_2 .QLabel#label_4 { /* Recent Transactions Label */
 
 QWidget .QFrame#frame_2 .QLabel#labelTransactionsStatus { /* Recent Transactions Sync Status */
     qproperty-alignment: 'AlignVCenter | AlignLeft';
-    color: #a84832;
+    color: #f87171;
 }
 
 QWidget .QFrame#frame_2 QListView { /* Transaction List */
@@ -1621,11 +1621,11 @@ QWidget#RPCConsole .QToolButton { /* Console buttons fontbigger/fontsmaller/clea
 }
 
 QWidget#RPCConsole .QGroupBox #line { /* Network In Line */
-    background-color: #5e8c41;
+    background-color: #34d399;
 }
 
 QWidget#RPCConsole .QGroupBox #line_2 { /* Network Out Line */
-    background-color: #a84832;
+    background-color: #f87171;
 }
 
 #rpcAutoCompleter {
@@ -1677,7 +1677,7 @@ QDialog#SendCoinsDialog .QFrame#frameCoinControl .QLabel#labelCoinControlChangeL
 }
 
 QDialog#SendCoinsDialog .QFrame#frameCoinControl .QLabel#labelCoinControlInsuffFunds { /* Insufficient Funds Label */
-    color: #a84832;
+    color: #f87171;
 }
 
 QDialog#SendCoinsDialog .QScrollArea#scrollArea .QWidget#scrollAreaWidgetContents { /* Send To Widget */

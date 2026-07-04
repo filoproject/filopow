@@ -22,12 +22,12 @@ Loaded in GUIUtil::loadStyleSheet() in guitil.cpp.
 #00000000
 #333
 #fff
-#008de4
-#047ac2
+#34d399
+#10b981
 #222222
-#a84832
-#c79304
-#ccfafafa
+#f87171
+#fbbf24
+#6ee7b7fa
 
 </colors>
 */
@@ -67,7 +67,7 @@ QPushButton - Special case, tabbar replacement buttons
     border-bottom: 3px solid red;
     padding-bottom: 5px;
     background-color: #00000000;
-    border-color: #008de4;
+    border-color: #34d399;
 }
 
 /* Debug window buttons */
@@ -113,7 +113,7 @@ QPushButton - Special case, tabbar replacement buttons
     border-radius: 0px;
     border-bottom: 3px solid red;
     background-color: #00000000;
-    border-color: #047ac2;
+    border-color: #10b981;
 }
 
 /* Debug window buttons */
@@ -146,7 +146,7 @@ ModalOverlay
 QWidget#bgWidget { /* The frame overlaying the overview-page */
     padding-left: 10px;
     padding-right: 10px;
-    background-color: #ccfafafa;
+    background-color: #6ee7b7fa;
 }
 
 QWidget#contentWidget { /* The actual content with the text/buttons/etc... */
@@ -233,7 +233,7 @@ OverviewPage
 ******************************************************/
 
 QWidget#OverviewPage QLabel#labelAlerts {
-     background-color: #c79304;
+     background-color: #fbbf24;
      color: #222222;
      border-radius: 5px;
      padding: 5px;
@@ -242,7 +242,7 @@ QWidget#OverviewPage QLabel#labelAlerts {
 QWidget .QFrame#frame .QLabel#labelWalletStatus, /* Wallet Sync Status */
 QWidget .QFrame#frameCoinJoin .QLabel#labelCoinJoinSyncStatus, /* CoinJoin Sync Status */
 QWidget .QFrame#frame_2 .QLabel#labelTransactionsStatus { /* Recent Transactions Sync Status */
-    color: #a84832;
+    color: #f87171;
 }
 
 QWidget .QFrame#frame_2 QListView { /* Transaction List */
@@ -260,5 +260,5 @@ QDialog#SendCoinsDialog QLabel#labelBalance {
 }
 
 QDialog#SendCoinsDialog .QFrame#frameCoinControl .QLabel#labelCoinControlInsuffFunds { /* Insufficient Funds Label */
-    color: #a84832;
+    color: #f87171;
 }
