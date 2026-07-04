@@ -76,7 +76,7 @@ explorer, pool, mining guide, smartnode guide). Bitcointalk ANN + Discord.
 ## Post-launch: smartnode + quorum activation sequence
 
 The smartnode tier fills as collateral accumulates (5,000 FPOW each; payments
-auto-activate at 150 registered). When enough smartnodes are online to form
+auto-activate at 10 registered). When enough smartnodes are online to form
 quorums, the operator enables — in this order, each announced publicly:
 
 1. `SPORK_17_QUORUM_DKG_ENABLED` — quorums begin forming (DKG).

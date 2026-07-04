@@ -19,12 +19,12 @@ miner's share of it depends on the network's phase:
 
 | Phase | Miner share |
 |---|---|
-| Before 150 smartnodes are registered | ~90% (dev fee is the only deduction) |
-| After 150 smartnodes, dev-fee period (blocks ≤ 1,050,000) | 36% |
-| After 150 smartnodes, post-sunset | 40% |
+| Before 10 smartnodes are registered | ~90% (dev fee is the only deduction) |
+| After 10 smartnodes, dev-fee period (blocks ≤ 1,050,000) | 36% |
+| After 10 smartnodes, post-sunset | 40% |
 
 **The earliest miners earn the most** — until the smartnode tier fills up
-(150 nodes × 5,000 FPOW collateral), their share goes to the miner. Transaction
+(10 nodes × 5,000 FPOW collateral), their share goes to the miner. Transaction
 fees follow the miner/smartnode split.
 
 ## 1. Get a wallet address

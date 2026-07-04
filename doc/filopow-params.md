@@ -36,7 +36,7 @@ The block subsidy is split three ways, all consensus-enforced:
 - The **development fee** is paid to a disclosed treasury address in every
   block and funds market liquidity (the operators do not mine and hold no
   premine). It **ends permanently** at block 1,050,000 — enforced by consensus.
-- The **smartnode share** activates automatically once **150 smartnodes** are
+- The **smartnode share** activates automatically once **10 smartnodes** are
   registered; before that the miner receives it (early miners earn ~90% of the
   subsidy). Percentages are of (subsidy + fees) for smartnodes and of the
   subsidy for the development fee.
@@ -48,7 +48,7 @@ The block subsidy is split three ways, all consensus-enforced:
 |---|---|
 | Collateral | 5,000 FPOW (exact amount, single tier) |
 | Registration | Dash-style deterministic list (DIP3 `protx`), active from height 1 |
-| Payment activation | automatic at ≥150 registered smartnodes |
+| Payment activation | automatic at ≥10 registered smartnodes |
 | ChainLocks / InstantSend | spork-gated (enabled by the operator once quorums can form) |
 
 See [smartnodes.md](smartnodes.md) for setup.

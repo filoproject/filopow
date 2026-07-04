@@ -11,7 +11,7 @@ until its collateral moves. There is no separate "start missing" dance.
 
 ## When payments start
 
-Smartnode payments activate automatically once **150 smartnodes** are
+Smartnode payments activate automatically once **10 smartnodes** are
 registered network-wide. Before that, the smartnode share is paid to miners.
 This is by design: at launch nobody holds collateral yet; as coins accumulate,
 the tier fills and payments switch on by themselves. Your node can register at
