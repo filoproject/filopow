@@ -19,8 +19,14 @@ any time — registration is valid from height 1.
 
 ## Requirements
 
+- **Operating system: 64-bit Linux (x86-64).** Recommended: **Ubuntu 20.04 / 22.04 LTS** or
+  **Debian 11 / 12**. The release binary needs **glibc ≥ 2.29**, so older systems (Ubuntu 18.04,
+  Debian 10) will not run it. Windows and macOS builds exist, but a smartnode must stay online
+  24/7 with a static IP, so a small **Linux VPS** is the standard choice.
 - A VPS or server with a **static, routable IPv4**, reachable on port **7767**
-- A synced `filopowd`
+- Roughly **2 GB RAM** and a few GB of free disk (the chain is small at launch)
+- A synced `filopowd` — use the `filopow-*-x86_64-linux-gnu.tar.gz` from the
+  [releases page](https://github.com/filoproject/filopow/releases)
 - Exactly **5,000 FPOW** in one UTXO (the collateral)
 - A separate wallet for the collateral is strongly recommended
 
