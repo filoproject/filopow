@@ -3961,6 +3961,17 @@ static bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationSta
             return state.DoS(100, error("%s: forked chain older than last checkpoint (height %d)", __func__, nHeight), REJECT_CHECKPOINT, "bad-fork-prior-to-checkpoint");
     }
 
+    // Strict checkpoint enforcement: a block AT a checkpointed height MUST equal the
+    // pinned checkpoint hash. The advisory check above only rejects forks *below* the
+    // last checkpoint; this rejects any alternative block at a checkpointed height
+    // (e.g. the abandoned pre-reset chain whose block 1 differs from the pinned hash).
+    if (fCheckpointsEnabled) {
+        const auto& mapCheckpoints = params.Checkpoints().mapCheckpoints;
+        auto itcp = mapCheckpoints.find(nHeight);
+        if (itcp != mapCheckpoints.end() && block.GetHash() != itcp->second)
+            return state.DoS(100, error("%s: block at height %d = %s does not match checkpoint %s", __func__, nHeight, block.GetHash().ToString(), itcp->second.ToString()), REJECT_CHECKPOINT, "checkpoint-mismatch");
+    }
+
     // Check timestamp against prev
     if (block.GetBlockTime() <= pindexPrev->GetMedianTimePast())
         return state.Invalid(false, REJECT_INVALID, "time-too-old", strprintf("block's timestamp is too early %d %d", block.GetBlockTime(), pindexPrev->GetMedianTimePast()));
